@@ -1,0 +1,212 @@
+@import 'all.less';
+.content{
+  margin: 4em auto;
+}
+.left{
+  display: block;
+  float: left;
+/*  background-color: #abcdef;*/
+  width: 50%;
+  line-height: 1.4em;
+  margin-bottom: 3em;
+  .goods{
+    border: 1px solid #ffffff;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+/*    background-color: #cccccc;*/
+    padding: 1em;
+    width: 400px;
+    margin: 0 auto;
+/*    h3{
+      background-color: #417474;
+      line-height: .8em;
+      margin: .3em 0 .3em 0;
+      font-size: 1.2em;
+      text-align: center;
+    }*/
+    .discript{
+      margin-bottom: .4em;
+/*      background-color: #417474;*/
+      line-height: 1.4em;
+    }
+    /* 图像轮播样式 */
+    .banner{
+      width: 80%;
+      margin: 0 auto;
+      position: relative;
+      overflow: auto;
+      text-align: center;
+      /* 根据图片做调整 */
+      width: 360px;
+      #al {
+        left: 15px;
+      }
+      #ar {
+        right: 15px;
+      }
+      ul, ol {
+        padding: 0;
+      }
+      .arrow {
+        position: absolute;
+        top: 180px;
+      }
+      li {
+        list-style: none;
+      }
+      ul li {
+        float: left;
+      }
+      .dots {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 20px;
+        li
+        {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          margin: 0 4px;
+          text-indent: -999em;
+          border: 2px solid #fff;
+          border-radius: 6px;
+          cursor: pointer;
+          opacity: .4;
+          -webkit-transition: background .5s, opacity .5s;
+          -moz-transition: background .5s, opacity .5s;
+          transition: background .5s, opacity .5s;
+          &.active{
+            background: #fff;
+            opacity: 1;
+          }
+        }
+      }
+    }
+    /* 图像轮播结束 */
+    .price{
+/*      background-color: darkblue;*/
+      span{
+        display: inline-block;
+        &:nth-child(2){
+          margin-left: .4em;
+        }
+      }
+      .buy{
+        display: inline-block;
+        margin-left: 5em;
+      }
+    }
+    .godsmessage{
+      ul{
+        display: block;
+        li{
+          text-align: center;
+          width: 33%;
+          display: inline-block;
+          float: left;
+          border-right: 1px dashed black;
+          &:last-child{
+            border: none;
+          }
+        }
+      }
+      .send{
+            margin-top: .8em;
+        form{
+          padding-top: .4em;
+          span{
+            display: inline-block;
+            margin-right: .9em;
+          }
+
+          label{
+/*            background-color: #685875;*/
+            input{
+              width: 80%;
+              height: 1.6em;
+            }
+          }
+          .submit{
+            margin-top: .4em;
+            display: block;
+            margin-left: 80%;
+            margin-bottom: .4em;
+          }
+        }
+        border-bottom: 1px dashed #cccccc;
+      }
+      overflow: auto;
+    }
+    .comment{
+      margin-top: .8em;
+      article{
+        border-bottom: 1px solid #ffffff;
+/*        background-color: hotpink;*/
+        margin-bottom: .3em;
+        position: relative;
+        overflow: auto;
+        div{
+          float: left;
+          &:first-child{
+/*            background-color: red;*/
+            width: 3.4em;
+            height: 3.4em;
+          }
+        }
+        .message{
+/*          background-color: #417474;*/
+          width: 21.55em;
+          left: 4em;
+          margin-bottom: .3em;
+        }
+        &:last-child{
+          border: none;
+        }
+      }
+
+    }
+  }
+}
+
+.blown{
+/*  background-color: dodgerblue;*/
+  width: 20%;
+  float: left;
+  article{
+      div{
+        background-color: #685875;
+        -webkit-border-radius: 3em;
+        -moz-border-radius: 3em;
+        border-radius: 3em;
+        width: 6em;
+        height: 6em;
+        background-image: url('../head.jpg');
+        margin-bottom: .6em;
+      }
+    p{
+      line-height: 1.6em;
+      .time{
+        color: #ffffff;
+      }
+
+    }
+    a{
+      -webkit-border-radius:4px;
+      -moz-border-radius:4px;
+      border-radius:4px;
+      background-color: #ec5252;
+      display: block;
+      margin: 1em auto;
+      text-align: center;
+      line-height: 2em;
+      font-size: 1.2em;
+      color: #ffffff;
+    }
+  }
+}
+
+
+
+

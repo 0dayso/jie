@@ -1,0 +1,387 @@
+@import 'all.less';
+/* 页面中间的内容 */
+.content{
+  height: auto;
+  width: 100%;
+  margin-top: 3.5em;
+  color: #717174;
+  /* position: relative;*/
+}
+/* 主体信息 */
+.message{
+  width: 72%;
+  height: 960px;
+  margin: 3.5em 2em;
+  /*  border: 1px solid yellow;*/
+  /* 商品显示时的区块 */
+  article{
+    position: relative;
+    width: 280px;
+    height: 480px;
+    background-color: #ffffff;
+    margin: .9em 1.3em;
+    float: left;
+    border: 1px solid #ffffff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    /* 商品图像 */
+    .img{
+      width: 280px;
+      height: 290px;
+      background-image: url("../1.jpg");
+      -webkit-border-top-left-radius: 4px;
+      -moz-border-top-left-radius: 4px;
+      border-top-left-radius: 4px;
+      -webkit-border-top-right-radius: 4px;
+      -moz-border-top-right-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .bar{
+/*      background-color: #5a5d63;*/
+      height: 15%;
+      border-bottom: 1px dashed #cccccc;
+      ul{
+        display: inline-block;
+        line-height: 4.4em;
+        li{
+          float: left;
+        }
+        /* 用户头像和姓名 */
+        &:first-child{
+          width: 55%;
+/*          background-color: #417474;*/
+          li{
+            width: 4.3em;
+            height: 4em;
+            display: inline-block;
+            text-align: center;
+            /* 头像 */
+            &:first-child{
+              line-height: 4.4em;
+              margin: .2em .3em;
+              background-color: yellow;
+              -webkit-border-radius: 4em;
+              -moz-border-radius: 4em;
+              border-radius: 4em;
+            }
+            /* 用户姓名 */
+            &:last-child{
+              font-size: 1em;
+              line-height: 6em;
+              margin: .2em;
+/*              background-color: #ec5252;*/
+            }
+          }
+        }
+        /* 商品信息 */
+        &:last-child{
+          width: 43%;
+/*          background-color: #ec5252;*/
+          li{
+            height: 4.2em;
+            line-height: 6em;
+            text-align: center;
+            &:first-child{
+              width: 60%;
+/*              background-color: #685875*/
+            }
+            &:last-child{
+              width: 40%;
+            }
+          }
+        }
+      }
+    }
+    .godsmessage{
+/*      background-color: #cccccc;*/
+      width: 94%;
+      height: 25%;
+      margin: 0 auto;
+      .goodsname{
+/*        background-color: #685875;*/
+        height: 1.8em;
+        line-height: 1.8em;
+        vertical-align: bottom;
+      }
+      .discript{
+        height: 68%;
+/*        background-color: aquamarine;*/
+        padding: .3em 0;
+      }
+    }
+  }
+}
+
+/* 侧边栏发布和聊天 */
+.blown{
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+  width: 25%;
+  height: 80%;
+  position: absolute;
+  top: 4.5em;
+  right: 0px;
+  border: 1px solid #ffffff;
+  border-right: none;
+  -webkit-box-shadow: 0 0 3px #ffffff;
+  -moz-box-shadow:  0 0 3px #ffffff;
+  box-shadow: 0 0 3px #ffffff;
+/*  &::before{
+    content: "";
+    width: 30%;
+    height: 30px;
+    background-color: #DBEAF9;
+    display: block;
+    border: 1px dashed black;
+    border-top: none;
+    border-bottom: none;
+  }*/
+  h2{
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-left-radius: 4px;
+    text-align: center;
+    width: 100%;
+    height: 10%;
+    line-height: 200%;
+    background-color: #ec5252;
+    font-size: 1.4em;
+    color: #ffffff;
+  }
+  .addgoods{
+/*    background-color: #417474;*/
+    margin: 1em .6em .8em .6em;
+    label{
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 1em;
+      display: block;
+/*      background-color: #685875;*/
+      input{
+        height: 1.6em;
+        font-size: .9em;
+        padding-left: .3em;
+        color: rgba(0, 0, 0, .5);
+      }
+      /* 物品名 */
+      &:first-child{
+        height: 1.6em;
+        margin-top: .5em;
+/*        border: red 1px solid;*/
+      }
+      /* 描述信息 */
+      &:nth-child(2){
+        textarea{
+          width: 100%;
+          height: 9em;
+          font-size: .9em;
+          padding-left: .3em;
+          color: rgba(0, 0, 0, .5);
+        }
+      }
+      /* 添加图片 */
+      &:nth-child(3){
+        width: 90%;
+          h3{
+            color: rgba(0, 0, 0, .2);
+/*            color: red;*/
+            text-align: center;
+            margin-bottom: .5em;
+          }
+          input{
+/*            border: 1px solid red;*/
+            width: 3.5em;
+            height: 3.5em;
+            margin-right: .799em;
+            display: inline;
+          }
+      }
+      /* 发布类型 */
+      &:nth-child(4){
+        text-align: left;
+        div{
+/*          background-color: #ec5252;*/
+          display: inline-block;
+          position: inherit;
+          input{
+            width: auto;
+            display: inline-block;
+            text-align: left;
+          }
+          span{
+            display: inline-block;
+            position: relative;
+            top: -0.3em;
+            margin-right: .9em;
+          }
+        }
+      }
+      input{
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+    .typeactive{
+/*      display: none;*/
+      margin: 0 auto;
+      width: 90%;
+      height: 4em;
+/*      background-color: chartreuse;*/
+      margin-bottom: .4em;
+      input{
+        color: rgba(0, 0, 0, .4);
+        margin-left: 5em;
+      }
+    }
+    .submit{
+      display: block;
+      margin: 0 auto;
+      padding: .3em .6em;
+      font-weight: bold;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      background-color: #ec5252;
+      color: #ffffff;
+    }
+  }
+
+}
+
+/* 加载更多 */
+.more{
+  background-color: #f4f4f4;
+  width: 100%;
+  height: 3em;
+  text-align: center;
+  div{
+    width: 75%;
+    button{
+      font-size: .9em;
+      color: #666666;
+      font-weight: 100;
+    }
+  }
+}
+/* 弹出层 */
+.outface{
+  z-index: 1001;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  width: 30%;
+  height: 50%;
+  background-color: #ccc;
+  margin: 0 auto;
+  opacity: 0.9;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  h2{
+/*    height: 10%;*/
+    font-size: 1.6em;
+    font-weight: 800;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-right-radius: 4px;
+    background-color: #ec5252;
+    padding: .6em;
+    color: #ffffff;
+    text-align: center;
+  }
+
+}
+/*登录*/
+.loginform{
+  display: none;
+  height: 40%;
+  form{
+    margin: 0 auto;
+    label{
+      width: 85%;
+      display: block;
+      margin: 0 auto;
+      &:first-child{
+        margin-top: 1em;
+      }
+      input{
+        color: rgba(0, 0, 0, .6);
+        height: 1.4em;
+        padding-left: .5em;
+        font-size: 1.2em;
+        width: 100%;
+      }
+      span{
+        display: block;
+        padding: .5em .2em;
+        font-size: .8em;
+      }
+
+    }
+    .loginsubmit{
+      display: block;
+      margin: .2em auto;
+      padding: .3em .6em;
+      font-weight: bold;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #ec5252;
+      border: 1px solid #ec5252;
+      font-size: 1.1em;
+    }
+  }
+}
+
+/*注册*/
+.registerform{
+  display: none;
+  height: 58%;
+  form{
+    margin: 0 auto;
+    label{
+      width: 85%;
+      display: block;
+      margin: 0 auto;
+     &:first-child{
+        margin-top: 1em;
+      }
+      input{
+        color: rgba(0, 0, 0, .6);
+        height: 1.4em;
+        padding-left: .5em;
+        font-size: 1.2em;
+        width: 100%;
+      }
+      span{
+        display: block;
+        padding: .5em .2em;
+        font-size: .8em;
+      }
+
+    }
+    .rigistersubmit{
+      display: block;
+      margin: .2em auto;
+      padding: .3em .6em;
+      font-weight: bold;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #ec5252;
+      border: 1px solid #ec5252;
+      font-size: 1.1em;
+    }
+  }
+}

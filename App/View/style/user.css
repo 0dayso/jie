@@ -1,0 +1,505 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: "Helvetica", "Arial", "Serif", "Georgia", "Times", "华文细黑", "中易宋体", "微软雅黑", "Lucida Family", "Verdana", "Tahoma";
+}
+textarea {
+  resize: none;
+}
+body {
+  background-color: #f4f4f4;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  font-size: 16px;
+}
+/* logo字体 */
+@font-face {
+  font-family: logo;
+  src: url('../fonts/newkai.TTF');
+}
+/*整个页面的头*/
+.header {
+  height: 3.5em;
+  width: 100%;
+  background-color: #ffffff;
+  -webkit-box-shadow: inset hoff voff blur color;
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  -moz-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+}
+.header li {
+  line-height: 3.5em;
+  list-style: none;
+  float: left;
+  margin-left: 3em;
+  /* logo样式 */
+  /* 搜索框 */
+  /* 登录与信息提示 */
+}
+.header li:hover a {
+  color: #685875;
+}
+.header li a {
+  color: #417474;
+}
+.header li .logo {
+  font-family: logo;
+  color: #ec5252;
+}
+.header li .logo span {
+  display: inline;
+  font-weight: bold;
+  font-size: 2em;
+}
+.header li:first-child {
+  margin-left: 9%;
+}
+.header li form {
+  padding-left: .4em;
+  width: 16em;
+  /*      background-color: yellow;*/
+  margin-left: 12%;
+}
+.header li form .search {
+  padding: .4em;
+  font-size: 0.85em;
+  border: 1px solid #cccccc;
+  height: 2em;
+  -webkit-box-shadow: 0 0 3px #cccccc;
+  -moz-box-shadow: 0 0 3px #cccccc;
+  box-shadow: 0 0 3px #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.header li:last-child {
+  line-height: 3.5em;
+  text-align: center;
+  width: 22em;
+  /*      background-color: #5a5d63;*/
+}
+.header li:last-child .register {
+  background-color: #ec5252;
+  border: 1px solid #ec5252;
+  color: #ffffff;
+}
+.header li:last-child .login {
+  color: #666666;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+/* 页面中间的内容 */
+.content {
+  height: auto;
+  width: 100%;
+  margin-top: 3.5em;
+  /* position: relative;*/
+}
+/* 顶部和bug按钮 */
+.hover {
+  width: 4em;
+  height: 6em;
+  position: fixed;
+  bottom: 23%;
+  right: 1%;
+}
+.hover a {
+  font-weight: bold;
+  width: 100%;
+  height: 50%;
+  position: relative;
+  font-size: 0.8em;
+  display: block;
+  background-color: #d1d1d1;
+  opacity: 0.6;
+  text-align: center;
+  line-height: 4em;
+}
+.hover a:first-child {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
+}
+/* 页面的底部 */
+.footer {
+  float: left;
+  height: 8em;
+  width: 100%;
+  background-color: #5a5d63;
+}
+.footer .authormessage {
+  position: relative;
+  top: 1.5em;
+  color: #f4f4f4;
+  text-align: center;
+}
+.footer .authormessage p {
+  /*      padding: .3em;*/
+  margin: .3em 0;
+  font-size: 1em;
+}
+.footer .authormessage p span {
+  color: #abcdef;
+}
+.footer .authormessage p a {
+  color: #f2aba9;
+}
+/* 按钮的样式 */
+button {
+  padding: .3em .6em;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+.content {
+  color: #717171;
+  padding-top: 4em;
+  /*  min-height: 960px;*/
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  /*  border: 1px solid #cccccc;*/
+}
+/*用户资料和*/
+.message {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  top: 1.5em;
+  right: 0px;
+  border: 1px solid #ffffff;
+  border-right: none;
+  -webkit-box-shadow: 0 0 3px #ffffff;
+  -moz-box-shadow: 0 0 3px #ffffff;
+  box-shadow: 0 0 3px #cccccc;
+  float: left;
+  width: 40%;
+  height: 100%;
+  margin-bottom: 4em;
+  /*  background-color: #5a5d63;*/
+  /* 用户信息 */
+  /* 用户评价 */
+}
+.message .usermessage,
+.message .userevaluate {
+  display: block;
+  margin: 0 auto;
+  margin-top: .1em;
+  padding: .8em;
+  width: 80%;
+  /*    background-color: #417474;*/
+}
+.message .usermessage {
+  /*    background: yellow;*/
+  border-bottom: 1px solid #ffffff;
+}
+.message .usermessage .head img {
+  display: inline-block;
+  margin: .8em auto .8em .6em;
+  -webkit-border-radius: 3em;
+  -moz-border-radius: 3em;
+  border-radius: 3em;
+}
+.message .usermessage .head button {
+  display: inline-block;
+  margin: .4em auto .8em 1.2em;
+}
+.message .usermessage h3 {
+  display: block;
+  width: 100%;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+.message .usermessage label {
+  margin-left: 2.6em;
+  width: 70%;
+  /*      background-color: red;*/
+  display: block;
+  margin-top: .3em;
+}
+.message .usermessage label .type {
+  font-size: 1.1em;
+}
+.message .usermessage label input {
+  line-height: 1.2em;
+  width: 75%;
+}
+.message .usermessage h4 {
+  margin-top: 1em;
+  font-size: 1.2em;
+  display: block;
+  /*      background-color: #abcdef;*/
+  text-align: center;
+  margin-bottom: .6em;
+}
+.message .usermessage .changepassword .submitpassword {
+  display: block;
+  margin: .2em auto;
+}
+.message .usermessage .integrallabel {
+  text-align: center;
+}
+.message .usermessage .integrallabel button {
+  background-color: #abcdef;
+}
+.message .userevaluate {
+  margin: 1em auto;
+  /*    background-color: #abcdef;*/
+  /* 历史用户评价展示 */
+}
+.message .userevaluate h3 {
+  display: block;
+  margin: .6em auto;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.message .userevaluate .valuate {
+  display: valuate;
+  margin: .5em auto;
+  /* 输入新的评价 */
+}
+.message .userevaluate .valuate form {
+  border-bottom: 1px solid #ffffff;
+}
+.message .userevaluate .valuate form .start {
+  display: block;
+  margin: .4em 0 .4em 8em;
+}
+.message .userevaluate .valuate form textarea {
+  margin-left: .3em;
+  width: 80%;
+  min-height: 6em;
+}
+.message .userevaluate .valuate form input {
+  display: inline-block;
+  position: relative;
+  top: -1em;
+  left: .5em;
+}
+.message .userevaluate article span {
+  display: inline-block;
+  margin-bottom: .3em;
+}
+.message .userevaluate article p {
+  /*        background-color: red;*/
+  margin-left: .4em;
+  display: block;
+  margin-bottom: .8em;
+  height: 3em;
+  font-size: .8em;
+  padding: .3em .4em;
+}
+.blown {
+  display: block;
+  float: right;
+  width: 50%;
+  height: 100%;
+  /*  background-color: #abcdef;*/
+  padding: 1em 2em;
+}
+.blown h3 {
+  display: block;
+  width: 100%;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: .8em;
+}
+.blown .goods {
+  float: left;
+  height: auto;
+  margin: 0 auto;
+  width: 280px;
+  display: block;
+  /*    background-color: #685875;*/
+  margin: 0 .8em 1em .4em;
+  border: 1px solid #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  text-align: center;
+}
+.blown .goods .img {
+  width: 280px;
+  height: 290px;
+  margin: 0 auto;
+  background-image: url('../1.jpg');
+  display: block;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.blown .goods .bar,
+.blown .goods .godsmessage {
+  display: block;
+  margin: .6em;
+}
+.blown .goods ul {
+  display: inline;
+  text-align: center;
+  padding-bottom: .3em;
+}
+.blown .goods ul:first-child {
+  border-bottom: 1px solid #cccccc;
+}
+.blown .goods ul li {
+  display: inline-block;
+  margin-left: .5em;
+}
+.blown .goods .godsmessage {
+  padding: .6em ;
+  display: block;
+  text-align: left;
+  margin: .4em auto;
+}
+.blown .goods .godsmessage p {
+  display: block;
+  height: 60%;
+  margin: .4em auto;
+}
+.blown .goods .godsmessage p:last-child {
+  padding: .3em 0 0 .3em;
+  height: 4em;
+  /*          background-color: #abcdef;*/
+}
+.blown .goods button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: .8em;
+}

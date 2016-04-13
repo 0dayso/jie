@@ -20,9 +20,29 @@ $register = Xin\Register::Instance();
 $register->SetValue('db', Xin\DBFactory::GetDB());
 //获得控制器,动作和数据并存入注册器中
 $pathInfo = Xin\Pathinfo::GetInfo();
-var_dump($pathInfo);
+var_dump($pathInfo); 
 $register->SetValue('controller', $pathInfo['controller']);
 $register->SetValue('action', $pathInfo['action']);
 $register->SetValue('data', $pathInfo['data']);
 //命令分发和相应的跳转
+$obj = new xin\Invoker($register);
+$obj->CheckController();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

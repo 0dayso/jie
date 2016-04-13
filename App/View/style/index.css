@@ -1,0 +1,660 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: "Helvetica", "Arial", "Serif", "Georgia", "Times", "华文细黑", "中易宋体", "微软雅黑", "Lucida Family", "Verdana", "Tahoma";
+}
+textarea {
+  resize: none;
+}
+body {
+  background-color: #f4f4f4;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  font-size: 16px;
+}
+/* logo字体 */
+@font-face {
+  font-family: logo;
+  src: url('../fonts/newkai.TTF');
+}
+/*整个页面的头*/
+.header {
+  height: 3.5em;
+  width: 100%;
+  background-color: #ffffff;
+  -webkit-box-shadow: inset hoff voff blur color;
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  -moz-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+}
+.header li {
+  line-height: 3.5em;
+  list-style: none;
+  float: left;
+  margin-left: 3em;
+  /* logo样式 */
+  /* 搜索框 */
+  /* 登录与信息提示 */
+}
+.header li:hover a {
+  color: #685875;
+}
+.header li a {
+  color: #417474;
+}
+.header li .logo {
+  font-family: logo;
+  color: #ec5252;
+}
+.header li .logo span {
+  display: inline;
+  font-weight: bold;
+  font-size: 2em;
+}
+.header li:first-child {
+  margin-left: 9%;
+}
+.header li form {
+  padding-left: .4em;
+  width: 16em;
+  /*      background-color: yellow;*/
+  margin-left: 12%;
+}
+.header li form .search {
+  padding: .4em;
+  font-size: 0.85em;
+  border: 1px solid #cccccc;
+  height: 2em;
+  -webkit-box-shadow: 0 0 3px #cccccc;
+  -moz-box-shadow: 0 0 3px #cccccc;
+  box-shadow: 0 0 3px #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.header li:last-child {
+  line-height: 3.5em;
+  text-align: center;
+  width: 22em;
+  /*      background-color: #5a5d63;*/
+}
+.header li:last-child .register {
+  background-color: #ec5252;
+  border: 1px solid #ec5252;
+  color: #ffffff;
+}
+.header li:last-child .login {
+  color: #666666;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+/* 页面中间的内容 */
+.content {
+  height: auto;
+  width: 100%;
+  margin-top: 3.5em;
+  /* position: relative;*/
+}
+/* 顶部和bug按钮 */
+.hover {
+  width: 4em;
+  height: 6em;
+  position: fixed;
+  bottom: 23%;
+  right: 1%;
+}
+.hover a {
+  font-weight: bold;
+  width: 100%;
+  height: 50%;
+  position: relative;
+  font-size: 0.8em;
+  display: block;
+  background-color: #d1d1d1;
+  opacity: 0.6;
+  text-align: center;
+  line-height: 4em;
+}
+.hover a:first-child {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
+}
+/* 页面的底部 */
+.footer {
+  float: left;
+  height: 8em;
+  width: 100%;
+  background-color: #5a5d63;
+}
+.footer .authormessage {
+  position: relative;
+  top: 1.5em;
+  color: #f4f4f4;
+  text-align: center;
+}
+.footer .authormessage p {
+  /*      padding: .3em;*/
+  margin: .3em 0;
+  font-size: 1em;
+}
+.footer .authormessage p span {
+  color: #abcdef;
+}
+.footer .authormessage p a {
+  color: #f2aba9;
+}
+/* 按钮的样式 */
+button {
+  padding: .3em .6em;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+/* 页面中间的内容 */
+.content {
+  height: auto;
+  width: 100%;
+  margin-top: 3.5em;
+  color: #717174;
+  /* position: relative;*/
+}
+/* 主体信息 */
+.message {
+  width: 72%;
+  height: 960px;
+  margin: 3.5em 2em;
+  /*  border: 1px solid yellow;*/
+  /* 商品显示时的区块 */
+}
+.message article {
+  position: relative;
+  width: 280px;
+  height: 480px;
+  background-color: #ffffff;
+  margin: .9em 1.3em;
+  float: left;
+  border: 1px solid #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  /* 商品图像 */
+}
+.message article .img {
+  width: 280px;
+  height: 290px;
+  background-image: url("../1.jpg");
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.message article .bar {
+  /*      background-color: #5a5d63;*/
+  height: 15%;
+  border-bottom: 1px dashed #cccccc;
+}
+.message article .bar ul {
+  display: inline-block;
+  line-height: 4.4em;
+  /* 用户头像和姓名 */
+  /* 商品信息 */
+}
+.message article .bar ul li {
+  float: left;
+}
+.message article .bar ul:first-child {
+  width: 55%;
+  /*          background-color: #417474;*/
+}
+.message article .bar ul:first-child li {
+  width: 4.3em;
+  height: 4em;
+  display: inline-block;
+  text-align: center;
+  /* 头像 */
+  /* 用户姓名 */
+}
+.message article .bar ul:first-child li:first-child {
+  line-height: 4.4em;
+  margin: .2em .3em;
+  background-color: yellow;
+  -webkit-border-radius: 4em;
+  -moz-border-radius: 4em;
+  border-radius: 4em;
+}
+.message article .bar ul:first-child li:last-child {
+  font-size: 1em;
+  line-height: 6em;
+  margin: .2em;
+  /*              background-color: #ec5252;*/
+}
+.message article .bar ul:last-child {
+  width: 43%;
+  /*          background-color: #ec5252;*/
+}
+.message article .bar ul:last-child li {
+  height: 4.2em;
+  line-height: 6em;
+  text-align: center;
+}
+.message article .bar ul:last-child li:first-child {
+  width: 60%;
+  /*              background-color: #685875*/
+}
+.message article .bar ul:last-child li:last-child {
+  width: 40%;
+}
+.message article .godsmessage {
+  /*      background-color: #cccccc;*/
+  width: 94%;
+  height: 25%;
+  margin: 0 auto;
+}
+.message article .godsmessage .goodsname {
+  /*        background-color: #685875;*/
+  height: 1.8em;
+  line-height: 1.8em;
+  vertical-align: bottom;
+}
+.message article .godsmessage .discript {
+  height: 68%;
+  /*        background-color: aquamarine;*/
+  padding: .3em 0;
+}
+/* 侧边栏发布和聊天 */
+.blown {
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+  width: 25%;
+  height: 80%;
+  position: absolute;
+  top: 4.5em;
+  right: 0px;
+  border: 1px solid #ffffff;
+  border-right: none;
+  -webkit-box-shadow: 0 0 3px #ffffff;
+  -moz-box-shadow: 0 0 3px #ffffff;
+  box-shadow: 0 0 3px #ffffff;
+  /*  &::before{
+    content: "";
+    width: 30%;
+    height: 30px;
+    background-color: #DBEAF9;
+    display: block;
+    border: 1px dashed black;
+    border-top: none;
+    border-bottom: none;
+  }*/
+}
+.blown h2 {
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  text-align: center;
+  width: 100%;
+  height: 10%;
+  line-height: 200%;
+  background-color: #ec5252;
+  font-size: 1.4em;
+  color: #ffffff;
+}
+.blown .addgoods {
+  /*    background-color: #417474;*/
+  margin: 1em .6em .8em .6em;
+}
+.blown .addgoods label {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  display: block;
+  /*      background-color: #685875;*/
+  /* 物品名 */
+  /* 描述信息 */
+  /* 添加图片 */
+  /* 发布类型 */
+}
+.blown .addgoods label input {
+  height: 1.6em;
+  font-size: .9em;
+  padding-left: .3em;
+  color: rgba(0, 0, 0, 0.5);
+}
+.blown .addgoods label:first-child {
+  height: 1.6em;
+  margin-top: .5em;
+  /*        border: red 1px solid;*/
+}
+.blown .addgoods label:nth-child(2) textarea {
+  width: 100%;
+  height: 9em;
+  font-size: .9em;
+  padding-left: .3em;
+  color: rgba(0, 0, 0, 0.5);
+}
+.blown .addgoods label:nth-child(3) {
+  width: 90%;
+}
+.blown .addgoods label:nth-child(3) h3 {
+  color: rgba(0, 0, 0, 0.2);
+  /*            color: red;*/
+  text-align: center;
+  margin-bottom: .5em;
+}
+.blown .addgoods label:nth-child(3) input {
+  /*            border: 1px solid red;*/
+  width: 3.5em;
+  height: 3.5em;
+  margin-right: .799em;
+  display: inline;
+}
+.blown .addgoods label:nth-child(4) {
+  text-align: left;
+}
+.blown .addgoods label:nth-child(4) div {
+  /*          background-color: #ec5252;*/
+  display: inline-block;
+  position: inherit;
+}
+.blown .addgoods label:nth-child(4) div input {
+  width: auto;
+  display: inline-block;
+  text-align: left;
+}
+.blown .addgoods label:nth-child(4) div span {
+  display: inline-block;
+  position: relative;
+  top: -0.3em;
+  margin-right: .9em;
+}
+.blown .addgoods label input {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+.blown .addgoods .typeactive {
+  /*      display: none;*/
+  margin: 0 auto;
+  width: 90%;
+  height: 4em;
+  /*      background-color: chartreuse;*/
+  margin-bottom: .4em;
+}
+.blown .addgoods .typeactive input {
+  color: rgba(0, 0, 0, 0.4);
+  margin-left: 5em;
+}
+.blown .addgoods .submit {
+  display: block;
+  margin: 0 auto;
+  padding: .3em .6em;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #ec5252;
+  color: #ffffff;
+}
+/* 加载更多 */
+.more {
+  background-color: #f4f4f4;
+  width: 100%;
+  height: 3em;
+  text-align: center;
+}
+.more div {
+  width: 75%;
+}
+.more div button {
+  font-size: .9em;
+  color: #666666;
+  font-weight: 100;
+}
+/* 弹出层 */
+.outface {
+  z-index: 1001;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  width: 30%;
+  height: 50%;
+  background-color: #ccc;
+  margin: 0 auto;
+  opacity: 0.9;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.outface h2 {
+  /*    height: 10%;*/
+  font-size: 1.6em;
+  font-weight: 800;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  background-color: #ec5252;
+  padding: .6em;
+  color: #ffffff;
+  text-align: center;
+}
+/*登录*/
+.loginform {
+  display: none;
+  height: 40%;
+}
+.loginform form {
+  margin: 0 auto;
+}
+.loginform form label {
+  width: 85%;
+  display: block;
+  margin: 0 auto;
+}
+.loginform form label:first-child {
+  margin-top: 1em;
+}
+.loginform form label input {
+  color: rgba(0, 0, 0, 0.6);
+  height: 1.4em;
+  padding-left: .5em;
+  font-size: 1.2em;
+  width: 100%;
+}
+.loginform form label span {
+  display: block;
+  padding: .5em .2em;
+  font-size: .8em;
+}
+.loginform form .loginsubmit {
+  display: block;
+  margin: .2em auto;
+  padding: .3em .6em;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #ec5252;
+  border: 1px solid #ec5252;
+  font-size: 1.1em;
+}
+/*注册*/
+.registerform {
+  display: none;
+  height: 58%;
+}
+.registerform form {
+  margin: 0 auto;
+}
+.registerform form label {
+  width: 85%;
+  display: block;
+  margin: 0 auto;
+}
+.registerform form label:first-child {
+  margin-top: 1em;
+}
+.registerform form label input {
+  color: rgba(0, 0, 0, 0.6);
+  height: 1.4em;
+  padding-left: .5em;
+  font-size: 1.2em;
+  width: 100%;
+}
+.registerform form label span {
+  display: block;
+  padding: .5em .2em;
+  font-size: .8em;
+}
+.registerform form .rigistersubmit {
+  display: block;
+  margin: .2em auto;
+  padding: .3em .6em;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #ec5252;
+  border: 1px solid #ec5252;
+  font-size: 1.1em;
+}

@@ -1,0 +1,485 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: "Helvetica", "Arial", "Serif", "Georgia", "Times", "华文细黑", "中易宋体", "微软雅黑", "Lucida Family", "Verdana", "Tahoma";
+}
+textarea {
+  resize: none;
+}
+body {
+  background-color: #f4f4f4;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  font-size: 16px;
+}
+/* logo字体 */
+@font-face {
+  font-family: logo;
+  src: url('../fonts/newkai.TTF');
+}
+/*整个页面的头*/
+.header {
+  height: 3.5em;
+  width: 100%;
+  background-color: #ffffff;
+  -webkit-box-shadow: inset hoff voff blur color;
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  -moz-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+}
+.header li {
+  line-height: 3.5em;
+  list-style: none;
+  float: left;
+  margin-left: 3em;
+  /* logo样式 */
+  /* 搜索框 */
+  /* 登录与信息提示 */
+}
+.header li:hover a {
+  color: #685875;
+}
+.header li a {
+  color: #417474;
+}
+.header li .logo {
+  font-family: logo;
+  color: #ec5252;
+}
+.header li .logo span {
+  display: inline;
+  font-weight: bold;
+  font-size: 2em;
+}
+.header li:first-child {
+  margin-left: 9%;
+}
+.header li form {
+  padding-left: .4em;
+  width: 16em;
+  /*      background-color: yellow;*/
+  margin-left: 12%;
+}
+.header li form .search {
+  padding: .4em;
+  font-size: 0.85em;
+  border: 1px solid #cccccc;
+  height: 2em;
+  -webkit-box-shadow: 0 0 3px #cccccc;
+  -moz-box-shadow: 0 0 3px #cccccc;
+  box-shadow: 0 0 3px #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.header li:last-child {
+  line-height: 3.5em;
+  text-align: center;
+  width: 22em;
+  /*      background-color: #5a5d63;*/
+}
+.header li:last-child .register {
+  background-color: #ec5252;
+  border: 1px solid #ec5252;
+  color: #ffffff;
+}
+.header li:last-child .login {
+  color: #666666;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+/* 页面中间的内容 */
+.content {
+  height: auto;
+  width: 100%;
+  margin-top: 3.5em;
+  /* position: relative;*/
+}
+/* 顶部和bug按钮 */
+.hover {
+  width: 4em;
+  height: 6em;
+  position: fixed;
+  bottom: 23%;
+  right: 1%;
+}
+.hover a {
+  font-weight: bold;
+  width: 100%;
+  height: 50%;
+  position: relative;
+  font-size: 0.8em;
+  display: block;
+  background-color: #d1d1d1;
+  opacity: 0.6;
+  text-align: center;
+  line-height: 4em;
+}
+.hover a:first-child {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
+}
+/* 页面的底部 */
+.footer {
+  float: left;
+  height: 8em;
+  width: 100%;
+  background-color: #5a5d63;
+}
+.footer .authormessage {
+  position: relative;
+  top: 1.5em;
+  color: #f4f4f4;
+  text-align: center;
+}
+.footer .authormessage p {
+  /*      padding: .3em;*/
+  margin: .3em 0;
+  font-size: 1em;
+}
+.footer .authormessage p span {
+  color: #abcdef;
+}
+.footer .authormessage p a {
+  color: #f2aba9;
+}
+/* 按钮的样式 */
+button {
+  padding: .3em .6em;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+.content {
+  margin: 4em auto;
+}
+.left {
+  display: block;
+  float: left;
+  /*  background-color: #abcdef;*/
+  width: 50%;
+  line-height: 1.4em;
+  margin-bottom: 3em;
+}
+.left .goods {
+  border: 1px solid #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  /*    background-color: #cccccc;*/
+  padding: 1em;
+  width: 400px;
+  margin: 0 auto;
+  /*    h3{
+      background-color: #417474;
+      line-height: .8em;
+      margin: .3em 0 .3em 0;
+      font-size: 1.2em;
+      text-align: center;
+    }*/
+  /* 图像轮播样式 */
+  /* 图像轮播结束 */
+}
+.left .goods .discript {
+  margin-bottom: .4em;
+  /*      background-color: #417474;*/
+  line-height: 1.4em;
+}
+.left .goods .banner {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  overflow: auto;
+  text-align: center;
+  /* 根据图片做调整 */
+  width: 360px;
+}
+.left .goods .banner #al {
+  left: 15px;
+}
+.left .goods .banner #ar {
+  right: 15px;
+}
+.left .goods .banner ul,
+.left .goods .banner ol {
+  padding: 0;
+}
+.left .goods .banner .arrow {
+  position: absolute;
+  top: 180px;
+}
+.left .goods .banner li {
+  list-style: none;
+}
+.left .goods .banner ul li {
+  float: left;
+}
+.left .goods .banner .dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+}
+.left .goods .banner .dots li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  text-indent: -999em;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: .4;
+  -webkit-transition: background .5s, opacity .5s;
+  -moz-transition: background .5s, opacity .5s;
+  transition: background .5s, opacity .5s;
+}
+.left .goods .banner .dots li.active {
+  background: #fff;
+  opacity: 1;
+}
+.left .goods .price {
+  /*      background-color: darkblue;*/
+}
+.left .goods .price span {
+  display: inline-block;
+}
+.left .goods .price span:nth-child(2) {
+  margin-left: .4em;
+}
+.left .goods .price .buy {
+  display: inline-block;
+  margin-left: 5em;
+}
+.left .goods .godsmessage {
+  overflow: auto;
+}
+.left .goods .godsmessage ul {
+  display: block;
+}
+.left .goods .godsmessage ul li {
+  text-align: center;
+  width: 33%;
+  display: inline-block;
+  float: left;
+  border-right: 1px dashed black;
+}
+.left .goods .godsmessage ul li:last-child {
+  border: none;
+}
+.left .goods .godsmessage .send {
+  margin-top: .8em;
+  border-bottom: 1px dashed #cccccc;
+}
+.left .goods .godsmessage .send form {
+  padding-top: .4em;
+}
+.left .goods .godsmessage .send form span {
+  display: inline-block;
+  margin-right: .9em;
+}
+.left .goods .godsmessage .send form label {
+  /*            background-color: #685875;*/
+}
+.left .goods .godsmessage .send form label input {
+  width: 80%;
+  height: 1.6em;
+}
+.left .goods .godsmessage .send form .submit {
+  margin-top: .4em;
+  display: block;
+  margin-left: 80%;
+  margin-bottom: .4em;
+}
+.left .goods .comment {
+  margin-top: .8em;
+}
+.left .goods .comment article {
+  border-bottom: 1px solid #ffffff;
+  /*        background-color: hotpink;*/
+  margin-bottom: .3em;
+  position: relative;
+  overflow: auto;
+}
+.left .goods .comment article div {
+  float: left;
+}
+.left .goods .comment article div:first-child {
+  /*            background-color: red;*/
+  width: 3.4em;
+  height: 3.4em;
+}
+.left .goods .comment article .message {
+  /*          background-color: #417474;*/
+  width: 21.55em;
+  left: 4em;
+  margin-bottom: .3em;
+}
+.left .goods .comment article:last-child {
+  border: none;
+}
+.blown {
+  /*  background-color: dodgerblue;*/
+  width: 20%;
+  float: left;
+}
+.blown article div {
+  background-color: #685875;
+  -webkit-border-radius: 3em;
+  -moz-border-radius: 3em;
+  border-radius: 3em;
+  width: 6em;
+  height: 6em;
+  background-image: url('../head.jpg');
+  margin-bottom: .6em;
+}
+.blown article p {
+  line-height: 1.6em;
+}
+.blown article p .time {
+  color: #ffffff;
+}
+.blown article a {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #ec5252;
+  display: block;
+  margin: 1em auto;
+  text-align: center;
+  line-height: 2em;
+  font-size: 1.2em;
+  color: #ffffff;
+}
