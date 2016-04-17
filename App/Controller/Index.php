@@ -23,6 +23,10 @@ class Index{
     function Reg(){
         $checkObj = \App\Model\CheckUserMessage::GetSelf();
         $message = $checkObj->CheckReg();
+        if($message == NULL){
+            $checkObj->getMessage();
+            var_dump($_SESSION['user']);
+        }
     }
     
     
@@ -95,16 +99,18 @@ class Index{
     * @return:
     */
     function Log(){
-        if(empty($_POST['email']) || empty($_POST['password'])){
+        //最后再检查一次密码和邮箱
+        $checkObj = \App\Model\CheckUserMessage::GetSelf();
+        $logMessage = $checkObj->CheckLog();
+        if(!empty($logMessage)){
             //重新跳转到首页
             echo "<script language='javascript'>";
             echo " location='index.php';";
             echo "</script>";
         }else{
-            $checkObj = \App\Model\CheckUserMessage::GetSelf();
-            $message = $checkObj->CheckLog();
+            $checkObj->getMessage();
+            var_dump($_SESSION['user']);
         }
-        echo $message;
     }
 
     /**
@@ -142,7 +148,6 @@ class Index{
             echo $message;
         }
     }
-    
 
 }
 ?>

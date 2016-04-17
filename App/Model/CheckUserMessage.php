@@ -10,11 +10,10 @@
 namespace App\Model;
 
 class CheckUserMessage{
+    //保存自身
     public static $insatnce = NULL;
-    
-    private function __construct(){
-        
-    } 
+    //使用单例
+    private function __construct(){} 
     
     //获得自身
     static public function GetSelf(){
@@ -46,6 +45,7 @@ class CheckUserMessage{
         return NULL;
     }
     
+    
     /**
     * 描述: 注册时检测所有信息是否完备
     * @date: 2016年4月17日 上午9:22:45
@@ -68,10 +68,8 @@ class CheckUserMessage{
         //数据写入数据库
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
-
         $db->Insert('user', $_SESSION['reg']);
-        //清空注册消息，后期切换
-        $_SESSION['reg'] = NULL;         
+        return NULL;
     }
 
 
@@ -112,6 +110,7 @@ class CheckUserMessage{
         }
     }
     
+    
     /**
     * 描述: 注册时检测用户名是否正确
     * @date: 2016年4月17日 上午9:32:04
@@ -131,6 +130,7 @@ class CheckUserMessage{
             return '用户名错误';
         }
     }
+    
     
     /** 检测用户登录和注册时邮箱的合法性
     * 描述:
@@ -167,6 +167,7 @@ class CheckUserMessage{
         }
     }
     
+    
     /**
     * 描述: 登录按钮被点击的时候的检测
     * @date: 2016年4月17日 上午9:33:58
@@ -188,15 +189,13 @@ class CheckUserMessage{
         
         if(!empty($res)){
             $db->Update('user', $time," email='{$_SESSION['reg']['email']}'");
-            //清空注册消息，后期切换
-            $_SESSION['reg'] = array();
-            var_dump($_SESSION['reg']);
-            return "登录成功";
+            return NULL;
         }else{
             return "登录失败，请重新登录";
         }
 
     }
+    
     
     /**
     * 描述: 登录时检查用户密码在数据库中是否存在
@@ -214,7 +213,9 @@ class CheckUserMessage{
             $db = $register->GetValue('db');
     
             //编写查询语句
-            $sql = "select * from j_user where password = '{$_SESSION['reg']['password']}' and email = '{$_SESSION['reg']['email']}'";
+            $email = empty($_SESSION['reg']['email'])?'000000000':$_SESSION['reg']['email'];
+            $password = empty($_SESSION['reg']['password'])?'000000000':$_SESSION['reg']['password'];
+            $sql = "select * from j_user where password = '{$_SESSION['reg']['password']}' and email = '{$email}'";
             //对结果判断
             $res = $db->FecthAllNum($sql);
             //没有被注册过才返回null
@@ -227,6 +228,26 @@ class CheckUserMessage{
             return '密码太弱了';
         } 
     }
+    
+    
+    /**
+     * 描述: 不论登录或者注册成功后，根据邮箱获得用户的信息,并保存到session中
+     * @date: 2016年4月17日 上午10:08:04
+     * @author: xinbingliang <709464835@qq.com>
+     * @param: variable
+     * @return:
+     */
+    function getMessage(){
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $email = $_SESSION['reg']['email'];
+        $where = "email = '{$email}'";
+        $data = $db->FetchAll('user', $where);
+        $_SESSION['user']['userid'] = $data[0]['userid'];
+        $_SESSION['user']['username'] = $data[0]['username'];
+        $_SESSION['user']['userimg'] = $data[0]['userimg'];
+        //清空注册和登录信息
+        $_SESSION['reg'] = NULL;
+    }
 }
-
 ?>
