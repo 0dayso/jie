@@ -104,10 +104,17 @@ class ThePDO implements InterfaceDB{
         //组装数据
         $key = array_keys($array);
         $value = array_values($array);
-        $setArray = array_map('self::Func', $key, $value);
+/*         $setArray = array_map('self::Func', $key, $value);
+        $set = join(',', $setArray); */
+        $setArray = array();
+        for($i=0; $i<count($key); $i++){
+            $setArray[] = $key[$i].' = '."'{$value[$i]}'";
+        }
+
         $set = join(',', $setArray);
         //组装sql语句
         $sql = "update {$table} set {$set} where {$where}";
+
         try {
             //执行sql语句
             $attfected = self::$pdo->exec($sql);
@@ -187,11 +194,18 @@ class ThePDO implements InterfaceDB{
     
     function FecthAllNum($sql){
         try {
-            $pdoStatement = self::$pdo->prepare($sql);
+            /* $pdoStatement = self::$pdo->prepare($sql);
             $pdoStatement->execute();
-            return $pdoStatement->rowCount();
+            return $pdoStatement->rowCount(); */
+            $res = self::$pdo->query($sql);
+            $row=$res->fetch(\PDO::FETCH_NUM);//PDO处理结果集
+            if(empty($row[0])){
+                return null;
+            }else{
+                return $row;
+            }
         } catch (\PDOException $e) {
-            file_put_contents(ROOT.'message.txt', $e->getMessage());
+            file_put_contents(ROOT.'message.txt', $e->getMessage().date("Y-m-d H:i:s", time()));
         }
     }
     
@@ -222,19 +236,5 @@ class ThePDO implements InterfaceDB{
     private function AddSign($table){
         return 'j_'.$table; 
     }
-
-    /**
-    * 描述: 组装update语句set之后的部分
-    * @date: 2016年4月9日 下午5:18:16
-    * @author: xinbingliang <709464835@qq.com>
-    * @param: variable
-    * @param: variable
-    * @param: variable
-    * @return:
-    */
-    private static function Func($key, $value){
-        return $key."='".$value."'";
-    }
 }
-
 ?>

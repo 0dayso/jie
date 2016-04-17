@@ -10,23 +10,30 @@
 header("Content-type: text/html; charset=utf-8");
 //入口文件的位置作为根路径
 define("ROOT", str_replace('\\', '/', __DIR__).'/');
+define('INLET', 'http://localhost/jie/');
 //加载自动加载函数
 require_once ROOT.'Xin/Autoload.php';
 //使用自动加载函数
 spl_autoload_register('\\Xin\\Autoload::MyLoad');
+//开启session
+session_start();
 //初始化注册器
 $register = Xin\Register::Instance();
 //将数据库操作函数存入注册器中
 $register->SetValue('db', Xin\DBFactory::GetDB());
 //获得控制器,动作和数据并存入注册器中
 $pathInfo = Xin\Pathinfo::GetInfo();
-var_dump($pathInfo); 
+/* var_dump($pathInfo);  */
 $register->SetValue('controller', $pathInfo['controller']);
 $register->SetValue('action', $pathInfo['action']);
 $register->SetValue('data', $pathInfo['data']);
 //命令分发和相应的跳转
 $obj = new xin\Invoker($register);
+//检查控制器和其中的方法
 $obj->CheckController();
+
+//创建控制器并执行方式
+$obj->CreateControllerObj(); 
 
 
 

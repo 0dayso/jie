@@ -21,10 +21,11 @@ class Pathinfo{
     static function GetInfo(){
         $pathInfo = isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:'index';
         $pathInfo = trim($pathInfo, '/&');
+        /* file_put_contents(ROOT.'message.txt', $pathInfo); */
         $infoArray = explode('/', $pathInfo);
         $action['controller'] = !empty($infoArray[0])?$infoArray[0]:'index';
         $action['action'] = !empty($infoArray[1])?$infoArray[1]:'index';
-        
+        /* file_put_contents(ROOT.'message.txt', '1'.$action['controller'].$action['action']); */ 
         //对所带数据进行获取
         if(isset($infoArray[2])){
             $data = $infoArray[2];
@@ -38,13 +39,11 @@ class Pathinfo{
                     $action['data'][$key] = $value;
                 }
              }    
+        }else{
+            $action['data'] = null; 
         }
         return $action; 
     }
-    
-    //判断控制器是否存在
-    
-    //判断响应函数是否存在  
 }
 
 ?>

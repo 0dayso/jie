@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接下去后台系统</title>
+    <link href="./style/" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <section class="page">
+        <!-- 顶部 -->
+        <section class="header">
+            <iframe src="./top.html"  frameborder="0" name="main" width="100%" height="100%"></iframe>
+        </section>
+        <!-- 左侧 -->
+        <section class="left">
+            <iframe src="./left.html"  frameborder="0" name="main" width="100%" height="100%"></iframe>
+        </section>
+        <!-- 内容区域 -->
+        <section class="right">
+
+        </section>
+    </section>
+</body>
+</html>

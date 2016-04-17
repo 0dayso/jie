@@ -550,6 +550,7 @@ button {
 }
 /* 弹出层 */
 .outface {
+  position: relative;
   z-index: 1001;
   position: fixed;
   top: 20%;
@@ -578,9 +579,16 @@ button {
   color: #ffffff;
   text-align: center;
 }
+.outface a {
+  display: block;
+  position: absolute;
+  top: .5em;
+  right: .6em;
+  color: #5a5d63;
+}
 /*登录*/
 .loginform {
-  display: none;
+  /*  display: none;*/
   height: 40%;
 }
 .loginform form {
