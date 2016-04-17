@@ -221,22 +221,24 @@
                 <form class="addgoods" action="" method="post">
                     <label for="goodsname">
                         <input name="goodsname" id="goodsname" class="goodsname" placeholder="请输入旧物名,最多12字"/>
+                        <span id="gnamemessage">&nbsp;</span>
                     </label>
                     <label for="goodsdis">
                         <textarea class="goodsdis" id="goodsdis" name="goodsdis" placeholder="输入对旧物的描述,最多76字符"></textarea>
+                        <span id="gdmessage">&nbsp;</span>
                     </label>
                     <label>
                         <h3>最多添加4张图片</h3>
-                        <input type="file" name="goodsimg[]"/>
-                        <input type="file" name="goodsimg[]"/>
-                        <input type="file" name="goodsimg[]"/>
-                        <input type="file" name="goodsimg[]"/>
+                        <div><input type="file" name="goodsimg[]"/><span>上传图片</span></div>
+                        <div><input type="file" name="goodsimg[]"/><span>上传图片</span></div>
+                        <div><input type="file" name="goodsimg[]"/><span>上传图片</span></div>
+                        <div><input type="file" name="goodsimg[]"/><span>上传图片</span></div>
                     </label>
-                    <label>
-                        <div><input type="radio" name="type" value="1"><span>免费分享</span></div>
-                        <div><input type="radio" name="type" value="2"/><span>付费购买</span></div>
-                        <div><input type="radio" name="type" value="3"/><span>积分购买</span></div>
-                    </label>
+                    <div class="type">
+                        <label for="free" class="rad"><input type="radio" name="type" value="1" checked id="free"><span>免费</span></label>
+                        <label for="rmb" class="rad"><input type="radio" name="type" value="2" id="rmb"/><span>人民币</span></label>
+                        <label for="num" class="rad"><input type="radio" name="type" value="3" id="num"/><span>积分</span></label>
+                    </div>
                     <div class="typeactive">
                         <div><span>价格</span><input name="money" type="" placeholder="输入您的价格"/><span>￥</span></div>
                     </div>
@@ -270,11 +272,12 @@
                 <input class="rigistersubmit" type="submit" value="登&nbsp;&nbsp;&nbsp;录"/>
             </form>
         </section>
-        <section class="hover">
+<!--        <section class="hover">
             <a href="#">回到顶部</a>
             <a>BUG报告</a>
-        </section>
+        </section>-->
     </section>
 </body>
 <script src="<?php echo INLET;?>App/View/js/outface.js"></script>
+<script src="<?php echo INLET;?>App/View/js/pushgoods.js"></script>
 </html>
