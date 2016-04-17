@@ -23,8 +23,21 @@
                     </form>
                 </li>
                 <li>
-                    <button class="register" id="register">注&nbsp;册</button>&nbsp;&nbsp;&nbsp;
-                    <button class="login" id="login">登&nbsp;录</button>
+                <?php 
+                    if(empty($_SESSION['user']['userid'])){
+                       echo '<button class="register" id="register">注&nbsp;册</button>&nbsp;&nbsp;&nbsp;
+                        <button class="login" id="login">登&nbsp;录</button>';
+                    }else{
+                        $username = $_SESSION['user']['username'];
+                        $userhead = $_SESSION['user']['userimg'];
+                        echo "<ul class='lastbar'>
+                            <li><a href='#'>&nbsp;&nbsp;</a></li>
+                            <li><a href='#'>{$username}</a></li>
+                            <li><a href='#'>消息</a></li>
+                            <li class='out'><a href='".INLET."index.php/index/LogOut'>退出</a></li>
+                            </ul>";
+                    } 
+                ?>        
                 </li>
             </nav>
         </header>
@@ -210,7 +223,7 @@
                         <input name="goodsname" id="goodsname" class="goodsname" placeholder="请输入旧物名,最多12字"/>
                     </label>
                     <label for="goodsdis">
-                        <textarea class="goodsdis" id="goodsdis" name="goodsdis" placeholder="输入对旧物的描述,最多120字符"></textarea>
+                        <textarea class="goodsdis" id="goodsdis" name="goodsdis" placeholder="输入对旧物的描述,最多76字符"></textarea>
                     </label>
                     <label>
                         <h3>最多添加4张图片</h3>

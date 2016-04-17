@@ -24,7 +24,7 @@ $(function(){
         idvalue = idvalue.replace(/(^\s*)|(\s*$)/g,'');
         var len = idvalue.length;
         if(len ==15 || len ==18){
-            $.post('index.php/index/CheckIdcard',{"idcard":idvalue},function (data) {
+            $.post('http://localhost/jie/index.php/index/CheckIdcard',{"idcard":idvalue},function (data) {
                 //判断返回信息，并向用户展示
                 if(data == null || data== undefined || data == ''){
                     $('#idcardmessage').css('color', '#abcdef').html('身份证正确');
@@ -44,7 +44,7 @@ $(function(){
         var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
         var flag = pattern.test(emailvalue);
         if(flag){
-            $.post('index.php/index/CheckEmail',{"email":emailvalue}, function (data) {
+            $.post('http://localhost/jie/index.php/index/CheckEmail',{"email":emailvalue}, function (data) {
                 if(data == null || data== undefined || data == ''){
                     $('#emailmessage').css('color', '#abcdef').html('邮件正确');
                 }else{
@@ -64,7 +64,7 @@ $(function(){
         if(namevalue.length<2 || namevalue.length>12){
             $('#namemessage').css('color', 'red').html('请数输入正确的姓名');
         }else{
-            $.post('index.php/index/CheckName',{'username':namevalue},function (data) {
+            $.post('http://localhost/jie/index.php/index/CheckName',{'username':namevalue},function (data) {
                 if(data == null || data== undefined || data == ''){
                     $('#namemessage').css('color', '#abcdef').html('正确');
                 } else {
@@ -82,7 +82,7 @@ $(function(){
         if(passwordvalue.length<6){
             $('#passwordmessage').css('color', 'red').html('密码太弱了');
         }else{
-            $.post('index.php/index/CheckPassword',{'password':passwordvalue},function (data) {
+            $.post('http://localhost/jie/index.php/index/CheckPassword',{'password':passwordvalue},function (data) {
                 if(data == null || data== undefined || data == ''){
                     $('#passwordmessage').css('color', '#abcdef').html('正确');
                 } else {
@@ -99,7 +99,7 @@ $(function(){
         var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
         var flag = pattern.test(emailvalue);
         if(flag){
-            $.post('index.php/index/LogEmail',{"email":emailvalue}, function (data) {
+            $.post('http://localhost/jie/index.php/index/LogEmail',{"email":emailvalue}, function (data) {
                 if(data == null || data== undefined || data == ''){
                     $('#lemailmessage').css('color', '#abcdef').html('邮件正确');
                 }else{
@@ -118,7 +118,7 @@ $(function(){
         if(passwordvalue.length<6){
             $('#lpasswordMessage').css('color', 'red').html('密码错误');
         }else{
-            $.post('index.php/index/LogPassword', {'password': passwordvalue},function (data) {
+            $.post('http://localhost/jie/index.php/index/LogPassword', {'password': passwordvalue},function (data) {
                 if(data == null || data== undefined || data == ''){
                     $('#lpasswordMessage').css('color', '#abcdef').html('成功');
                 }else{

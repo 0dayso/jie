@@ -75,7 +75,6 @@ body{
       line-height: 3.5em;
       text-align: center;
       width: 22em;
-/*      background-color: #5a5d63;*/
 
       .register{
         background-color: #ec5252;
@@ -89,8 +88,42 @@ body{
       }
     }
   }
-
 }
+
+.lastbar{
+    display: block;
+    clear: both;
+    position: absolute;
+    left: 80%;
+    width: 20%;
+  li{
+    padding: 0 .4em;
+    display: inline-block;
+    float: left;
+    margin: 0 .1em;
+    text-align: center;
+    &:first-child{
+      background-image: url("../head.jpg");
+      width: 56px;
+      height: 56px;
+      -webkit-border-radius: 2em;
+      -moz-border-radius: 2em;
+      border-radius: 2em;
+      padding: 0;
+      background-size: 100%;
+    }
+    &:last-child{
+      width: auto;
+      display: inline;
+    }
+    a{
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+
 /* 页面中间的内容 */
 .content{
   height: auto;

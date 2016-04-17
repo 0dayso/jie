@@ -207,7 +207,6 @@ body {
   line-height: 3.5em;
   text-align: center;
   width: 22em;
-  /*      background-color: #5a5d63;*/
 }
 .header li:last-child .register {
   background-color: #ec5252;
@@ -218,6 +217,38 @@ body {
   color: #666666;
   background-color: #f1f1f1;
   border: 1px solid #f1f1f1;
+}
+.lastbar {
+  display: block;
+  clear: both;
+  position: absolute;
+  left: 80%;
+  width: 20%;
+}
+.lastbar li {
+  padding: 0 .4em;
+  display: inline-block;
+  float: left;
+  margin: 0 .1em;
+  text-align: center;
+}
+.lastbar li:first-child {
+  background-image: url("../head.jpg");
+  width: 56px;
+  height: 56px;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+  padding: 0;
+  background-size: 100%;
+}
+.lastbar li:last-child {
+  width: auto;
+  display: inline;
+}
+.lastbar li a {
+  display: inline-block;
+  width: 100%;
 }
 /* 页面中间的内容 */
 .content {
@@ -588,7 +619,7 @@ button {
 }
 /*登录*/
 .loginform {
-  /*  display: none;*/
+  display: none;
   height: 40%;
 }
 .loginform form {

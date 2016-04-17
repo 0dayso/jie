@@ -25,7 +25,7 @@ class Index{
         $message = $checkObj->CheckReg();
         if($message == NULL){
             $checkObj->getMessage();
-            var_dump($_SESSION['user']);
+            $this->Index();
         }
     }
     
@@ -109,7 +109,7 @@ class Index{
             echo "</script>";
         }else{
             $checkObj->getMessage();
-            var_dump($_SESSION['user']);
+            $this->Index();
         }
     }
 
@@ -149,5 +149,25 @@ class Index{
         }
     }
 
+    /**
+    * 描述: 退出操作,清除session,回到首页
+    * @date: 2016年4月17日 下午3:38:16
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function LogOut(){
+        $_SESSION[] = array();
+        if(isset($_COOKIE[session_name()])){
+            setcookie(session_name(), '', time()-42000, '/');
+        }
+        session_destroy();
+        //回到首页
+        //重定向浏览器 
+        header("Location: ".INLET); 
+        //确保重定向后，后续代码不会被执行 
+        exit;
+    }
+    
 }
 ?>
