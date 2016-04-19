@@ -2,7 +2,7 @@
 $controller = array(
     'Index'=>array('Index', 'CheckIdcard', 'CheckName', 'CheckPassword', 'CheckEmail', 
         'Reg', 'LogEmail', 'LogPassword', 'Log', 'LogOut'), 
-    'Test'=>array('Index', 'Action'),
+    'PushGoods'=>array('Index', 'PushName', 'PushgDepict', 'PayNum', 'LodFile', 'ReturnImg'),
 );
 
 return $controller;
