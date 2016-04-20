@@ -218,7 +218,7 @@
             <!-- 发布和信息 -->
             <section class="blown">
                 <h2>发布旧物</h2>
-                <form class="addgoods" action="" method="post" enctype="multipart/form-data">
+                <form class="addgoods" action="<?php echo INLET;?>index.php/PushGoods/SubmitFile" method="post" enctype="multipart/form-data">
                     <label for="goodsname">
                         <input name="goodsname" id="goodsname" class="goodsname" placeholder="请输入旧物名,最多12字"/>
                         <span id="gnamemessage">&nbsp;</span>

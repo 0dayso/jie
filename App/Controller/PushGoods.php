@@ -11,7 +11,7 @@ namespace App\Controller;
 class PushGoods{
     //检测是否已经登录
     function Index(){
-        
+            
     }
     
     
@@ -91,7 +91,6 @@ class PushGoods{
         }   
     }
     
-    
     /**
     * 描述:  图片上传操作，必须其他所有数据都上传完成后，才能进行
     * @date: 2016年4月19日 下午7:24:47
@@ -99,10 +98,13 @@ class PushGoods{
     * @param: variable
     * @return:
     */
-    
-    
-    
-    
+    function SubmitFile(){
+        //图片上传,并进行缩放转存
+        $obj = new \App\Model\PushImg();
+        $obj->ImageUp();
+        var_dump($_SESSION['goods']);
+        //判断
+    }
     
     //检查需要支付的金额,并计算要支付的金额
     
