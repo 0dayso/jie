@@ -77,7 +77,15 @@ class GoodsBox implements \Iterator{
         $this->goods[$key][$name] = $value;
     }
     
-    
+    /**
+    * 文件描述  清空商品信息容器
+    *
+    * @author     xinbingliang <709464835@qq.com>
+    * @date 2016年4月22日 下午1:17:08
+    * @version 1.0.0
+    * @copyright  Copyright 2016 xinbingliang.cn
+    */
+     
 }
 
 ?>

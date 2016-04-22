@@ -19,17 +19,24 @@ class ShowGoods{
     * @return:
     */
     function Index(){
+        //获得注册器
+        $register = \Xin\Register::Instance();
+        //如果原来异步加载对象把异步加载对象清除
+        \App\Model\GoodsAjax::UnsetSelf();
+        //请求并赋予新的请求类型
+        $ajax = \App\Model\GoodsAjax::GetSelf();
+        $ajax->SetAction('all');
+        $register->SetValue('goodsajax', $ajax);
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
         //查询数据数量和位置
-        $getgoods->GetGoodsTab(0 , 16, null, 'order by goodstime');
+        $getgoods->GetGoodsTab(0 , 15, null, 'order by goodstime');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         
         //获得商品信息容器
-        $register = \Xin\Register::Instance();
-        $goodsbox = $register->GetValue('goods');
-        
+
+        $goodsbox = $register->GetValue('goods'); 
         include ROOT.'App/view/index.php';
     }
     
@@ -42,14 +49,20 @@ class ShowGoods{
      * @return:
      */
     function GetFree(){
+        //获得注册器
+        $register = \Xin\Register::Instance();
+        //如果原来异步加载对象把异步加载对象清除
+        \App\Model\GoodsAjax::UnsetSelf();
+        //请求并赋予新的请求类型
+        $ajax = \App\Model\GoodsAjax::GetSelf();
+        $ajax->SetAction('free');
+        $register->SetValue('goodsajax', $ajax);
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
-        $getgoods->GetGoodsTab(0 , 1000, 'paynum = 0', 'order by goodstime');
+        $getgoods->GetGoodsTab(0 , 15, 'paynum = 0', 'order by goodstime');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
-    
         //获得商品信息容器
-        $register = \Xin\Register::Instance();
         $goodsbox = $register->GetValue('goods');
     
         include ROOT.'App/view/index.php';
@@ -64,14 +77,21 @@ class ShowGoods{
     * @return:
     */
     function GetPay(){
+        //获得注册器
+        $register = \Xin\Register::Instance();
+        //如果原来异步加载对象把异步加载对象清除
+        \App\Model\GoodsAjax::UnsetSelf();
+        //请求并赋予新的请求类型
+        $ajax = \App\Model\GoodsAjax::GetSelf();
+        $ajax->SetAction('pay');
+        $register->SetValue('goodsajax', $ajax);
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
-        $getgoods->GetGoodsTab(0 , 1000, 'paynum > 0', 'order by goodstime');
+        $getgoods->GetGoodsTab(0 , 15, 'paynum > 0', 'order by goodstime');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         
         //获得商品信息容器
-        $register = \Xin\Register::Instance();
         $goodsbox = $register->GetValue('goods');
         
         include ROOT.'App/view/index.php';
@@ -79,17 +99,27 @@ class ShowGoods{
     
     
     /**
-    * 描述: 加载更多的Ajax请求
+    * 描述: 使用GoodsAjax类加载内容
     * @date: 2016年4月22日 上午10:28:24
     * @author: xinbingliang <709464835@qq.com>
     * @param: variable
     * @return:
     */
     function GetMore(){
+        //获得注册器
+        $register = \Xin\Register::Instance();
+        $ajax = $register->GetValue('goodsajax');
         
+        $data = $ajax->GetMore();
+
+        
+        if(!empty($data)){
+            //获得商品信息容器
+            $register = \Xin\Register::Instance();
+            $goodsbox = $register->GetValue('goods');
+            var_dump($goodsbox);
+        }
     }
-    
-    
 }
 
 ?>

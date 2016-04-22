@@ -31,13 +31,16 @@ class GoodsGet{
         //进行查询
         $data = $db->FetchAll('goods', $where, null, $limit, $orderBy);
         
-/*         var_dump($data);
-        exit();   */
-        //将数据存放到迭代器中
-        $goodsIter = new GoodsBox($data);
-        
-        //将迭代器注册带注册器上
-        $register->SetValue('goods', $goodsIter);
+        if(!empty($data)){
+            //将数据存放到迭代器中
+            $goodsIter = new GoodsBox($data);
+            
+            //将迭代器注册带注册器上
+            $register->SetValue('goods', $goodsIter);
+            return 'success';
+        }else{
+            return null;
+        }
 
         
 /*         $message = $register->GetValue('goods');

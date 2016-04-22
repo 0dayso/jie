@@ -189,7 +189,7 @@ class ThePDO implements InterfaceDB{
                 $data[] = $row;
             }
             //返回数据
-            return $data;
+            return empty($data)?null:$data;
         } catch (\PDOException $e) {
             file_put_contents(ROOT.'message.txt', $e->getMessage());            
         }

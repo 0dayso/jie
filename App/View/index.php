@@ -43,7 +43,7 @@
             </nav>
         </header>
         <article class="content">
-            <section class="message">
+            <section class="message" id="message">
                 <?php 
                     $goodsbox->rewind();
                     while ($goodsbox->TheValue()){
@@ -120,7 +120,7 @@
         </article>
         <!-- 页面脚 -->
         <footer class="footer">
-            <article class="more"><div><button>加载更多</button></div></article>
+            <article class="more"><div><button id="more">加载更多</button></div></article>
             <article class="authormessage">
                 <p><span>辛丙亮&nbsp;&nbsp;出品;</span>&nbsp;&nbsp;Tel:15102724518;&nbsp;&nbsp;QQ:709464835</p>
                 <p>全站代码开放,代码托管地址(GitHub)&nbsp;&nbsp;<a href="https://github.com/xinbingliang/jie" target="_blank">接下去</a>&nbsp;&nbsp;;期待更多人加入！</p>
@@ -153,4 +153,5 @@
 <!--自己编写的-->
 <script src="<?php echo INLET;?>App/View/js/outface.js"></script>
 <script src="<?php echo INLET;?>App/View/js/pushgoods.js"></script>
+<script src="<?php echo INLET;?>App/View/js/getmore.js"></script>
 </html>
