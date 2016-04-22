@@ -11,7 +11,10 @@ namespace App\Controller;
 class Goods{
     
     function Index(){
-        
+        //页面展示
+        include ROOT.'App/view/head.html';
+        include ROOT.'App/view/goods.html';
+        include ROOT.'App/view/footer.html';
     }
     
     /**

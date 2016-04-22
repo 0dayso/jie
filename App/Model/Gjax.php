@@ -8,7 +8,7 @@ namespace App\Model;
 * @version 1.0.0
 * @copyright  CopyRight
 */
-final class GoodsAjax{
+final class Gjax{
     //保存自身
     private static $Instance = NULL;
      
@@ -36,6 +36,8 @@ final class GoodsAjax{
         //获得注册器
         $type = $_SESSION['getgoods']['type'];
         $num = $_SESSION['getgoods']['num'];
+/*         file_put_contents(ROOT.'message.txt', $type);
+        exit(); */
         switch ($type){
             case 'all':
                 $where = NULL;

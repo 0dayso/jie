@@ -6,7 +6,7 @@
 
 $(function () {
    $('#more').click(function () {
-       $.post('http://localhost/jie/index.php/ShowGoods/GetMore', null, function (data) {
+       $.post('http://localhost/jie/index.php/Show/More', null, function (data) {
                 //总共的数据长度
            var $num = data.length;
            if($num > 0){
@@ -24,6 +24,7 @@ $(function () {
                    var username = data[$i]['username'];
                    var userimg = 'http://localhost/jie/headimg/'+data[$i]['userimg'];
                    var day = data[$i]['day'];
+                   var goodspath = 'http://localhost/jie/index.php/Goods/Index/gid/'+goodsid;
 
                    var child = "<article><div class='img'><a href=''><img src='"+goodsimg0+"' width='280px' height='280px'></a></div>" +
                        " <div class='userandtime'> <a href='' class='head'><img src='"+userimg+"' width='45px' height='45px'></a>" +

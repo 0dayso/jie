@@ -10,7 +10,7 @@ class Index{
     * @return:
     */
     function Index(){
-        $showgoods = new ShowGoods();
+        $showgoods = new Show();
         $showgoods->Index();
     }
     

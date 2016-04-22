@@ -18,9 +18,8 @@
                         $userimg = INLET.'headimg/'.$oneGoods['userimg'];
                         $day = $oneGoods['day'];
                         
-                        
                         echo "<article>
-                            <div class='img'><a href='#'><img src='{$goodsimg0}' width='280px' height='280px'></a></div>
+                            <div class='img'><a href='{$goodspath}'><img src='{$goodsimg0}' width='280px' height='280px'></a></div>
                             <div class='userandtime'>
                             <a href='' class='head'><img src='{$userimg}' width='45px' height='45px'></a>
                             <span class='username'>{$username}</span>
