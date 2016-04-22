@@ -13,8 +13,8 @@
             <nav>
                 <li><h1 class="logo"><span>接</span>下去</h1></li>
                 <li><a href="<?php echo INLET;?>index.php">首页</a></li>
-                <li><a href="<?php echo INLET;?>index.php/INdex/GetFree">免费物品</a></li>
-                <li><a href="#">付费物品</a></li>
+                <li><a href="<?php echo INLET;?>index.php/ShowGoods/GetFree">免费物品</a></li>
+                <li><a href="<?php echo INLET;?>index.php/ShowGoods/GetPay">付费物品</a></li>
                 <li><a href="#" target="_blank">全站信息</a></li>
                 <li>
                     <form class="search">
@@ -83,97 +83,8 @@
                             </article>";
                         $goodsbox->next();
                     }
-                
-                
-                
-
                 ?>
 
-<!--                <article>
-                    <div class="img"><img src="./goodsimg/3_0_160421092704_479.jpg" width="280px" height="280px"></div>
-                    <div class="userandtime">
-                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
-                        <span class="username">辛丙亮</span>
-                        <span class="timeout">商品还有4天过期</span>
-                    </div>
-                    <ul>
-                        <li><a href="javascript:void(0);">10元</a></li>
-                        <li><a href="#">想要</a></li>
-                        <li><a href="">赞</a></li>
-                    </ul>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"><img src="./goodsimg/3_0_160421093836_746.jpg" width="280px" height="280px"></div>
-                    <div class="userandtime">
-                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
-                        <span class="username">辛丙亮</span>
-                        <span class="timeout">商品还有4天过期</span>
-                    </div>
-                    <ul>
-                        <li><a href="javascript:void(0);">10元</a></li>
-                        <li><a href="#">想要</a></li>
-                        <li><a href="">赞</a></li>
-                    </ul>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"><img src="./goodsimg/3_0_160421094316_335.jpg" width="280px" height="280px"></div>
-                    <div class="userandtime">
-                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
-                        <span class="username">辛丙亮</span>
-                        <span class="timeout">商品还有4天过期</span>
-                    </div>
-                    <ul>
-                        <li><a href="javascript:void(0);">10元</a></li>
-                        <li><a href="#">想要</a></li>
-                        <li><a href="">赞</a></li>
-                    </ul>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"><img src="./goodsimg/3_0_160421094430_529.jpg" width="280px" height="280px"></div>
-                    <div class="userandtime">
-                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
-                        <span class="username">辛丙亮</span>
-                        <span class="timeout">商品还有4天过期</span>
-                    </div>
-                    <ul>
-                        <li><a href="javascript:void(0);">10元</a></li>
-                        <li><a href="#">想要</a></li>
-                        <li><a href="">赞</a></li>
-                    </ul>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"><img src="./goodsimg/3_0_160421094615_728.jpg" width="280px" height="280px"></div>
-                    <div class="userandtime">
-                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
-                        <span class="username">辛丙亮</span>
-                        <span class="timeout">商品还有4天过期</span>
-                    </div>
-                    <ul>
-                        <li><a href="javascript:void(0);">10元</a></li>
-                        <li><a href="#">想要</a></li>
-                        <li><a href="">赞</a></li>
-                    </ul>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
-                    </div>
-                </article>-->
 
             </section>
             <!-- 发布和信息 -->
