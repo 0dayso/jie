@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接下去，晒出你的旧物</title>
+    <script src="<?php echo INLET;?>App/View/js/jquery1.12.1.js"></script>
+    <link href="<?php echo INLET;?>App/View/style/index.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<section class="page">
+    <!-- 页面头 -->
+    <header class="header">
+        <nav>
+            <li><h1 class="logo"><span>接</span>下去</h1></li>
+            <li><a href="<?php echo INLET;?>index.php">首页</a></li>
+            <li><a href="<?php echo INLET;?>index.php/ShowGoods/GetFree">免费物品</a></li>
+            <li><a href="<?php echo INLET;?>index.php/ShowGoods/GetPay">付费物品</a></li>
+            <li><a href="#" target="_blank">全站信息</a></li>
+            <li>
+                <form class="search">
+                    <input type="search" placeholder="搜索在这里" name="search" class="search"/>
+                    <input type="submit" value="搜索" class="searchbottom">
+                </form>
+            </li>
+            <li>
+                <?php
+                    if(empty($_SESSION['user']['userid'])){
+                       echo '<button class="register" id="register">注&nbsp;册</button>&nbsp;&nbsp;&nbsp;
+                <button class="login" id="login">登&nbsp;录</button>';
+                }else{
+                $username = $_SESSION['user']['username'];
+                $userhead = $_SESSION['user']['userimg'];
+                $userhead = INLET.'headimg/'.$userhead;
+                echo "<ul class='lastbar'>
+                <li><a href='#' ><img src='{$userhead}' width='45px' height='45px'></a></li>
+                <li><a href='#'>{$username}</a></li>
+                <li><a href='#'>消息</a></li>
+                <li class='out'><a href='".INLET."index.php/index/LogOut'>退出</a></li>
+            </ul>";
+                }
+                ?>
+            </li>
+        </nav>
+    </header>

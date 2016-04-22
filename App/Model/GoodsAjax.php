@@ -11,15 +11,8 @@ namespace App\Model;
 final class GoodsAjax{
     //保存自身
     private static $Instance = NULL;
-    //记录免费，全部，还是付费不同的类型
-    static private $action;
-    //记录起始位置
-    static private $num = 15;
-    
      
     private function __construct(){
-        //默认是全部
-        self::$action = 'all';
     }
     
     //获得对象自身
@@ -31,11 +24,6 @@ final class GoodsAjax{
     }
     
     
-    //重置动作方式
-    function SetAction($type){
-        self::$action = $type;
-    }
-    
     /**
     * 描述: 加载商品
     * @date: 2016年4月22日 下午12:44:34
@@ -45,7 +33,10 @@ final class GoodsAjax{
     */
     function GetMore(){
         $where = '';
-        switch (self::$action){
+        //获得注册器
+        $type = $_SESSION['getgoods']['type'];
+        $num = $_SESSION['getgoods']['num'];
+        switch ($type){
             case 'all':
                 $where = NULL;
                 break;
@@ -58,31 +49,26 @@ final class GoodsAjax{
             default:
                 $where = null;
                 break;
-        }
-        
-        echo self::$action;
-        exit();
+        }      
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
         //返回数据标识
-        $message = $getgoods->GetGoodsTab(self::$num , 15, $where, 'order by goodstime');
+        $message = $getgoods->GetGoodsTab( $num, 3, $where, 'order by goodstime');
         if(!empty($message)){
             //向商品数据中添加用户数据
             $getgoods->GetGoodUser();
             //获得商品信息容器
             $register = \Xin\Register::Instance();
             $goodsbox = $register->GetValue('goods');
+            //获得所有数据
+            $data = $goodsbox->GetAll();
             //拼装成json返回
-            return 'success';
+            $data = json_encode($data);
+            return $data;
+            
         }else{
             return NULL;
         }
-        self::$num += 15;
-    }
-    
-    //销毁自身
-    static function UnsetSelf(){
-        self::$Instance = NULL;
     }
 }
 
