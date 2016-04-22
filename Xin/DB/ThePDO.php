@@ -165,17 +165,18 @@ class ThePDO implements InterfaceDB{
     * @return: 返回查询到的索引数组
     * 
     */
-    function FetchAll($table, $where=NULL, $array=NULL,  $limit=NULL){
+    function FetchAll($table, $where=NULL, $array=NULL,  $limit=NULL, $desc=NULL){
         //添加表前缀
         $table = $this->AddSign($table);
         //组装要查询的字段
         $trad = empty($array)?'*':join(' ,', $array);
         $where = empty($where)?'':'where '.$where; 
         $limit = empty($limit)?'':$limit;
+        $desc = empty($desc)?'':$desc;
         //组装sql语句
-        $sql = "select {$trad} from {$table} {$where} {$limit}";
+        $sql = "select {$trad} from {$table} {$where} {$desc} {$limit} ";
 /*         file_put_contents(ROOT.'message.txt', $sql);
-        exit(); */
+        exit();   */
         try {
             //执行语句
             $stmt = self::$pdo->prepare($sql);

@@ -12,8 +12,8 @@
         <header class="header">
             <nav>
                 <li><h1 class="logo"><span>接</span>下去</h1></li>
-                <li><a href="#">首页</a></li>
-                <li><a href="#">免费物品</a></li>
+                <li><a href="<?php echo INLET;?>index.php">首页</a></li>
+                <li><a href="<?php echo INLET;?>index.php/INdex/GetFree">免费物品</a></li>
                 <li><a href="#">付费物品</a></li>
                 <li><a href="#" target="_blank">全站信息</a></li>
                 <li>
@@ -30,8 +30,9 @@
                     }else{
                         $username = $_SESSION['user']['username'];
                         $userhead = $_SESSION['user']['userimg'];
+                        $userhead = INLET.'headimg/'.$userhead;
                         echo "<ul class='lastbar'>
-                            <li><a href='#'>&nbsp;&nbsp;</a></li>
+                            <li><a href='#' ><img src='{$userhead}' width='45px' height='45px'></a></li>
                             <li><a href='#'>{$username}</a></li>
                             <li><a href='#'>消息</a></li>
                             <li class='out'><a href='".INLET."index.php/index/LogOut'>退出</a></li>
@@ -43,177 +44,137 @@
         </header>
         <article class="content">
             <section class="message">
-                <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
+                <?php 
+                    $goodsbox->rewind();
+                    while ($goodsbox->TheValue()){
+                        //获得单个货物信息
+                        $oneGoods = $goodsbox->current();
+/*                         var_dump($oneGoods); */
+                        $goodsid = $oneGoods['goodsid'];                        
+                        $userid = $oneGoods['userid'];
+                        $goodsimg0 = INLET.'goodsimg/'.$oneGoods['goodsimg0'];
+                        $goodsname = $oneGoods['goodsname'];
+                        $goodsdepict = $oneGoods['goodsdepict'];
+                        $paytype = $oneGoods['paytype'];
+                        $paynum = $oneGoods['paynum'];
+                        $commentnum = $oneGoods['commentnum'];
+                        $zannum = $oneGoods['zannum'];
+                        $username = $oneGoods['username'];
+                        $userimg = INLET.'headimg/'.$oneGoods['userimg'];
+                        $day = $oneGoods['day'];
+                        
+                        
+                        echo "<article>
+                            <div class='img'><img src='{$goodsimg0}' width='280px' height='280px'></div>
+                            <div class='userandtime'>
+                            <a href='' class='head'><img src='{$userimg}' width='45px' height='45px'></a>
+                            <span class='username'>{$username}</span>
+                            <span class='timeout'>{$day}</span>
+                            </div>
+                            <ul>
+                            <li><a href='javascript:void(0);'>{$paynum}元</a></li>
+                            <li><a href='#'>{$commentnum}想要</a></li>
+                            <li><a href=''>{$zannum}赞</a></li>
+                            </ul>
+                            <div class='godsmessage'>
+                            <p class='goodsname'>{$goodsname}</p>
+                            <p class='discript'>{$goodsdepict}</p>
+                            </div>
+                            </article>";
+                        $goodsbox->next();
+                    }
+                
+                
+                
+
+                ?>
+
+<!--                <article>
+                    <div class="img"><img src="./goodsimg/3_0_160421092704_479.jpg" width="280px" height="280px"></div>
+                    <div class="userandtime">
+                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
+                        <span class="username">辛丙亮</span>
+                        <span class="timeout">商品还有4天过期</span>
                     </div>
+                    <ul>
+                        <li><a href="javascript:void(0);">10元</a></li>
+                        <li><a href="#">想要</a></li>
+                        <li><a href="">赞</a></li>
+                    </ul>
                     <div class="godsmessage">
                         <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
+                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
                     </div>
                 </article>
                 <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
+                    <div class="img"><img src="./goodsimg/3_0_160421093836_746.jpg" width="280px" height="280px"></div>
+                    <div class="userandtime">
+                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
+                        <span class="username">辛丙亮</span>
+                        <span class="timeout">商品还有4天过期</span>
                     </div>
+                    <ul>
+                        <li><a href="javascript:void(0);">10元</a></li>
+                        <li><a href="#">想要</a></li>
+                        <li><a href="">赞</a></li>
+                    </ul>
                     <div class="godsmessage">
                         <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
+                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
                     </div>
                 </article>
                 <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
+                    <div class="img"><img src="./goodsimg/3_0_160421094316_335.jpg" width="280px" height="280px"></div>
+                    <div class="userandtime">
+                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
+                        <span class="username">辛丙亮</span>
+                        <span class="timeout">商品还有4天过期</span>
                     </div>
+                    <ul>
+                        <li><a href="javascript:void(0);">10元</a></li>
+                        <li><a href="#">想要</a></li>
+                        <li><a href="">赞</a></li>
+                    </ul>
                     <div class="godsmessage">
                         <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
+                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
                     </div>
                 </article>
                 <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
+                    <div class="img"><img src="./goodsimg/3_0_160421094430_529.jpg" width="280px" height="280px"></div>
+                    <div class="userandtime">
+                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
+                        <span class="username">辛丙亮</span>
+                        <span class="timeout">商品还有4天过期</span>
                     </div>
+                    <ul>
+                        <li><a href="javascript:void(0);">10元</a></li>
+                        <li><a href="#">想要</a></li>
+                        <li><a href="">赞</a></li>
+                    </ul>
                     <div class="godsmessage">
                         <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
+                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
                     </div>
                 </article>
                 <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
+                    <div class="img"><img src="./goodsimg/3_0_160421094615_728.jpg" width="280px" height="280px"></div>
+                    <div class="userandtime">
+                        <a href="" class="head"><img src="./handimg/head.jpg" width="45px" height="45px"></a>
+                        <span class="username">辛丙亮</span>
+                        <span class="timeout">商品还有4天过期</span>
                     </div>
+                    <ul>
+                        <li><a href="javascript:void(0);">10元</a></li>
+                        <li><a href="#">想要</a></li>
+                        <li><a href="">赞</a></li>
+                    </ul>
                     <div class="godsmessage">
                         <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
+                        <p class="discript">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</p>
                     </div>
-                </article>
-                <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname">物品名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
-                    </div>
-                </article>
-                <article>
-                    <div class="img"></div>
-                    <div class="bar">
-                        <ul>
-                            <li>用户头像</li>
-                            <li>辛丙亮</li>
-                        </ul>
-                        <ul>
-                            <li>想要</li>
-                            <li>赞</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname">名称</p>
-                        <p class="discript">
-                            描述信息
-                        </p>
-                    </div>
-                </article>
+                </article>-->
+
             </section>
             <!-- 发布和信息 -->
             <section class="blown">

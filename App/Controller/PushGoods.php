@@ -11,7 +11,7 @@ namespace App\Controller;
 class PushGoods{
     //检测是否已经登录
     function Index(){
-            
+        include ROOT.'App/view/index.php';
     }
     
     
@@ -100,10 +100,22 @@ class PushGoods{
     */
     function SubmitFile(){
         //图片上传,并进行缩放转存
-        $obj = new \App\Model\PushImg();
-        $obj->ImageUp();
-        var_dump($_SESSION['goods']);
-        //判断
+        $obj = new \App\Model\GoodsHelp();
+        $return = $obj->ImageUp();
+        //检查所有数据是否存在,图片第一张必须存在
+        $goodsarray = array('goodsname', 'goodsimg0', 'goodsdepict'); 
+        foreach ($goodsarray as $value){
+            $res = $obj->CheckEmpty($value);
+            echo $res;
+            if($res != null){
+                echo "数据没有设置完整";
+                return NULL;
+            }
+         } 
+         if($obj->WriteDB() == NULL){
+            $this->Index();  
+            $_SESSION['goods'] = NULL;
+        }
     }
     
     //检查需要支付的金额,并计算要支付的金额

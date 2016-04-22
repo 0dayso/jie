@@ -5,19 +5,22 @@
   width: 100%;
   margin-top: 3.5em;
   color: #717174;
-  /* position: relative;*/
+  /*position: relative;*/
 }
 /* 主体信息 */
 .message{
   width: 72%;
-  height: 960px;
+  min-height: 960px;
   margin: 3.5em 2em;
-  /*  border: 1px solid yellow;*/
+  overflow: hidden;
   /* 商品显示时的区块 */
   article{
+    -webkit-box-shadow: 0px 0px 3px #ccc;
+    -moz-box-shadow: 0px 0px 3px #ccc;
+    box-shadow: 0px 0px 3px #ccc;
     position: relative;
     width: 280px;
-    height: 480px;
+    height: 520px;
     background-color: #ffffff;
     margin: .9em 1.3em;
     float: left;
@@ -28,74 +31,96 @@
     /* 商品图像 */
     .img{
       width: 280px;
-      height: 290px;
+      height: 280px;
       background-image: url("../1.jpg");
+      -webkit-background-size: cover;
+      background-size: cover;
       -webkit-border-top-left-radius: 4px;
       -moz-border-top-left-radius: 4px;
       border-top-left-radius: 4px;
       -webkit-border-top-right-radius: 4px;
       -moz-border-top-right-radius: 4px;
       border-top-right-radius: 4px;
-    }
-
-    .bar{
-/*      background-color: #5a5d63;*/
-      height: 15%;
-      border-bottom: 1px dashed #cccccc;
-      ul{
-        display: inline-block;
-        line-height: 4.4em;
-        li{
-          float: left;
-        }
-        /* 用户头像和姓名 */
-        &:first-child{
-          width: 55%;
-/*          background-color: #417474;*/
-          li{
-            width: 4.3em;
-            height: 4em;
-            display: inline-block;
-            text-align: center;
-            /* 头像 */
-            &:first-child{
-              line-height: 4.4em;
-              margin: .2em .3em;
-              background-color: yellow;
-              -webkit-border-radius: 4em;
-              -moz-border-radius: 4em;
-              border-radius: 4em;
-            }
-            /* 用户姓名 */
-            &:last-child{
-              font-size: 1em;
-              line-height: 6em;
-              margin: .2em;
-/*              background-color: #ec5252;*/
-            }
-          }
-        }
-        /* 商品信息 */
-        &:last-child{
-          width: 43%;
-/*          background-color: #ec5252;*/
-          li{
-            height: 4.2em;
-            line-height: 6em;
-            text-align: center;
-            &:first-child{
-              width: 60%;
-/*              background-color: #685875*/
-            }
-            &:last-child{
-              width: 40%;
-            }
-          }
-        }
+      img{
+        -webkit-border-top-left-radius: 4px;
+        -moz-border-top-left-radius: 4px;
+        border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px;
+        -moz-border-top-right-radius: 4px;
+        border-top-right-radius: 4px;
       }
     }
+    //用户信息，和过期时间
+    .userandtime{
+/*      border-bottom: 1px solid #c0c0c0;*/
+      padding: .5em .4em;
+/*      background-color: #abcdef;*/
+      position: relative;
+/*      height: 60px;*/
+      //用户小头像
+      .head{
+        -webkit-border-radius: 23px;
+        -moz-border-radius: 23px;
+        border-radius: 23px;
+        display: inline-block;
+/*        border: 1px solid red;*/
+        height: 45px;
+        width: 45px;
+        img{
+          -webkit-border-radius: 23px;
+          -moz-border-radius: 23px;
+          border-radius: 23px;
+          width: 45px;
+          height: 45px;
+          display: inline;
+        }
+      }
+      span{
+        line-height: 1.2em;
+      }
+      //用户名
+      .username{
+        width: 5em;
+/*        background-color: #685875;*/
+        display: inline-block;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        font-size: .8em;
+      }
+      //过期时间
+      .timeout{
+/*        background-color: #ec5252;*/
+        color: darkolivegreen;
+        display: block;
+        position: absolute;
+        right: .4em;
+        bottom: .6em;
+        text-indent: .3em;
+      }
+    }
+
+    ul{
+      background-color: #ffffff;
+      display: block;
+      text-align: center;
+      li{
+        padding: .4em 0;
+        width: 31%;
+        display: inline-block;
+        text-align: center;
+        background-color: #ffffff;
+        a{
+          width: 100%;
+          display: inline-block;
+          color: black;
+        }
+
+      }
+    }
+
+    /* 商品名称和描述 */
     .godsmessage{
-/*      background-color: #cccccc;*/
       width: 94%;
       height: 25%;
       margin: 0 auto;
@@ -106,7 +131,6 @@
       }
       .discript{
         height: 68%;
-/*        background-color: aquamarine;*/
         padding: .3em 0;
       }
     }
