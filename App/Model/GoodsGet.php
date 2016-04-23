@@ -30,7 +30,6 @@ class GoodsGet{
         
         //进行查询
         $data = $db->FetchAll('goods', $where, null, $limit, $orderBy);
-        
         if(!empty($data)){
             //将数据存放到迭代器中
             $goodsIter = new GoodsBox($data);
@@ -66,20 +65,23 @@ class GoodsGet{
             $userid = $goodMessage['userid'];
             //获得发布时间
             $pushTim = $goodMessage['goodstime'];
-            $day = floor((time()+((3600*24)*7)-$pushTim)/(3600*24));
+            $day = ceil((time()-$pushTim)/(3600*24));
             //获得数据库对象
             $db = $register->GetValue('db');
-            $userarray = $db->FetchAll('user', "userid = $userid", $array = array('username', 'userimg') );
+            $userarray = $db->FetchAll('user', "userid = $userid", $array = array('username', 'userimg', 'username', 'gender', 'point'));
             //将用户信息添加到容器中
             $key = $goods->key();
             $goods->AddUser($key, 'username', $userarray[0]['username']);
             $goods->AddUser($key, 'userimg', $userarray[0]['userimg']);
+            $goods->AddUser($key, 'username', $userarray[0]['username']);
+            $goods->AddUser($key, 'gender', $userarray[0]['gender']);
+            $goods->AddUser($key, 'point', $userarray[0]['point']);
             $goods->AddUser($key, 'day', $day);
             $goods->next();
         }
         
-/*          var_dump($goods); 
-         exit(); */
+/*           var_dump($goods); 
+         exit();  */
         //将迭代器指针指向第一个元素
         $goods->rewind();
         

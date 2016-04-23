@@ -1,6 +1,6 @@
-@import 'all.less';
 .content{
-  margin: 4em auto;
+  border-radius: 1px solid red;
+  margin: 4.5em auto;
 }
 .left{
   display: block;
@@ -8,27 +8,35 @@
 /*  background-color: #abcdef;*/
   width: 50%;
   line-height: 1.4em;
-  margin-bottom: 3em;
+  margin-bottom: .5em;
   .goods{
+    -webkit-box-shadow:  0 0 3px #cccccc;
+    -moz-box-shadow:  0 0 3px #cccccc;
+    box-shadow:  0 0 3px #cccccc;
     border: 1px solid #ffffff;
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
     border-radius:4px;
 /*    background-color: #cccccc;*/
-    padding: 1em;
+/*    padding:0 1em 1em 1em;*/
     width: 400px;
-    margin: 0 auto;
-/*    h3{
-      background-color: #417474;
-      line-height: .8em;
-      margin: .3em 0 .3em 0;
-      font-size: 1.2em;
+    position: relative;
+    left: 30%;
+    /* 品名 */
+    h3{
+      -webkit-border-top-left-radius: 4px;
+      -moz-border-radius-topleft: 4px;
+      border-top-left-radius: 4px;
+      -webkit-border-top-right-radius: 4px;
+      -moz-border-radius-topright: 4px;
+      border-top-right-radius: 4px;
+      background-color: #929582;
+      color: #ffffff;
       text-align: center;
-    }*/
-    .discript{
-      margin-bottom: .4em;
-/*      background-color: #417474;*/
-      line-height: 1.4em;
+      font-size: 1.2em;
+      width: 100%;
+      height: 2em;
+      line-height: 2em;
     }
     /* 图像轮播样式 */
     .banner{
@@ -45,6 +53,7 @@
       #ar {
         right: 15px;
       }
+
       ul, ol {
         padding: 0;
       }
@@ -85,8 +94,51 @@
       }
     }
     /* 图像轮播结束 */
-    .price{
-/*      background-color: darkblue;*/
+    /* 描述信息 */
+    .discript{
+/*      border: 1px solid darkred;*/
+      width: 90%;
+      margin: 0 auto;
+      color: #666666;
+      margin-bottom: .4em;
+      line-height: 1.4em;
+      position: relative;
+      display: block;
+      span{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 4em;
+        display: block;
+        color: #aaaaaa;
+/*        background-color: #abcdef;*/
+        font-size: .8em;
+      }
+    }
+    /* 描述信息结束 */
+    /* 菜单栏 */
+    .menu{
+      /*background-color: red;*/
+      height: 1.5em;
+      line-height: 1.5em;
+      li{
+/*        background-color: #abcdef;*/
+        width: 25%;
+        float: left;
+        text-align: center;
+        -webkit-box-shadow:  0px 0px 1px #cccccc;
+        -moz-box-shadow:  0px 0px 1px #cccccc;
+        box-shadow:  0px 0px 1px #cccccc;
+        a{
+          width: 100%;
+          display: inline-block;
+          color: #5a5d63;
+        }
+      }
+    }
+
+/*    .price{
+!*      background-color: darkblue;*!
       span{
         display: inline-block;
         &:nth-child(2){
@@ -97,7 +149,7 @@
         display: inline-block;
         margin-left: 5em;
       }
-    }
+    }*/
     .godsmessage{
       ul{
         display: block;
@@ -106,74 +158,117 @@
           width: 33%;
           display: inline-block;
           float: left;
-          border-right: 1px dashed black;
+/*          border-right: 1px dashed black;*/
           &:last-child{
             border: none;
           }
         }
       }
       .send{
-            margin-top: .8em;
+        width: 98%;
+        margin: 0 auto;
         form{
-          padding-top: .4em;
-          span{
-            display: inline-block;
-            margin-right: .9em;
+          color: #717171;
+          margin-top: .3em;
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          #entermessage{
+            margin-left: 3.6em;
+            color: orange;
           }
-
+          img{
+            float: left;
+            display: block;
+            float: left;
+            width: 12%;
+            height: 45px;
+            -webkit-border-radius: 23px;
+            -moz-border-radius: 23px;
+            border-radius: 23px;
+          }
           label{
-/*            background-color: #685875;*/
-            input{
-              width: 80%;
-              height: 1.6em;
+            float: right;
+            display: block;
+            height: 45px;
+            line-height: 45px;
+            /*background-color: #ffffff;*/
+            width: 88%;
+            #entersend{
+              color: #717171;
+              margin-left: 2%;
+              width: 97%;
+              line-height: 1.6em;
+              font-size: 1em;
             }
           }
           .submit{
-            margin-top: .4em;
+            float: right;
             display: block;
-            margin-left: 80%;
-            margin-bottom: .4em;
+            margin-bottom: .5em;
           }
         }
-        border-bottom: 1px dashed #cccccc;
       }
-      overflow: auto;
     }
+    /* 评论内容 */
     .comment{
       margin-top: .8em;
+      margin-left: 50px;
+      display: block;
       article{
-        border-bottom: 1px solid #ffffff;
-/*        background-color: hotpink;*/
+        border-top: 1px solid #c0c0c0;
         margin-bottom: .3em;
         position: relative;
         overflow: auto;
-        div{
+      img,div{
+          margin-top: .3em;
+          color: #717171;
+          display: block;
           float: left;
-          &:first-child{
-/*            background-color: red;*/
-            width: 3.4em;
-            height: 3.4em;
+        }
+        img{
+          border: none;
+          -webkit-border-radius: 23px;
+          -moz-border-radius: 23px;
+          border-radius: 23px;
+          width: 45px;
+          height: 45px;
+        }
+        div{
+          position: relative;
+          font-size: 0.95em;
+          line-height: 1.2em;
+          margin-left: .2em;
+          width: 86%;
+          .distime{
+            font-size: .8em;
+            color: #919191;
+          }
+          a{
+            position: absolute;
+            right: .3em;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            padding: .2em .6em;
+            display: inline-block;
+            background-color: #5a5d63;
+            color: orange;
           }
         }
-        .message{
-/*          background-color: #417474;*/
-          width: 21.55em;
-          left: 4em;
-          margin-bottom: .3em;
-        }
-        &:last-child{
-          border: none;
-        }
       }
-
     }
   }
 }
 
 .blown{
+  margin-top: 8%;
+  margin-left: 6%;
 /*  background-color: dodgerblue;*/
+  position: relative;
   width: 20%;
   float: left;
+  color: #717171;
   article{
       div{
         background-color: #685875;
@@ -188,7 +283,7 @@
     p{
       line-height: 1.6em;
       .time{
-        color: #ffffff;
+        color: #fae150;
       }
 
     }

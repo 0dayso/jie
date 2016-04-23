@@ -194,6 +194,30 @@ class ThePDO implements InterfaceDB{
             file_put_contents(ROOT.'message.txt', $e->getMessage());            
         }
     }
+
+    //添加单条数据获取方式
+    function FetchOne($table, $where, $array){
+        //添加表前缀
+        $table = $this->AddSign($table);
+        
+        $field = join(' ,', $array);
+        trim($field, ',');
+        list($key, $value) = each($where);
+        $where = " where $key = ? "; 
+        $sql = "select {$field} from {$table} {$where}";
+/*         echo $sql;
+        exit();  */
+        try {
+            //准备申明好的查询
+            $stmt = self::$pdo->prepare($sql);
+            $stmt->execute(array($value));
+            $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $data;
+        }catch(\PDOException $e){
+            file_put_contents(ROOT.'message.txt', $e->getMessage().date("Y-m-d H:i:s", time()));
+        }
+        
+    }
     
     function FecthAllNum($sql){
         try {

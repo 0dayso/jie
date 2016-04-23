@@ -24,9 +24,9 @@ $(function () {
                    var username = data[$i]['username'];
                    var userimg = 'http://localhost/jie/headimg/'+data[$i]['userimg'];
                    var day = data[$i]['day'];
-                   var goodspath = 'http://localhost/jie/index.php/Goods/Index/gid/'+goodsid;
+                   var goodspath = 'http://localhost/jie/index.php/Goods/Index&gid='+goodsid;
 
-                   var child = "<article><div class='img'><a href=''><img src='"+goodsimg0+"' width='280px' height='280px'></a></div>" +
+                   var child = "<article><div class='img'><a href='"+goodspath+"'><img src='"+goodsimg0+"' width='280px' height='280px'></a></div>" +
                        " <div class='userandtime'> <a href='' class='head'><img src='"+userimg+"' width='45px' height='45px'></a>" +
                        " <span class='username'>"+username+"</span> <span class='timeout'>"+day+"</span> </div> <ul> " +
                        "<li><a href='javascript:void(0);'>"+paynum+"元</a></li> <li><a href='#'>"+commentnum+"想要</a></li>" +

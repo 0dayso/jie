@@ -17,6 +17,7 @@
                         $username = $oneGoods['username'];
                         $userimg = INLET.'headimg/'.$oneGoods['userimg'];
                         $day = $oneGoods['day'];
+                        $goodspath = INLET.'index.php/Goods/Index&gid='.$goodsid;
                         
                         echo "<article>
                             <div class='img'><a href='{$goodspath}'><img src='{$goodsimg0}' width='280px' height='280px'></a></div>
@@ -72,6 +73,26 @@
                 </form>
             </section>
 </article>
-        <!-- 页面脚 -->
+
+<section class="outface loginform">
+    <h2>登&nbsp;&nbsp;录</h2><a href="javascript:void(0);" id="closelogin">关闭</a>
+    <form action="<?php echo INLET;?>index.php/index/Log" method="post">
+        <label for="lemail"><input type="text" id="lemail" name="email" placeholder="请输入您的邮箱"/><br/><span id="lemailmessage">&nbsp;&nbsp;</span></label>
+        <label for="password"><input type="password" id="lpassword" name="password" placeholder="请输入您的密码"><br/><span id="lpasswordMessage">&nbsp;&nbsp;</span></label>
+        <input class="loginsubmit" type="submit" value="登&nbsp;&nbsp;&nbsp;录"/>
+    </form>
+</section>
+<section class="outface registerform">
+    <h2>注&nbsp;&nbsp;册</h2><a href="javascript:void(0);" id="closeregister">关闭</a>
+    <form action="<?php echo INLET;?>index.php/index/Reg" method="post">
+        <label for="idcard"><input type="text" id="idcard" name="idcard" placeholder="请输入身份证号"/><br/><span id="idcardmessage">&nbsp;&nbsp;</span></label>
+        <label for="username"><input type="text" id="username" name="username" placeholder="请输入真实姓名"/><br/><span id="namemessage">&nbsp;&nbsp;</span></label>
+        <label for="email"><input type="text" id="email" name="email" placeholder="请输入您的邮箱"><br/><span id="emailmessage">&nbsp;&nbsp;</span></label>
+        <label for="password" class="passwordlast"><input type="password" id="password" name="password" placeholder="请输入您的密码"><br/><span id="passwordmessage">&nbsp;&nbsp;</span></label>
+        <input class="rigistersubmit" type="submit" value="登&nbsp;&nbsp;&nbsp;录"/>
+    </form>
+</section>
+
+<!-- 页面脚 -->
 <footer class="footer">
     <article class="more"><div><button id="more">接下去</button></div></article>

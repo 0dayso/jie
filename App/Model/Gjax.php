@@ -55,12 +55,13 @@ final class Gjax{
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
         //返回数据标识
+        $register = \Xin\Register::Instance();
+        $register->SetValue('goods', NULL);
         $message = $getgoods->GetGoodsTab( $num, 3, $where, 'order by goodstime');
         if(!empty($message)){
             //向商品数据中添加用户数据
             $getgoods->GetGoodUser();
             //获得商品信息容器
-            $register = \Xin\Register::Instance();
             $goodsbox = $register->GetValue('goods');
             //获得所有数据
             $data = $goodsbox->GetAll();

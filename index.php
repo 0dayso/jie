@@ -26,7 +26,7 @@ $pathInfo = Xin\Pathinfo::GetInfo();
 /* var_dump($pathInfo);  */
 $register->SetValue('controller', $pathInfo['controller']);
 $register->SetValue('action', $pathInfo['action']);
-$register->SetValue('data', $pathInfo['data']);
+$register->SetValue('data', $pathInfo['data']); 
 //命令分发和相应的跳转
 $obj = new xin\Invoker($register);
 //检查控制器和其中的方法

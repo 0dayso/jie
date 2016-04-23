@@ -32,6 +32,8 @@ class Show{
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
+        include ROOT.'App/view/top.html';
+        echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
         include ROOT.'App/view/head.html';
         $goodsbox = $register->GetValue('goods');
         include ROOT.'App/view/index.php';
@@ -60,6 +62,8 @@ class Show{
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
+        include ROOT.'App/view/top.html';
+        echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
         include ROOT.'App/view/head.html';
         $goodsbox = $register->GetValue('goods');
         include ROOT.'App/view/index.php';
@@ -86,7 +90,9 @@ class Show{
         $getgoods->GetGoodsTab(0 , 1, 'paynum > 0', 'order by goodstime');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
-                //获得商品信息容器
+        //获得商品信息容器
+        include ROOT.'App/view/top.html';
+        echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
         include ROOT.'App/view/head.html';
         $goodsbox = $register->GetValue('goods');
         include ROOT.'App/view/index.php';
