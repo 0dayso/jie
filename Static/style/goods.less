@@ -137,19 +137,6 @@
       }
     }
 
-/*    .price{
-!*      background-color: darkblue;*!
-      span{
-        display: inline-block;
-        &:nth-child(2){
-          margin-left: .4em;
-        }
-      }
-      .buy{
-        display: inline-block;
-        margin-left: 5em;
-      }
-    }*/
     .godsmessage{
       ul{
         display: block;
@@ -158,7 +145,6 @@
           width: 33%;
           display: inline-block;
           float: left;
-/*          border-right: 1px dashed black;*/
           &:last-child{
             border: none;
           }
@@ -192,7 +178,6 @@
             display: block;
             height: 45px;
             line-height: 45px;
-            /*background-color: #ffffff;*/
             width: 88%;
             #entersend{
               color: #717171;
@@ -207,6 +192,15 @@
             display: block;
             margin-bottom: .5em;
           }
+        }
+      }
+      .messbutton{
+        text-align: center;
+/*        background-color: red;*/
+        button{
+          cursor: pointer;
+          padding: .2em .5em;
+          margin: .5em auto;
         }
       }
     }
@@ -244,16 +238,18 @@
             font-size: .8em;
             color: #919191;
           }
-          a{
-            position: absolute;
-            right: .3em;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-            padding: .2em .6em;
-            display: inline-block;
-            background-color: #5a5d63;
-            color: orange;
+          p{
+            .reply{
+              position: absolute;
+              right: .3em;
+              -webkit-border-radius: 4px;
+              -moz-border-radius: 4px;
+              border-radius: 4px;
+              padding: .2em .6em;
+              display: inline-block;
+              background-color: #5a5d63;
+              color: orange;
+            }
           }
         }
       }
@@ -270,7 +266,7 @@
   float: left;
   color: #717171;
   article{
-      div{
+      img{
         background-color: #685875;
         -webkit-border-radius: 3em;
         -moz-border-radius: 3em;

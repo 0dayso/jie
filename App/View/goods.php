@@ -23,6 +23,7 @@
                 </div>
                 <!-- 图片轮播结束 -->
                 <!-- 描述信息 -->
+                <a name="reply"></a>
                 <p class="discript"><?php echo "$goodsdepict";?><span><?php echo $day;?></span></p>
                 <!-- 可点击的按钮 -->
                 <ul class="menu">
@@ -34,49 +35,39 @@
                 <div class="godsmessage">
                     <section class="send">
                         <form action="" method="post" id="disform">
-                            <img src="<?php echo INLET.'headimg/'.$_SESSION['user']['userimg']?>" width="45px" height="45px">
+                            <img id="fuserimg" src="<?php echo INLET.'headimg/'.$_SESSION['user']['userimg']?>" width="45px" height="45px">
                             <label for="entersend">
+                                <input type="hidden" id="userid" value="<?php echo $_SESSION['user']['userid']?>"/>
+                                <input type="hidden" id="username" value="<?php echo $_SESSION['user']['username']?>"/>
                                 <input id="entersend" name="entersend" type="text" placeholder="评论"/>
                             </label>
                             <span id="entermessage">&nbsp;&nbsp;</span><input type="submit" value="评论" class="submit" id="discuss"/>
                         </form>
                     </section>
                     <!-- 用户评论区 -->
-                    <section class="comment">
+                    <section class="comment" id="comment">
                         <?php 
-                            foreach ($data as $value){
-                                echo "<article>
-                                            <img src='{$value['userimg']}' width='45px' height='45px'>
-                                            <div class='message'>
-                                                <p><span>{$value['username']}</span>:<span>{$value['gdcontent']}</span></p>
-                                                <p><span class='distime'>{$value['gdtime']}</span><a href='javascript:void(0);'>回复</a></p>
-                                            </div>
-                                        </article>";
-                            }
+                         if(!empty($data)){
+                             foreach ($data as $value){
+                                 $content = empty($value['tousername'])?$value['gdcontent']:'回复<a href="">'.$value['tousername'].'</a>:'.$value['gdcontent'];
+                                 echo "<article>
+                                 <img src='{$value['userimg']}' width='45px' height='45px'>
+                                 <div class='message'>
+                                 <p><span>{$value['username']}</span>:<span>{$content}</span></p>
+                                 <p><span class='distime'>{$value['gdtime']}</span><a data-userid='{$value['userid']}' data-username='{$value['username']}' href='#reply' class='reply'>回复</a></p>
+                                 </div>
+                                 </article>";
+                             }     
+                         }   
                         ?>
-                    
-<!--                        <article>
-                            <img src="" width="45px" height="45px">
-                            <div class="message">
-                                <p><span>用户名</span>:<span>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</span></p>
-                                <p><span class="distime">刚刚</span><a href="javascript:void(0);">回复</a></p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="" width="45px" height="45px">
-                            <div class="message">
-                                <p><span>用户名</span>:<span>评论内容评论内容</span></p>
-                                <p><span class="distime">2015-4-13 12:35:12</span><a href="javascript:void(0);">回复</a></p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="" width="45px" height="45px">
-                            <div class="message">
-                                <p><span>用户名</span>:<span>评论内容评论内容评论内容评论内容评论</span></p>
-                                <p><span class="distime">2015-4-13 12:35:12</span><a href="javascript:void(0);">回复</a></p>
-                            </div>
-                        </article>-->
                     </section>
+                    <?php 
+                        //判断是否有更多消息，放置上一页下一页按钮
+                        if(isset($_SESSION['goodsdiscuss'])&&$_SESSION['goodsdiscuss'] ==10){
+                            echo "<div class='messbutton'><button id='pre'>pre</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id='nex'>nex</button></div>";
+                        }
+                    
+                    ?>
                     <!-- 用户评论区结束 -->
                 </div>
             </div>
@@ -84,7 +75,7 @@
         <!-- 简单的用户信息 -->
     <section class="blown">
             <article>
-                <div class="img"></div>
+                <img src="<?php echo $userimg;?>">
                 <p>发贴时间:&nbsp;&nbsp;<span class="time"><?php echo $goodstime;?></span></p>
                 <p><span class="type">姓名:&nbsp;&nbsp;</span><span><?php echo $username;?></span></p>
                 <p><span class="type">性别:&nbsp;&nbsp;</span><span><?php echo $gender;?></span></p>
@@ -96,3 +87,8 @@
 <!-- 页面脚 -->
 <footer class="footer">
     <article class="more"></article>
+
+    
+    
+    
+    

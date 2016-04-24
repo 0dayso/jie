@@ -29,19 +29,6 @@
   /* 描述信息 */
   /* 描述信息结束 */
   /* 菜单栏 */
-  /*    .price{
-!*      background-color: darkblue;*!
-      span{
-        display: inline-block;
-        &:nth-child(2){
-          margin-left: .4em;
-        }
-      }
-      .buy{
-        display: inline-block;
-        margin-left: 5em;
-      }
-    }*/
   /* 评论内容 */
 }
 .left .goods h3 {
@@ -159,7 +146,6 @@
   width: 33%;
   display: inline-block;
   float: left;
-  /*          border-right: 1px dashed black;*/
 }
 .left .goods .godsmessage ul li:last-child {
   border: none;
@@ -193,7 +179,6 @@
   display: block;
   height: 45px;
   line-height: 45px;
-  /*background-color: #ffffff;*/
   width: 88%;
 }
 .left .goods .godsmessage .send form label #entersend {
@@ -207,6 +192,15 @@
   float: right;
   display: block;
   margin-bottom: .5em;
+}
+.left .goods .godsmessage .messbutton {
+  text-align: center;
+  /*        background-color: red;*/
+}
+.left .goods .godsmessage .messbutton button {
+  cursor: pointer;
+  padding: .2em .5em;
+  margin: .5em auto;
 }
 .left .goods .comment {
   margin-top: .8em;
@@ -245,7 +239,7 @@
   font-size: .8em;
   color: #919191;
 }
-.left .goods .comment article div a {
+.left .goods .comment article div p .reply {
   position: absolute;
   right: .3em;
   -webkit-border-radius: 4px;
@@ -265,7 +259,7 @@
   float: left;
   color: #717171;
 }
-.blown article div {
+.blown article img {
   background-color: #685875;
   -webkit-border-radius: 3em;
   -moz-border-radius: 3em;

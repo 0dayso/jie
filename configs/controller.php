@@ -8,7 +8,7 @@ $controller = array(
     //异步加载商品控制器和方法
     'Show'=>array('Index', 'Free', 'More', 'Pay'),
     //商品详情页控制器和方法
-    'Goods'=>array('Index', 'PushDis')
+    'Goods'=>array('Index', 'PushDis', 'Pre', 'Nex'),
 );
 
 return $controller;

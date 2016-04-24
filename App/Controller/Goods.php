@@ -19,7 +19,6 @@ class Goods{
         $getgoods->GetGoodsTab(0 , 10, "goodsid = $goodsid", 'order by goodstime');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
-        //向商品容器中添加用户评论
 
         //获得商品信息数据容器        
         $goodsbox = $register->GetValue('goods');
@@ -62,22 +61,21 @@ class Goods{
             //货物id
             $_SESSION['goods']['goodsid'] = $goodsid;
             
-            
             $goodsbox->next();
         }
         
         //获得商品评论数据
-        $data = \App\Model\GoodsHand::Index();
+        $data = \App\Model\GoodsHand::get(0);
 /*         var_dump($data);
-        exit(); */
+        exit();  */
         //显示
         include ROOT.'App/view/top.html';
         echo '<link href="http://localhost/jie/App/View/style/all.css" rel="stylesheet" type="text/css"/>';
         echo '<link href="http://localhost/jie/App/View/style/goods.css" rel="stylesheet" type="text/css"/>';
-        include ROOT.'App/view/head.html';
+        include ROOT.'App/view/head.html'; 
         include ROOT.'App/view/goods.php';
         include ROOT.'App/view/footer.html';
-        var_dump($_SESSION);
+        var_dump($_SESSION); 
     }
     
     /**
@@ -106,8 +104,9 @@ class Goods{
         $goodsdiscuss['gdtime'] = time();
         
         //被回复的评论
-        
-        
+        $goodsdiscuss['touserid'] = $_POST['touserid'];
+/*         echo $goodsdiscuss['touserid'];
+        exit(); */
         //回复所有者id
         $goodsdiscuss['userid'] = $_SESSION['user']['userid'];
         
@@ -116,9 +115,46 @@ class Goods{
         $db = $register->GetValue('db');
         $db->Insert('goodsdiscuss', $goodsdiscuss);
         //评论通知物主
-        
        echo "0";
     }
+    
+    
+    /**
+    * 描述: 评论向上翻页
+    * @date: 2016年4月24日 下午1:48:02
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function Pre(){
+        //获得商品评论数据
+        if($_SESSION['goodpage'] > 0){
+            --$_SESSION['goodpage'];
+            $data = \App\Model\GoodsHand::get($_SESSION['goodpage']);
+            echo json_encode($data);
+        }else{
+            echo json_encode(array('error', 'top'));
+        } 
+    }
+    
+    /**
+    * 描述: 评论向下翻页
+    * @date: 2016年4月24日 下午1:48:30
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function Nex(){
+        //获得商品评论数据
+        if($_SESSION['goodpage'] < $_SESSION['goodpageall']){
+            ++$_SESSION['goodpage'];
+            $data = \App\Model\GoodsHand::get($_SESSION['goodpage']);
+            echo json_encode($data);
+        }else{
+            echo json_encode(array('error', 'last'));
+        }
+    }
+
 }
 
 ?>
