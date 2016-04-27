@@ -236,30 +236,6 @@ class ThePDO implements InterfaceDB{
         }
     }
     
-    /**
-    * 描述: 针对注入攻击做处理
-    * @date: 2016年4月9日 下午3:17:56
-    * @author: xinbingliang <709464835@qq.com>
-    * @param: $data用户传递的数据
-    * @return: 
-    */
-/*     function MyQuote($data){
-        if(is_array($data)){
-            foreach ($data as $key=>$value){
-                $data[self::$pdo->quote($key)] = self::$pdo->quote($value);
-            }
-        }else{
-            $data = self::$pdo->quote($value);
-        }
-        return $data;
-    } */
-    
-    /**
-    * 描述: 给每个表添加上唯一标识符
-    * @date: 2016年4月9日 下午5:14:04
-    * @author: xinbingliang <709464835@qq.com>
-    * @return: 组装好的表名
-    */
     private function AddSign($table){
         return 'j_'.$table; 
     }

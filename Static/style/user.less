@@ -1,7 +1,6 @@
-@import 'all.less';
 .content{
   color: #717171;
-  padding-top: 4em;
+  padding-top: 4.5em;
 /*  min-height: 960px;*/
   height: auto;
   width: 90%;
@@ -38,37 +37,54 @@
 /*    background: yellow;*/
     border-bottom: 1px solid #ffffff;
     .head{
+      margin-bottom: .4em;
       img{
         display: inline-block;
-        margin: .8em auto .8em .6em;
-        -webkit-border-radius: 3em;
-        -moz-border-radius: 3em;
-        border-radius: 3em;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        border-radius: 40px;
       }
-      button{
-        display: inline-block;
-        margin: .4em auto .8em 1.2em;
+      .imgbutton{
+        border: none;
+        font-weight: normal;
+        cursor: pointer;
+        display: inline;
+        margin: .4em auto .8em 2em;
+        color: #ffffff;
+        &:hover{
+          background-color: #fae150;
+        }
       }
     }
     h3{
       display: block;
       width: 100%;
       font-size: 1.2em;
-      font-weight: bold;
+      font-weight: normal;
       text-align: center;
     }
-    label{
+    label,div{
       margin-left: 2.6em;
       width: 70%;
 /*      background-color: red;*/
       display: block;
       margin-top: .3em;
+/*      background-color: #ffffff;*/
+      position: relative;
+      a{
+        position: absolute;
+        right: 0;
+      }
+      span{
+        color: #717171;
+        font-size: 1em;
+      }
       .type{
-        font-size: 1.1em;
+        font-size: 1em;
       }
       input{
         line-height: 1.2em;
-        width: 75%;
+        width: 60%;
       }
     }
     h4{
@@ -79,67 +95,100 @@
       text-align: center;
       margin-bottom: .6em;
     }
+
+    /* 密码修改 */
     .changepassword{
-      .submitpassword{
+      margin-top: 2em;
+      button{
         display: block;
-        margin: .2em auto;
+        text-align: center;
+        border: none;
+        margin: .5em auto;
+        cursor: pointer;
+      }
+      p{
+/*        display: none;*/
+/*        background-color: #fae150;*/
+        label{
+          margin-top: 0;
+          width: 2em;
+          line-height: 2em;
+          display: block;
+          width: 100%;
+          #oldpass,#newpass{
+            line-height: 1.2em;
+            display: block;
+            background-color: #fff;
+          }
+        }
       }
     }
+
+
+    /* 提现 */
     .integrallabel{
-      text-align: center;
+      padding: 0;
+      span{
+        margin: 0;
+      }
       button{
+        margin-left: 1.8em;
         background-color: #abcdef;
       }
     }
   }
   /* 用户评价 */
   .userevaluate{
-    margin: 1em auto;
-/*    background-color: #abcdef;*/
-    h3{
-      display: block;
-      margin: .6em auto;
-      text-align: center;
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    .valuate{
-      display: valuate;
-      margin: .5em auto;
-      /* 输入新的评价 */
+    /*background-color: #fae150;*/
+    div{
       form{
-        border-bottom: 1px solid #ffffff;
-        .start{
-          display: block;
-          margin: .4em 0 .4em 8em;
+        p{
+          width: 80%;
+          background-color: #abcdef;
+          text-align: left;
+          i{
+            font-size: 1.3em;
+            color: #fae150;
+            cursor: pointer;
+            margin-left: .2em;
+          }
         }
         textarea{
-          margin-left: .3em;
           width: 80%;
-          min-height: 6em;
+          height: 5em;
+          margin: 0 auto;
         }
-        input{
-          display: inline-block;
-          position: relative;
-          top: -1em;
-          left: .5em;
+        .sub{
+          margin: .5em auto;
+          display: block;
+          border: none;
+          color: #ffffff;
+          padding: .2em .6em;
+          -webkit-border-radius: .3em;
+          -moz-border-radius: .3em;
+          border-radius: .3em;
         }
       }
     }
-    /* 历史用户评价展示 */
+
     article{
-      span{
-        display: inline-block;
-        margin-bottom: .3em;
-      }
+      padding: .3em 0;
+      /*background-color: #abcdef;*/
+      margin-bottom: .5em;
+      border-bottom: 1px solid #cccccc;
       p{
-/*        background-color: red;*/
-        margin-left: .4em;
+        line-height: 1em;
+        color: #717171;
+        margin-bottom: .4em;
+      }
+      div{
         display: block;
-        margin-bottom: .8em;
-        height: 3em;
-        font-size: .8em;
-        padding: .3em .4em;
+        font-size: .9em;
+        position: relative;
+        .user{
+          position: absolute;
+          right: .3em;
+        }
       }
     }
   }
@@ -150,33 +199,23 @@
   width: 50%;
   height: 100%;
 /*  background-color: #abcdef;*/
-  padding: 1em 2em;
-  h3{
-    display: block;
-    width: 100%;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: .8em;
-  }
+  padding: 1em 1em;
   .goods{
     float: left;
     height: auto;
     margin: 0 auto;
     width: 280px;
     display: block;
-/*    background-color: #685875;*/
     margin: 0 .8em 1em .4em;
     border: 1px solid #ffffff;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     text-align: center;
-    .img{
+    img{
       width: 280px;
-      height: 290px;
+      height: 280px;
       margin: 0 auto;
-      background-image: url('../1.jpg');
       display: block;
       -webkit-border-top-left-radius: 4px;
       -moz-border-top-left-radius: 4px;
@@ -185,7 +224,44 @@
       -moz-border-top-right-radius: 4px;
       border-top-right-radius: 4px;
     }
-    .bar, .godsmessage{
+    div{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .bar{
+      ul{
+        height: 1.4em;
+        line-height: 1.4em;
+        overflow: hidden;
+        background-color: #abcdef;
+        li{
+/*          background-color: #685875;*/
+          width: 33.333333%;
+          float: left;
+        }
+      }
+    }
+    /* 描述信息等 */
+    .godsmessage{
+      p{
+        width: 100%;
+        margin: .3em auto;
+        text-align: left;
+        padding: 0 .5em;
+      }
+      .discript{
+        height: 4em;
+      }
+    }
+    button{
+      border: none;
+      margin-bottom: .8em;
+      cursor: pointer;
+    }
+
+
+/*    .bar, .godsmessage{
       display: block;
       margin: .6em;
     }
@@ -213,7 +289,7 @@
         &:last-child{
           padding: .3em 0 0 .3em;
           height: 4em;
-/*          background-color: #abcdef;*/
+!*          background-color: #abcdef;*!
         }
       }
     }
@@ -221,6 +297,6 @@
       display: block;
       margin: 0 auto;
       margin-bottom: .8em;
-    }
+    }*/
   }
 }

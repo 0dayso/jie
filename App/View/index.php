@@ -6,7 +6,7 @@
                         //获得单个货物信息
                         $oneGoods = $goodsbox->current();
                         $goodsid = $oneGoods['goodsid'];                        
-                        $userid = $oneGoods['userid'];
+                        $userid =  INLET.'index.php/User/Index&userid='.$oneGoods['userid'];
                         $goodsimg0 = INLET.'goodsimg/'.$oneGoods['goodsimg0'];
                         $goodsname = $oneGoods['goodsname'];
                         $goodsdepict = $oneGoods['goodsdepict'];
@@ -22,13 +22,13 @@
                         echo "<article>
                             <div class='img'><a href='{$goodspath}'><img src='{$goodsimg0}' width='280px' height='280px'></a></div>
                             <div class='userandtime'>
-                            <a href='' class='head'><img src='{$userimg}' width='45px' height='45px'></a>
+                            <a href='{$userid}' class='head'><img src='{$userimg}' width='45px' height='45px'></a>
                             <span class='username'>{$username}</span>
                             <span class='timeout'>{$day}</span>
                             </div>
                             <ul>
                             <li><a href='javascript:void(0);'>{$paynum}元</a></li>
-                            <li><a href='#'>{$commentnum}想要</a></li>
+                            <li><a href='{$goodspath}'>{$commentnum}想要</a></li>
                             <li><a href=''>{$zannum}赞</a></li>
                             </ul>
                             <div class='godsmessage'>

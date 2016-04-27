@@ -9,6 +9,8 @@ $controller = array(
     'Show'=>array('Index', 'Free', 'More', 'Pay'),
     //商品详情页控制器和方法
     'Goods'=>array('Index', 'PushDis', 'Pre', 'Nex'),
+    'User'=>array('Index', 'QQChange', 'QQChange', 'AddChange', 'EmailChange', 'TelChange', 
+        'CheckPassword', 'ChangePassword'),
 );
 
 return $controller;

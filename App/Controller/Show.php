@@ -33,6 +33,7 @@ class Show{
         $getgoods->GetGoodUser();
         //获得商品信息容器
         include ROOT.'App/view/top.html';
+        echo '<link href="http://localhost/jie/App/View/style/all.css" rel="stylesheet" type="text/css"/>';
         echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
         include ROOT.'App/view/head.html';
         $goodsbox = $register->GetValue('goods');
