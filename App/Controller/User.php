@@ -19,12 +19,15 @@ class User{
         //判断获得数据的类型
         $userHelper->Intact();
         $userData = $userHelper->ReturnUserMessage(); 
-/*         var_dump($userData); 
-        exit(); */
-        
-        
         //得到评论返回数据
+/*         //先获得10 条数据
+        $_SESSION['userdisnum'] = 10;
+        //分页计数器
+        $_SESSION['userdispagenum'] = 0; */
         
+        
+        $disdata = $userHelper->GetUserDis();
+
         //得到商品简要信息数据
         
         
@@ -166,12 +169,43 @@ class User{
         $newpassword = \App\Model\ClearString::IsNone($_POST['newpassword']);
         //字符串过滤
         $newpassword = \App\Model\ClearString::ReturnClear($newpassword);
+        //密码加密
+        $newpassword= \App\Model\Encrypt::md5_crypt($newpassword);
         //存入数据库
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         $userid = $_SESSION['user']['userid'];
-        $db->Update('user', array('password'=>$newpassword), " userid = {$userid}");
+        $db->Update('user', array('password'=>$newpassword), " userid = {$userid}"); 
         echo 'ok';
+    }
+    
+    
+    /**
+    * 描述: 提交评论
+    * @date: 2016年4月28日 上午7:51:15
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function PushDis(){
+        try {
+            $udcontent = \App\Model\ClearString::IsNone($_POST['text']);
+            //字符串过滤
+            $udcontent = \App\Model\ClearString::ReturnClear($udcontent);
+            $start = $_POST['startnum'];
+            $beuserid = $_SESSION['user']['userid'];
+            $udtime = time();
+            $touserid = $_SESSION['touserid'];
+            $userdiscuss = array('udcontent'=>$udcontent, 'start'=>$start, 'beuserid'=>$beuserid, 'udtime'=>$udtime, 'touserid'=>$touserid);
+            //存入数据库
+            $register = \Xin\Register::Instance();
+            $db = $register->GetValue('db');
+            $db->Insert('userdiscuss', $userdiscuss);
+            echo "添加平路成功";
+        }catch(\Exception $e){
+            echo $e->getMessage();
+        }
+        
     }
     
 }

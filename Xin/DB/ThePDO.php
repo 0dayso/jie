@@ -176,7 +176,7 @@ class ThePDO implements InterfaceDB{
         //组装sql语句
         $sql = "select {$trad} from {$table} {$where} {$desc} {$limit} ";
 /*         file_put_contents(ROOT.'message.txt', $sql); 
-        exit();   */    
+        exit();     */   
         try {
             //执行语句
             $stmt = self::$pdo->prepare($sql);

@@ -80,6 +80,7 @@ $(function () {
                 passwordflag = true;
             }else{
                 $('#oldpass').html('原密码错误');
+                passwordflag = false;
             }
         });
         $('#oldpass').html('原密码正确');
@@ -89,41 +90,55 @@ $(function () {
         checkNewpassword();
     });
     $('#passwordbutton').click(function () {
-        if(passwordflag != true ){
-            return;
-        }else if(checkNewpassword() == '符合密码要求'){
-            $.post('http://localhost/jie/index.php/User/ChangePassword', {'newpassword': newpassword}, function (data) {
-                if(data == 'ok'){
-                    alert('修改成功');
-                }else{
-                    alert('密码修改失败');
-                }
-            });
+        if(passwordflag == true ){
+            if(checkNewpassword()){
+                $.post('http://localhost/jie/index.php/User/ChangePassword', {'newpassword': newpassword}, function (data) {
+                    if(data == 'ok'){
+                        alert('修改成功');
+                    }else{
+                        alert('密码修改失败');
+                    }
+                });
+            }
         }
     });
 
-    
+    var newpassword;
     function checkNewpassword() {
-        var newpassword = $('#newpassword').val();
+        newpassword = $('#newpassword').val();
         newpassword = newpassword.replace(/(^\s*)|(\s*$)/g,'');
         if(newpassword.length >= 6){
             $('#newpass').html('符合密码要求');
+            return true;
         }else{
             $('#newpass').html('密码不合要求');
+            return false;
         }
     }
 
     //对星的选择
+    //默认为5星
+    var startnum = 5;
     $('.start').click(function () {
         $(this).nextAll().css('color', '#c0c0c0');
         $(this).prevAll().css('color', '#fae150');
         $(this).css('color', '#fae150');
-        var startnum = $(this).index()+1;
-        alert(startnum);
+        startnum = $(this).index()+1;
     });
 
-    //点击评论显示评论框
 
+    //点击评论
+    $('#userdisub').click(function () {
+        var text =  $('#disusertext').val();
+        text = text.replace(/(^\s*)|(\s*$)/g,'');
+        if(text.length >= 6){
+           $.post('http://localhost/jie/index.php/User/PushDis', {"text": text, 'startnum': startnum},function (data) {
+                alert(data);
+            })
+        }else{
+            alert('字数太少了');
+        }
+    });
 
 
     

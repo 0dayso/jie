@@ -27,7 +27,7 @@ class UserHelp{
         $register = \Xin\Register::Instance(); 
         $data = $register->GetValue('data');
         $this->userid = $data['userid']; 
-        
+        $_SESSION['touserid'] = $this->userid;
         //判断是完整信息还是部分信息
     }
     
@@ -75,6 +75,31 @@ class UserHelp{
     function ReturnUserMessage(){
         return $this->data;
     }
+    
+    
+    /**
+    * 描述:   获得用户评论数据
+    * @date: 2016年4月28日 上午9:19:10
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function GetUserDis(){
+        //获得数据库对象
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $data = $db->FetchAll('userdiscuss', " touserid = {$this->userid} ", NULL, NULL, ' order by udtime desc ');
+        
+        //根据获得数据,获得用户名，并改变时间样式
+        foreach ($data as &$value){
+            $res = $db->FetchOne('user', array('userid'=>$value['beuserid']), array('username', 'userimg'));
+            $value['username'] = $res['username'];
+            $value['userimg'] = $res['userimg'];
+            $value['udtime'] = date('m-d H:i', $value['udtime']);
+        } 
+        return $data;
+    }
+    
 }
 
 ?>

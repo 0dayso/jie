@@ -141,10 +141,12 @@
   .userevaluate{
     /*background-color: #fae150;*/
     div{
-      form{
+      #userdis{
+        margin-bottom: .5em;
+        position: relative;
         p{
           width: 80%;
-          background-color: #abcdef;
+/*          background-color: #abcdef;*/
           text-align: left;
           i{
             font-size: 1.3em;
@@ -158,9 +160,12 @@
           height: 5em;
           margin: 0 auto;
         }
-        .sub{
-          margin: .5em auto;
-          display: block;
+        button{
+          /*line-height: 5em;*/
+          position: absolute;
+          right: .3em;
+          top: 50%;
+          background-color: #417474;
           border: none;
           color: #ffffff;
           padding: .2em .6em;
@@ -180,6 +185,9 @@
         line-height: 1em;
         color: #717171;
         margin-bottom: .4em;
+        .icon-star{
+          color: #fae150;
+        }
       }
       div{
         display: block;
@@ -189,6 +197,12 @@
           position: absolute;
           right: .3em;
         }
+        .udtime{
+          color: #ffffff;
+        }
+      }
+      &:last-child{
+        border-bottom: none;
       }
     }
   }

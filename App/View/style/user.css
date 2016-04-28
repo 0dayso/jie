@@ -146,25 +146,32 @@
 .message .userevaluate {
   /*background-color: #fae150;*/
 }
-.message .userevaluate div form p {
+.message .userevaluate div #userdis {
+  margin-bottom: .5em;
+  position: relative;
+}
+.message .userevaluate div #userdis p {
   width: 80%;
-  background-color: #abcdef;
+  /*          background-color: #abcdef;*/
   text-align: left;
 }
-.message .userevaluate div form p i {
+.message .userevaluate div #userdis p i {
   font-size: 1.3em;
   color: #fae150;
   cursor: pointer;
   margin-left: .2em;
 }
-.message .userevaluate div form textarea {
+.message .userevaluate div #userdis textarea {
   width: 80%;
   height: 5em;
   margin: 0 auto;
 }
-.message .userevaluate div form .sub {
-  margin: .5em auto;
-  display: block;
+.message .userevaluate div #userdis button {
+  /*line-height: 5em;*/
+  position: absolute;
+  right: .3em;
+  top: 50%;
+  background-color: #417474;
   border: none;
   color: #ffffff;
   padding: .2em .6em;
@@ -183,6 +190,9 @@
   color: #717171;
   margin-bottom: .4em;
 }
+.message .userevaluate article p .icon-star {
+  color: #fae150;
+}
 .message .userevaluate article div {
   display: block;
   font-size: .9em;
@@ -191,6 +201,12 @@
 .message .userevaluate article div .user {
   position: absolute;
   right: .3em;
+}
+.message .userevaluate article div .udtime {
+  color: #ffffff;
+}
+.message .userevaluate article:last-child {
+  border-bottom: none;
 }
 .blown {
   display: block;
