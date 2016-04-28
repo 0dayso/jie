@@ -81,7 +81,9 @@ $(function () {
             }else{
                 $('#oldpass').html('原密码错误');
                 passwordflag = false;
+
             }
+
         });
         $('#oldpass').html('原密码正确');
     });
@@ -94,6 +96,7 @@ $(function () {
             if(checkNewpassword()){
                 $.post('http://localhost/jie/index.php/User/ChangePassword', {'newpassword': newpassword}, function (data) {
                     if(data == 'ok'){
+                        $('#passwordbox').slideUp(500);
                         alert('修改成功');
                     }else{
                         alert('密码修改失败');
@@ -101,6 +104,7 @@ $(function () {
                 });
             }
         }
+        $('#passwordbox').slideDown(500);
     });
 
     var newpassword;
@@ -140,7 +144,65 @@ $(function () {
         }
     });
 
+    //评论向前加载更多
+    $('#dispre').click(function () {
+        $.post('http://localhost/jie/index.php/UserMore/PreDis', {},function (data) {
+            var len = data.length;
+            var str = '';
+            for(var i =0 ; i < len ; i++){
+               str += "<article class='valuate'><p>"+data[i]['udcontent']+"&nbsp;&nbsp;&nbsp;&nbsp;"+data[i]['start']+"</p> <div><span class='udtime'>"+data[i]['udtime']+"</span><span class='user'>"+data[i]['username']+"</span></div> </article>";
+            }
+            $('#disbox').html(str);
+        },'json');
+    });
 
+    //评论向后加载更多
+    $('#disnex').click(function () {
+        $.post('http://localhost/jie/index.php/UserMore/NexDis', {},function (data) {
+            console.log(data);
+            var len = data.length;
+            var str = '';
+            for(var i =0 ; i < len ; i++){
+                str += "<article class='valuate'><p>"+data[i]['udcontent']+"&nbsp;&nbsp;&nbsp;&nbsp;"+data[i]['start']+"</p> <div><span class='udtime'>"+data[i]['udtime']+"</span><span class='user'>"+data[i]['username']+"</span></div> </article>";
+            }
+            $('#disbox').html(str);
+        }, 'json')
+    });
+
+
+    function goodsFactory(data) {
+       if(data != null && data != '' && data != undefined){
+           var len = data.length;
+           var str = '';
+           var timestamp = Date.parse(new Date());
+           for(var i =0 ; i < len ; i++){
+               var goodsimg0 = 'http://localhost/jie/goodsimg/'+data[i]['goodsimg0'];
+               var day = Math.ceil(((timestamp+(7*24*3600)) - data[i]['goodstime'])/(24*3600));
+
+               str += "<article class='goods'> <img src='"+goodsimg0+"' width='280px' height='280px'> " +
+                   "<div class='bar'> <ul> <li>"+data[i]['want']+"想要</li> <li>"+data[i]['zannum']+"赞</li> <li>"+day+"天过期</li>" +
+                   " </ul> </div> <div class='godsmessage'> <p class='goodsname'><span>品名&nbsp;" +
+                   "</span>"+data[i]['goodsname']+"</p> <p><span>类别&nbsp;"+data[i]['paytype']+"</span></p>" +
+                   " <p class='discript'><span>描述信息&nbsp;</span>"+data[i]['goodsdepict']+"</p> </div>" +
+                   " <button>修改</button> </article>";
+           }
+           $('#goodsbox').html(str);
+       }
+    }
+
+    //历史货物记录向前加载更多
+    $('#goodspre').click(function () {
+        $.post('http://localhost/jie/index.php/UserMore/PreGoods', {},function (data) {
+            goodsFactory(data);
+        }, 'json');
+    });
+
+    //历史货物记录向后加载更多
+    $('#goodsnex').click(function () {
+        $.post('http://localhost/jie/index.php/UserMore/NexGoods', {},function (data) {
+            goodsFactory(data);
+         }, 'json');
+    });
     
 });
 
@@ -204,4 +266,6 @@ function enterTel(telobj) {
         $('#ctel').css('color', '#cccccc');
     }
 }
+
+
 

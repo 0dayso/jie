@@ -12,6 +12,7 @@ $controller = array(
     //用户页
     'User'=>array('Index', 'QQChange', 'QQChange', 'AddChange', 'EmailChange', 'TelChange', 
         'CheckPassword', 'ChangePassword', 'PushDis'),
+    'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
 );
 
 return $controller;

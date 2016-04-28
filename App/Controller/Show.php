@@ -28,7 +28,8 @@ class Show{
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
         //查询数据数量和位置
-        $getgoods->GetGoodsTab(0 , 1, null, 'order by goodstime');
+        $getgoods->GetGoodsTab(0 , 1, null, 'order by goodstime desc');
+/*         exit(); */
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
@@ -59,7 +60,7 @@ class Show{
 
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
-        $getgoods->GetGoodsTab(0 , 1, 'paynum = 0', 'order by goodstime');
+        $getgoods->GetGoodsTab(0 , 1, 'paynum = 0', 'order by goodstime desc');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
@@ -88,7 +89,7 @@ class Show{
         $_SESSION['getgoods']['num'] = 1;
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
-        $getgoods->GetGoodsTab(0 , 1, 'paynum > 0', 'order by goodstime');
+        $getgoods->GetGoodsTab(0 , 1, 'paynum > 0', 'order by goodstime desc');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器

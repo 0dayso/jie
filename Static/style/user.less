@@ -107,7 +107,7 @@
         cursor: pointer;
       }
       p{
-/*        display: none;*/
+        display: none;
 /*        background-color: #fae150;*/
         label{
           margin-top: 0;
@@ -201,8 +201,24 @@
           color: #ffffff;
         }
       }
-      &:last-child{
-        border-bottom: none;
+    }
+    article:last-child{
+      border-bottom: none;
+    }
+
+    .moredisbar{
+      /*background-color: #417474;*/
+      text-align: center;
+      button{
+        cursor: pointer;
+        border: none;
+        &:hover{
+          background-color: #ffffff;
+          opacity: .5;
+          i{
+            color: red;
+          }
+        }
       }
     }
   }
@@ -213,7 +229,7 @@
   width: 50%;
   height: 100%;
 /*  background-color: #abcdef;*/
-  padding: 1em 1em;
+  padding: 0em 1em;
   .goods{
     float: left;
     height: auto;
@@ -274,43 +290,20 @@
       cursor: pointer;
     }
 
+  }
 
-/*    .bar, .godsmessage{
-      display: block;
-      margin: .6em;
+}
+
+#moregd{
+  text-align: center;
+  button{
+    border: none;
+    margin-top: .8em;
+    &:hover{
+      background-color: #ec5252;
     }
-    ul{
-      display: inline;
-      text-align: center;
-      padding-bottom: .3em;
-      &:first-child{
-        border-bottom: 1px solid #cccccc;
-      }
-      li{
-        display: inline-block;
-        margin-left: .5em;
-      }
+    i{
+      color: #ffffff;
     }
-    .godsmessage{
-      padding: .6em ;
-      display: block;
-      text-align: left;
-      margin: .4em auto;
-      p{
-        display: block;
-        height: 60%;
-        margin: .4em auto;
-        &:last-child{
-          padding: .3em 0 0 .3em;
-          height: 4em;
-!*          background-color: #abcdef;*!
-        }
-      }
-    }
-    button{
-      display: block;
-      margin: 0 auto;
-      margin-bottom: .8em;
-    }*/
   }
 }

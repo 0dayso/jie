@@ -117,7 +117,7 @@
   cursor: pointer;
 }
 .message .usermessage .changepassword p {
-  /*        display: none;*/
+  display: none;
   /*        background-color: #fae150;*/
 }
 .message .usermessage .changepassword p label {
@@ -208,13 +208,28 @@
 .message .userevaluate article:last-child {
   border-bottom: none;
 }
+.message .userevaluate .moredisbar {
+  /*background-color: #417474;*/
+  text-align: center;
+}
+.message .userevaluate .moredisbar button {
+  cursor: pointer;
+  border: none;
+}
+.message .userevaluate .moredisbar button:hover {
+  background-color: #ffffff;
+  opacity: .5;
+}
+.message .userevaluate .moredisbar button:hover i {
+  color: red;
+}
 .blown {
   display: block;
   float: right;
   width: 50%;
   height: 100%;
   /*  background-color: #abcdef;*/
-  padding: 1em 1em;
+  padding: 0em 1em;
 }
 .blown .goods {
   float: left;
@@ -229,43 +244,6 @@
   border-radius: 4px;
   text-align: center;
   /* 描述信息等 */
-  /*    .bar, .godsmessage{
-      display: block;
-      margin: .6em;
-    }
-    ul{
-      display: inline;
-      text-align: center;
-      padding-bottom: .3em;
-      &:first-child{
-        border-bottom: 1px solid #cccccc;
-      }
-      li{
-        display: inline-block;
-        margin-left: .5em;
-      }
-    }
-    .godsmessage{
-      padding: .6em ;
-      display: block;
-      text-align: left;
-      margin: .4em auto;
-      p{
-        display: block;
-        height: 60%;
-        margin: .4em auto;
-        &:last-child{
-          padding: .3em 0 0 .3em;
-          height: 4em;
-!*          background-color: #abcdef;*!
-        }
-      }
-    }
-    button{
-      display: block;
-      margin: 0 auto;
-      margin-bottom: .8em;
-    }*/
 }
 .blown .goods img {
   width: 280px;
@@ -308,4 +286,17 @@
   border: none;
   margin-bottom: .8em;
   cursor: pointer;
+}
+#moregd {
+  text-align: center;
+}
+#moregd button {
+  border: none;
+  margin-top: .8em;
+}
+#moregd button:hover {
+  background-color: #ec5252;
+}
+#moregd button i {
+  color: #ffffff;
 }

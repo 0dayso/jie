@@ -29,14 +29,14 @@ class User{
         $disdata = $userHelper->GetUserDis();
 
         //得到商品简要信息数据
-        
+        $goodsdata = $userHelper->GetGoods();
         
 /*         var_dump($register);
         exit(); */
-        include ROOT.'App/view/top.html';
+         include ROOT.'App/view/top.html';
         echo '<link href="http://localhost/jie/App/View/style/all.css" rel="stylesheet" type="text/css"/>';
         echo '<link href="http://localhost/jie/App/View/style/user.css" rel="stylesheet" type="text/css"/>';
-        include ROOT.'App/view/head.html';
+        include ROOT.'App/view/head.html'; 
         include ROOT.'App/view/user.php';
         include ROOT.'App/view/footer.html';
     }   
@@ -205,8 +205,7 @@ class User{
         }catch(\Exception $e){
             echo $e->getMessage();
         }
-        
     }
-    
+        
 }
 ?>

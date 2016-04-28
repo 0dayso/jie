@@ -17,7 +17,7 @@
                 <span class="type">性别:&nbsp;&nbsp;</span><span class="value namevalue"><?php echo $userData['gender']?></span>
             </label>
             <label class="注册时间">
-                <span class="type">注册时间:&nbsp;&nbsp;</span><span class="value registertime"></span>
+                <span class="type">注册时间:&nbsp;&nbsp;</span><span class="value registertime"><?php echo date('Y-m H:i', $userData['time']);?></span>
             </label>
             <label>
                 <span class="type">QQ:&nbsp;&nbsp;</span><span class="value namevalue"><?php echo $userData['qq']?></span>
@@ -53,147 +53,92 @@
             <div>
             <div id="userdis">
                 <p>
-                    <i class="demo-icon icon-star-empty start">&#xe812;</i>
-                    <i class="demo-icon icon-star-empty start">&#xe812;</i>
-                    <i class="demo-icon icon-star-empty start">&#xe812;</i>
-                    <i class="demo-icon icon-star-empty start">&#xe812;</i>
-                    <i class="demo-icon icon-star-empty start">&#xe812;</i>
+                    <i class="demo-icon icon-star start">&#xe811;</i>
+                    <i class="demo-icon icon-star start">&#xe811;</i>
+                    <i class="demo-icon icon-star start">&#xe811;</i>
+                    <i class="demo-icon icon-star start">&#xe811;</i>
+                    <i class="demo-icon icon-star start">&#xe811;</i>
                 </p>
                 <textarea placeholder="请输入您对该用户评价,最多120个字符" id="disusertext"></textarea>
                 <button id="userdisub">提交</button>
             </div>
             </div>
-            <?php
+             <div id="disbox">
+                <?php
 				/*var_dump($disdata);	*/
-				foreach($disdata as $value){
-                    $start = '';
-                    for($i=0; $i < $value['start']; $i++){
-                        $start .= '<i class="demo-icon icon-star">&#xe811;</i>';
+                if(!empty($disdata)){
+                   $disdata = array_slice($disdata, 0, 9);
+                    foreach($disdata as $value){
+                        $start = '';
+                       
+                        for($i=0; $i < $value['start']; $i++){
+                            $start .= '<i class="demo-icon icon-star">&#xe811;</i>';
+                        }
+                        echo "<article class='valuate'>
+                        <p>{$value['udcontent']}&nbsp;&nbsp;&nbsp;&nbsp;{$start}</p>
+                        <div><span class='udtime'>{$value['udtime']}</span><span class='user'>{$value['username']}</span></div>
+                        </article>";
                     }
-                    echo "<article class='valuate'>
-                                <p>{$value['udcontent']}&nbsp;&nbsp;&nbsp;&nbsp;{$start}</p>
-                                <div><span class='udtime'>{$value['udtime']}</span><span class='user'>{$value['username']}</span></div>
-                    </article>";
-				}
+                }
+
+            var_dump($_SESSION);
 			?>
-                        <!--<article class="valuate">
-                            <p>评价(不大于120字符)&nbsp;&nbsp;&nbsp;&nbsp;<span class="start">3星</span></p>
-                            <div><span>2015.4.5</span><span class="user">用户名 </span></div>
-                        </article>
-                        <article class="valuate">
-                            <p>评价(不大于120字符)&nbsp;&nbsp;&nbsp;&nbsp;<span class="start">3星</span></p>
-                            <div><span>2015.4.5</span><span class="user">用户名 </span></div>
-                        </article>
-                        <article class="valuate">
-                            <p>评价(不大于120字符)&nbsp;&nbsp;&nbsp;&nbsp;<span class="start">3星</span></p>
-                            <div><span>2015.4.5</span><span class="user">用户名 </span></div>
-                        </article>
-                        <article class="valuate">
-                            <p>评价(不大于120字符)&nbsp;&nbsp;&nbsp;&nbsp;<span class="start">3星</span></p>
-                            <div><span>2015.4.5</span><span class="user">用户名 </span></div>
-                        </article>-->
+             </div>
+             <?php 
+                 if(count($disdata) >= 9){
+                     echo '<div class="moredisbar"><button id="dispre"><i class="demo-icon icon-left-open">&#xe840;</i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="disnex"><i class="demo-icon icon-right-open">&#xe841;</i></button></div>';
+                 }
+             ?>
                     </section>
     </section>
     <!-- 历史记录 -->
     <section class="blown">
-                <article class="goods">
-                    <img src="http://localhost/jie/goodsimg/3_0_160421093035_634.jpg" width="280px" height="280px">
-                    <div class="bar">
+        <div id="goodsbox">
+    <?php 
+        if(!empty($goodsdata)){
+            foreach ($goodsdata as $value){
+                $goodsid = $value['goodsid'];
+                $userid = $value['userid'];
+                $goodsimg0 = 'http://localhost/jie/goodsimg/'.$value['goodsimg0'];
+                $goodsname = $value['goodsname'];
+                $goodsdepict = $value['goodsdepict'];
+                $paytype = $value['paytype'];
+                $paynum = $value['paynum'];
+                $goodstime = $value['goodstime'];
+                $commentnum = $value['commentnum'];
+                $zannum = $value['zannum'];
+                $want = $value['want'];
+                $day = ceil((time()-$goodstime)/(7*24*3600));
+            
+                echo "<article class='goods'>
+                    <img src='{$goodsimg0}' width='280px' height='280px'>
+                    <div class='bar'>
                         <ul>
-                            <li>111想要</li>
-                            <li>100赞</li>
-                            <li>3天过期</li>
+                        <li>{$want}想要</li>
+                        <li>{$zannum}赞</li>
+                        <li>{$day}天过期</li>
                         </ul>
                     </div>
-                    <div class="godsmessage">
-                        <p class="goodsname"><span>品名&nbsp;</span></p>
-                        <p><span>类别&nbsp;</span></p>
-                        <p class="discript"><span>描述信息&nbsp;</span>这些是描述信息,这些是描述信息,这些是描述信息,
-                            这些是描述信息,这些是描述信息,</p>
+                        <div class='godsmessage'>
+                        <p class='goodsname'><span>品名&nbsp;</span>{$goodsname}</p>
+                        <p><span>类别&nbsp;{$paytype}</span></p>
+                        <p class='discript'><span>描述信息&nbsp;</span>{$goodsdepict}</p>
                     </div>
                     <button>修改</button>
-                </article>
-                <article class="goods">
-                    <img src="http://localhost/jie/goodsimg/3_0_160421093035_634.jpg" width="280px" height="280px">
-                    <div class="bar">
-                        <ul>
-                            <li>111想要</li>
-                            <li>100赞</li>
-                            <li>3天到期</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname"><span>品名&nbsp;</span></p>
-                        <p><span>类别&nbsp;</span></p>
-                        <p class="discript"><span>描述信息&nbsp;</span></p>
-                    </div>
-                    <button>修改</button>
-                </article>
-                <article class="goods">
-                    <img src="http://localhost/jie/goodsimg/3_0_160421093035_634.jpg" width="280px" height="280px">
-                    <div class="bar">
-                        <ul>
-                            <li>111想要</li>
-                            <li>100赞</li>
-                            <li>3天到期</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname"><span>品名&nbsp;</span></p>
-                        <p><span>类别&nbsp;</span></p>
-                        <p class="discript"><span>描述信息&nbsp;</span></p>
-                    </div>
-                    <button>修改</button>
-                </article>
-                <article class="goods">
-                    <img src="http://localhost/jie/goodsimg/3_0_160421093035_634.jpg" width="280px" height="280px">
-                    <div class="bar">
-                        <ul>
-                            <li>111想要</li>
-                            <li>100赞</li>
-                            <li>3天到期</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname"><span>品名&nbsp;</span></p>
-                        <p><span>类别&nbsp;</span></p>
-                        <p class="discript"><span>描述信息&nbsp;</span></p>
-                    </div>
-                    <button>修改</button>
-                </article>
-                <article class="goods">
-                    <img src="http://localhost/jie/goodsimg/3_0_160421093035_634.jpg" width="280px" height="280px">
-                    <div class="bar">
-                        <ul>
-                            <li>111想要</li>
-                            <li>100赞</li>
-                            <li>3天到期</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname"><span>品名&nbsp;</span></p>
-                        <p><span>类别&nbsp;</span></p>
-                        <p class="discript"><span>描述信息&nbsp;</span></p>
-                    </div>
-                    <button>修改</button>
-                </article>
-                <article class="goods">
-                    <img src="http://localhost/jie/goodsimg/3_0_160421093035_634.jpg" width="280px" height="280px">
-                    <div class="bar">
-                        <ul>
-                            <li>111想要</li>
-                            <li>100赞</li>
-                            <li>3天到期</li>
-                        </ul>
-                    </div>
-                    <div class="godsmessage">
-                        <p class="goodsname"><span>品名&nbsp;</span></p>
-                        <p><span>类别&nbsp;</span></p>
-                        <p class="discript"><span>描述信息&nbsp;</span></p>
-                    </div>
-                    <button>修改</button>
-                </article>
-            </section>
+                </article>";
+            }
+        }else{
+            echo "您还没有晒出任何旧物";        
+        }
+    ?>
+    </div>
+    <?php
+        if(count($goodsdata) == 6){
+            echo '<p id="moregd"><button id="goodspre"><i class="demo-icon icon-left-open">&#xe840;</i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="goodsnex"><i class="demo-icon icon-right-open">&#xe841;</i></button></p>';
+        }
+    ?>
+    </section>
+
 </article>
 
 <!-- 页面脚 -->

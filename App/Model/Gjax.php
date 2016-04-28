@@ -57,7 +57,7 @@ final class Gjax{
         //返回数据标识
         $register = \Xin\Register::Instance();
         $register->SetValue('goods', NULL);
-        $message = $getgoods->GetGoodsTab( $num, 3, $where, 'order by goodstime');
+        $message = $getgoods->GetGoodsTab( $num, 3, $where, 'order by goodstime desc');
         if(!empty($message)){
             //向商品数据中添加用户数据
             $getgoods->GetGoodUser();

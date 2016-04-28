@@ -49,7 +49,7 @@ class UserHelp{
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         //组装要查询的字段
-        $queryArray = array('userid', 'username', 'birthday', 'userimg', 'gender', 'email', 'qq', 'address', 'tel', 'point');
+        $queryArray = array('userid', 'username', 'time', 'birthday', 'userimg', 'gender', 'email', 'qq', 'address', 'tel', 'point');
         $this->data = $db->FetchOne('user', array('userid'=>$this->userid), $queryArray);
     }
     
@@ -62,6 +62,7 @@ class UserHelp{
     * @return:
     */
     function Part(){
+        
     }
     
     
@@ -89,16 +90,105 @@ class UserHelp{
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         $data = $db->FetchAll('userdiscuss', " touserid = {$this->userid} ", NULL, NULL, ' order by udtime desc ');
-        
-        //根据获得数据,获得用户名，并改变时间样式
-        foreach ($data as &$value){
-            $res = $db->FetchOne('user', array('userid'=>$value['beuserid']), array('username', 'userimg'));
-            $value['username'] = $res['username'];
-            $value['userimg'] = $res['userimg'];
-            $value['udtime'] = date('m-d H:i', $value['udtime']);
-        } 
-        return $data;
+        //获得评论数据的数量
+        $num = count($data);
+        $_SESSION['userdisnum'] = $num;
+        $_SESSION['userdispage'] = 0;
+        if(!empty($data)){
+            $i = 0;
+             foreach ($data as &$value){
+                $res = $db->FetchOne('user', array('userid'=>$value['beuserid']), array('username', 'userimg'));
+                $value['username'] = $res['username'];
+                $value['userimg'] = $res['userimg'];
+                $value['udtime'] = date('m-d H:i', $value['udtime']);
+                $i ++;
+                if($i == 9){
+                    break;
+                }
+            } 
+            return array_slice($data, 0, 9);
+        }else {
+            return null;
+        }
     }
+    
+    
+    /**
+    * 描述: 获得用户自己的商品
+    * @date: 2016年4月28日 上午11:26:15
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function GetGoods(){
+        //获得数据库对象
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $data = $db->FetchAll('goods', " userid = {$this->userid} ", NULL, NULL, ' order by goodstime desc ');
+        $_SESSION['goodpage'] = 0;
+        $_SESSION['goodpageall'] = count($data);
+        if(!empty($data)){
+            foreach ($data as &$value){
+                $res = $db->FetchOne('user', array('userid'=>$value['userid']), array('username', 'userimg'));
+                $value['username'] = $res['username'];
+                $value['userimg'] = $res['userimg'];
+                $value['udtime'] = date('m-d H:i', $value['goodstime']);
+            }
+            return array_slice($data, 0, 6);
+            /* return $data; */
+        }else {
+            return null;
+        }
+    }
+    
+    
+    /**
+    * 描述: 评论异步加载助手
+    * @date: 2016年4月28日 下午3:49:35
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+   static function DisHelp($start){
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $data = $db->FetchAll('userdiscuss', " touserid = {$_SESSION['touserid']} ", NULL, " limit {$start}, 10 ", ' order by udtime desc ');
+        if(!empty($data)){
+            foreach ($data as &$value){
+                $str = '';
+                for($i=0; $i<$value['start']; $i++){
+                    $str .= '<i class="demo-icon icon-star">&#xe811;</i>';
+                }
+                $value['start'] = $str;
+                $res = $db->FetchOne('user', array('userid'=>$value['beuserid']), array('username', 'userimg'));
+                $value['username'] = $res['username'];
+                $value['userimg'] = $res['userimg'];
+                $value['udtime'] = date('m-d H:i', $value['udtime']);
+            }
+            return $data;
+        }else{
+            return NULL;
+        }
+    }
+    
+    
+    /**
+    * 描述: 商品信息的异步加载
+    * @date: 2016年4月28日 下午7:13:14
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    static function GoodsHelp($start){
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $data = $db->FetchAll('goods', " userid = {$_SESSION['touserid']} ", NULL, " limit {$start}, 6 ", ' order by goodstime desc ');
+        if(!empty($data)){
+            return $data;                
+        }else{
+            return null;
+        }
+    } 
     
 }
 
