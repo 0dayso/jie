@@ -1,0 +1,43 @@
+table {
+  margin: 0 auto;
+  margin-top: 4em;
+}
+table tr {
+  border: 1px solid #cccccc;
+}
+table tr:nth-of-type(2n+1) {
+  background-color: #f0f0f0;
+}
+table tr:hover {
+  background-color: rgba(234, 211, 201, 0.4);
+}
+table tr th,
+table tr td {
+  text-align: center;
+  width: 7em;
+  border-right: 1px solid #cccccc;
+}
+table tr th {
+  line-height: 1.6em;
+  background-color: #f2aba9;
+}
+table tr td {
+  font-size: .8em;
+  height: 2.5em;
+  position: relative;
+}
+table tr td img {
+  vertical-align: middle;
+}
+.bar {
+  background-color: #9daf85;
+  display: block;
+  width: 30%;
+  margin: 4em auto;
+}
+.bar #pre {
+  float: left;
+}
+.bar #nex {
+  float: right;
+}

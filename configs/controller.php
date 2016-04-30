@@ -12,9 +12,14 @@ $controller = array(
     //用户页
     'User'=>array('Index', 'QQChange', 'QQChange', 'AddChange', 'EmailChange', 'TelChange', 
         'CheckPassword', 'ChangePassword', 'PushDis'),
+    //用户异步加载操作
     'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
     
+    /*---------------------------------------------------------*/
+    //滚你员操作
     'Admin'=>array('Index', 'Change', 'AddAdmin', 'SubAdmin'),
+    //用户管理操作
+    'TubeUser'=>array('Index', 'PreUser', 'NexUser', 'UserDel', 'UserLock', 'UserUnlocks'),
 );
 
 return $controller;

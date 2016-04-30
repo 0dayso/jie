@@ -218,6 +218,18 @@ class ThePDO implements InterfaceDB{
         }
         
     }
+    /**
+    * 描述: 该方法要重写
+    * @date: 2016年4月30日 下午3:00:38
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function FetchNum($sql){
+        $res = self::$pdo->query($sql);
+        return $res->rowCount();
+    }
+        
     
     function FecthAllNum($sql){
         try {
