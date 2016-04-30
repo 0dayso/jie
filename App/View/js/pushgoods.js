@@ -20,7 +20,7 @@ $(function () {
         goodsname = goodsname.replace(/(^\s*)|(\s*$)/g,'');
         var len = goodsname.length;
         if(len < 12){
-            $.post('http://localhost/jie/index.php/PushGoods/PushName',{"goodsname":goodsname},function (data) {
+            $.post('http://localhost/jie/index.html/PushGoods/PushName',{"goodsname":goodsname},function (data) {
                 $('#gnamemessage').html(data);
             });
         }else{
@@ -46,7 +46,7 @@ $(function () {
         goodsdepict = goodsdepict.replace(/(^\s*)|(\s*$)/g,'');
         var len = goodsdepict.length;
         if(len < 76){
-            $.post('http://localhost/jie/index.php/PushGoods/PushgDepict',{"goodsdepict":goodsdepict},function (data) {
+            $.post('http://localhost/jie/index.html/PushGoods/PushgDepict',{"goodsdepict":goodsdepict},function (data) {
                 $('#gdmessage').html(data);
             });
         }else{
@@ -85,11 +85,11 @@ $(function () {
             var par1 = /^[0-9]{1,5}(.[0-9]{1,3})?$/;
             var par2 = /^[0-9]{1,5}$/;
             if(parseInt(paytype) == 1 && par1.test(numvalue)){
-                $.post('http://localhost/jie/index.php/PushGoods/PayNum', {"paynum":numvalue,"paytype":paytype}, function (data) {
+                $.post('http://localhost/jie/index.html/PushGoods/PayNum', {"paynum":numvalue,"paytype":paytype}, function (data) {
                     alert(data);
                 });
             }else if(parseInt(paytype) == 2 && par2.test(numvalue)){
-                $.post('http://localhost/jie/index.php/PushGoods/PayNum', {"paynum":numvalue,"paytype":paytype}, function (data) {
+                $.post('http://localhost/jie/index.html/PushGoods/PayNum', {"paynum":numvalue,"paytype":paytype}, function (data) {
                     alert(data);
                 });
             }else{

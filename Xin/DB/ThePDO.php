@@ -175,8 +175,8 @@ class ThePDO implements InterfaceDB{
         $desc = empty($desc)?'':$desc;
         //组装sql语句
         $sql = "select {$trad} from {$table} {$where} {$desc} {$limit} ";
-/*           file_put_contents(ROOT.'message.txt', $sql); 
-        exit();    */      
+        /* file_put_contents(ROOT.'message.txt', $sql); 
+        exit(); */         
         try {
             //执行语句
             $stmt = self::$pdo->prepare($sql);
@@ -205,8 +205,8 @@ class ThePDO implements InterfaceDB{
         list($key, $value) = each($where);
         $where = " where $key = ? "; 
         $sql = "select {$field} from {$table} {$where}";
-/*         echo $sql;
-        exit();  */
+/*          echo $sql;
+        exit();   */
         try {
             //准备申明好的查询
             $stmt = self::$pdo->prepare($sql);

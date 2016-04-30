@@ -1,0 +1,80 @@
+section {
+  /*background-color: #fae150;*/
+  overflow: hidden;
+}
+section header {
+  z-index: 100;
+  background-color: #f1f1f1;
+  display: block;
+  width: 100%;
+  height: 4em;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.7);
+}
+section header h1 {
+  padding: .7em  0;
+  display: inline-block;
+  /*      background-color: #ffffff;*/
+  width: 25%;
+  font-size: 1.5em;
+  color: #f2aba9;
+  float: left;
+  text-align: center;
+}
+section header ul {
+  margin-top: 2em;
+  float: right;
+  /*      background-color: #abcdef;*/
+  width: 15%;
+}
+section header ul li {
+  line-height: 1.5em;
+  text-align: center;
+  width: 50%;
+  float: left
+  /*        background: #ffffff;*/
+}
+section header ul li span {
+  color: coral;
+}
+section nav {
+  width: 20%;
+  min-height: 560px;
+  /*    background-color: #5a5d63;*/
+  float: left;
+  border-right: 1px solid rgba(0, 0, 0, 0.7);
+}
+section nav article {
+  width: 70%;
+  margin: 0 auto;
+  /*      background-color: #cccccc;*/
+  margin-bottom: .8em;
+}
+section nav article h3 {
+  cursor: pointer;
+  margin: .3em auto;
+  font-size: 1.2em;
+  color: cadetblue;
+}
+section nav article ul {
+  background-color: #ffffff;
+  width: 70%;
+  margin: 0 auto;
+}
+section nav article ul li {
+  margin: .3em 0;
+}
+section nav article ul li a {
+  color: darkgoldenrod;
+}
+section nav article ul li a:hover {
+  color: #fae150;
+}
+section nav article:first-child {
+  margin-top: 3em;
+}
+section iframe {
+  display: block;
+  width: 79.9%;
+  height: 560px;
+  float: right;
+}

@@ -13,7 +13,7 @@ $(function () {
     //修改qq帐号
     $('#cqq').click(function () {
         if(qqflag == true){
-            $.post('http://localhost/jie/index.php/User/QQChange', {"qqstr":qqstr},function (data) {
+            $.post('http://localhost/jie/index.html/User/QQChange', {"qqstr":qqstr},function (data) {
                 $('#cqq').prev().replaceWith('<span class="value namevalue">'+data+'</span>');
                 $('#cadd').html('修改');
             });
@@ -27,7 +27,7 @@ $(function () {
     //修改地址
     $('#cadd').click(function () {
         if(addflag == true){
-            $.post('http://localhost/jie/index.php/User/AddChange', {"addstr":addstr},function (data) {
+            $.post('http://localhost/jie/index.html/User/AddChange', {"addstr":addstr},function (data) {
                 $('#cadd').prev().replaceWith('<span class="value address">'+data+'</span>');
                 $('#cadd').html('修改');
             });
@@ -41,7 +41,7 @@ $(function () {
     //修改邮箱
     $('#cemail').click(function () {
         if(emailflag == true){
-            $.post('http://localhost/jie/index.php/User/EmailChange', {"emailstr":emailstr},function (data) {
+            $.post('http://localhost/jie/index.html/User/EmailChange', {"emailstr":emailstr},function (data) {
                 $('#cemail').prev().replaceWith('<span class="value email">'+data+'</span>');
                 $('#cemail').html('修改');
             });
@@ -54,7 +54,7 @@ $(function () {
     //修改电话
     $('#ctel').click(function () {
         if(telflag == true){
-            $.post('http://localhost/jie/index.php/User/TelChange', {"telstr":telstr},function (data) {
+            $.post('http://localhost/jie/index.html/User/TelChange', {"telstr":telstr},function (data) {
                 $('#ctel').prev().replaceWith('<span class="value tel">'+data+'</span>');
                 $('#ctel').html('修改');
             });
@@ -74,7 +74,7 @@ $(function () {
     $('#oldpassword').blur(function () {
         var oldpassword = $(this).val();
         oldpassword = oldpassword.replace(/(^\s*)|(\s*$)/g,'');
-        $.post('http://localhost/jie/index.php/User/CheckPassword', {'oldpassword': oldpassword}, function (data) {
+        $.post('http://localhost/jie/index.html/User/CheckPassword', {'oldpassword': oldpassword}, function (data) {
             if(data == 'ok'){
                 $('#oldpass').html('原密码正确');
                 passwordflag = true;
@@ -94,7 +94,7 @@ $(function () {
     $('#passwordbutton').click(function () {
         if(passwordflag == true ){
             if(checkNewpassword()){
-                $.post('http://localhost/jie/index.php/User/ChangePassword', {'newpassword': newpassword}, function (data) {
+                $.post('http://localhost/jie/index.html/User/ChangePassword', {'newpassword': newpassword}, function (data) {
                     if(data == 'ok'){
                         $('#passwordbox').slideUp(500);
                         alert('修改成功');
@@ -136,7 +136,7 @@ $(function () {
         var text =  $('#disusertext').val();
         text = text.replace(/(^\s*)|(\s*$)/g,'');
         if(text.length >= 6){
-           $.post('http://localhost/jie/index.php/User/PushDis', {"text": text, 'startnum': startnum},function (data) {
+           $.post('http://localhost/jie/index.html/User/PushDis', {"text": text, 'startnum': startnum},function (data) {
                 alert(data);
             })
         }else{
@@ -146,7 +146,7 @@ $(function () {
 
     //评论向前加载更多
     $('#dispre').click(function () {
-        $.post('http://localhost/jie/index.php/UserMore/PreDis', {},function (data) {
+        $.post('http://localhost/jie/index.html/UserMore/PreDis', {},function (data) {
             var len = data.length;
             var str = '';
             for(var i =0 ; i < len ; i++){
@@ -158,7 +158,7 @@ $(function () {
 
     //评论向后加载更多
     $('#disnex').click(function () {
-        $.post('http://localhost/jie/index.php/UserMore/NexDis', {},function (data) {
+        $.post('http://localhost/jie/index.html/UserMore/NexDis', {},function (data) {
             console.log(data);
             var len = data.length;
             var str = '';
@@ -192,14 +192,14 @@ $(function () {
 
     //历史货物记录向前加载更多
     $('#goodspre').click(function () {
-        $.post('http://localhost/jie/index.php/UserMore/PreGoods', {},function (data) {
+        $.post('http://localhost/jie/index.html/UserMore/PreGoods', {},function (data) {
             goodsFactory(data);
         }, 'json');
     });
 
     //历史货物记录向后加载更多
     $('#goodsnex').click(function () {
-        $.post('http://localhost/jie/index.php/UserMore/NexGoods', {},function (data) {
+        $.post('http://localhost/jie/index.html/UserMore/NexGoods', {},function (data) {
             goodsFactory(data);
          }, 'json');
     });

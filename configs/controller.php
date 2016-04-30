@@ -2,7 +2,7 @@
 $controller = array(
     //首页控制器和方法
     'Index'=>array('Index', 'CheckIdcard', 'CheckName', 'CheckPassword', 'CheckEmail', 
-        'Reg', 'LogEmail', 'LogPassword', 'Log', 'LogOut'),
+        'Reg', 'LogEmail', 'LogPassword', 'Log', 'LogOut', 'Code', 'Login'),
     //商品发布控制器和方法
     'PushGoods'=>array('Index', 'PushName', 'PushgDepict', 'PayNum', 'SubmitFile'),
     //异步加载商品控制器和方法
@@ -13,6 +13,8 @@ $controller = array(
     'User'=>array('Index', 'QQChange', 'QQChange', 'AddChange', 'EmailChange', 'TelChange', 
         'CheckPassword', 'ChangePassword', 'PushDis'),
     'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
+    
+    'Admin'=>array('Index', 'Change', 'AddAdmin'),
 );
 
 return $controller;

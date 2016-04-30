@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员操作</title>
+    <link href="http://localhost/jie/Admin/View/style/base.css" rel="stylesheet" type="text/css"/>
+    <link href="http://localhost/jie/Admin/View/style/admin.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<table>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>操作</th>
+        </tr>
+        <?php
+            foreach($data as $value){
+                echo "<tr>
+                    <td>{$value['adminid']}</td>
+                    <td>{$value['adminname']}</td>
+                    <td>{$value['email']}</td>
+                    <td><a href='http://localhost/jie/admin.php/Admin/Change&adminid={$value['adminid']}'>修改</a></td>
+                    </tr>";
+            }
+        ?>
+<!--         <tr>
+            <td>1</td>
+            <td>xin</td>
+            <td>709464835@qq.com</td>
+            <td><a href="">删除</a>/<a href="">修改</a></td>
+        </tr> -->
+    </table>
+</body>
+</html>

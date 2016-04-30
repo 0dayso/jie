@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接下去后台管理系统</title>
+    <link href="http://localhost/jie/Admin/View/style/base.css" rel="stylesheet" type="text/css"/>
+    <link href="http://localhost/jie/Admin/View/style/all.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <section class="page">
+        <header>
+            <h1>接下去后台管理系统</h1>
+            <ul>
+                <li><span>辛丙亮</span>&nbsp;您好！</li>
+                <li><a href="#">退出</a></li>
+            </ul>
+        </header>
+        <section class="page">
+            <nav>
+                <article>
+                    <h3>平台操作</h3>
+                    <ul>
+                        <li><a href="http://localhost/jie/admin.php/Admin/Index" target="main">管理员修改</a></li>
+                        <li><a href="" target="main">管理员添加</a></li>
+                        <li><a href="" target="main">消息中心</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>内容管理</h3>
+                    <ul>
+                        <li><a href="" target="main">内容删除</a></li>
+                        <li><a href="" target="main">内容修改</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>系统管理</h3>
+                    <ul>
+                        <li><a href="" target="main">数据统计</a></li>
+                        <li><a href="" target="main">广告设置</a></li>
+                        <li><a href="" target="main">通告设置</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>用户管理</h3>
+                    <ul>
+                        <li><a href="" target="main">删除用户</a></li>
+                        <li><a href="" target="main">用户锁定</a></li>
+                    </ul>
+                </article>
+            </nav>
+            <!-- 在leftmenu中的所有a标签里加上target属性，并在iframe里，在main里加上name属性就可以了；
+如：<a href='#' target='main'>这是leftmenu中的；
+   <iframe src='main.php' name='main'/>这是default.html中的设置 -->
+            <iframe src="<?php echo "http://localhost/jie/Admin/View/main.html" ?>" frameborder="0" name="main" >
+            </iframe>
+        </section>
+    </section>
+</body>
+</html>

@@ -56,7 +56,7 @@ class Invoker{
     }
     
     /**
-    * 描述： 创建控制器对象，并直接执行相应方法
+    * 描述：前台创建控制器对象，并直接执行相应方法
     * 
     * @author xinbingliang
     * @date 2016年4月15日下午2:09:37
@@ -64,6 +64,22 @@ class Invoker{
     */
     function CreateControllerObj(){
         $controlName = '\\App\\Controller\\'.$this->controller;
+        //创建控制器
+        $controlObj = new $controlName();
+        $action = $this->action;
+        //执行控制器中的方法
+        $controlObj->$action();
+    }
+    
+    /**
+    * 描述: 后台创建控制器对象，并直接执行相应方法
+    * @date: 2016年4月29日 上午10:52:47
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function CreateControllerAdmin(){
+        $controlName = '\\Admin\\Controller\\'.$this->controller;
         //创建控制器
         $controlObj = new $controlName();
         $action = $this->action;
