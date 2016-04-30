@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>管理员修改</title>
+    <link href="http://localhost/jie/Admin/View/style/admin.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <form method="post" action="http://localhost/jie/admin.php/Admin/SubAdmin">
+        <input type="hidden" name="adminid" value="<?php echo empty($adminmess['adminid'])?'':$adminmess['adminid'];?>"/>
         <label>
-            <span>管理员名</span>
-            <input type="text" name="" />
+            <span>管理名</span>
+            <input type="text" name="adminname" value="<?php echo empty($adminmess['adminname'])?'':$adminmess['adminname'];?>"/>
         </label>
+        <label>
+            <span>邮&nbsp;&nbsp;&nbsp;&nbsp;箱</span>
+            <input type="text" name="email" value="<?php echo empty($adminmess['email'])?'':$adminmess['email'];?>"/>
+        </label>
+        <label>
+            <span>新密码</span>
+            <input type="password" name="adpassword"/>
+        </label>
+        <input type="submit" value="确认"/>
     </form>
 </body>
 </html>

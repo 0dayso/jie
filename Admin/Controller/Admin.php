@@ -34,12 +34,10 @@ class Admin{
         $register = \Xin\Register::Instance();
         $data = $register->GetValue('data');
         //获取用户信息
-        $adminmess = \Admin\Model\AdminHelp::GetAdmin($data);
-        //将用户信息填入表格
-        var_dump($adminmess);
+        $adminmess = \Admin\Model\AdminHelp::GetAdmin($data); 
         
-        //定义执行位置
-        $path = "http://localhost/jie/admin.php/Admin/ChangSub&adminid={$adminmess['adminid']}";
+        include ROOT.'Admin/View/adminform.html';
+        /* $path = "http://localhost/jie/admin.php/Admin/ChangSub&adminid={$adminmess['adminid']}"; */
     }
     
     
@@ -51,8 +49,9 @@ class Admin{
     * @return:
     */
     function AddAdmin(){
+        include ROOT.'Admin/View/adminform.html';
         //定义执行位置
-        $path = "http://localhost/jie/admin.php/Admin/ChangSub&adminid={$adminmess['adminid']}";
+        /* $path = "http://localhost/jie/admin.php/Admin/ChangSub&adminid={$adminmess['adminid']}"; */
     }
     
     
@@ -64,7 +63,8 @@ class Admin{
     * @return:
     */
     function SubAdmin(){
-        
+        \Admin\Model\AdminHelp::SubAdmin();
+        $this->Index();
     }
     
 }

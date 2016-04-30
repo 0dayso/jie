@@ -14,7 +14,7 @@ $controller = array(
         'CheckPassword', 'ChangePassword', 'PushDis'),
     'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
     
-    'Admin'=>array('Index', 'Change', 'AddAdmin'),
+    'Admin'=>array('Index', 'Change', 'AddAdmin', 'SubAdmin'),
 );
 
 return $controller;
