@@ -65,37 +65,31 @@ class TubeUser{
     
     
     /**
-    * 描述: 用户删除操作
-    * @date: 2016年4月30日 下午5:21:35
+    * 描述: 用户处理操作
+    * @date: 2016年5月1日 上午10:06:16
     * @author: xinbingliang <709464835@qq.com>
     * @param: variable
     * @return:
     */
-    function UserDel(){
-        
+    function UserTube(){
+        $userid_action = \Admin\Model\Userhelp::UserData();
+        var_dump($userid_action);
+        var_dump($_SESSION);
+        include ROOT.'Admin/View/enterpassword.html';
     }
     
     
     /**
-    * 描述: 用户锁定操作
-    * @date: 2016年4月30日 下午5:22:05
+    * 描述: 管理员确定管理操作
+    * @date: 2016年5月1日 上午10:31:29
     * @author: xinbingliang <709464835@qq.com>
     * @param: variable
     * @return:
     */
-    function UserLock(){
-        
-    }
-    
-    /**
-    * 描述: 用户解锁
-    * @date: 2016年4月30日 下午5:22:53
-    * @author: xinbingliang <709464835@qq.com>
-    * @param: variable
-    * @return:
-    */
-    function UserUnlock(){
-        
+    function SuerTubUser(){
+        $message = \Admin\Model\Userhelp::Adminhadle();
+        //跳转到管理用户管理首页
+        $this->Index();
     }
     
 }

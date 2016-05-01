@@ -19,7 +19,7 @@ $controller = array(
     //滚你员操作
     'Admin'=>array('Index', 'Change', 'AddAdmin', 'SubAdmin'),
     //用户管理操作
-    'TubeUser'=>array('Index', 'PreUser', 'NexUser', 'UserDel', 'UserLock', 'UserUnlocks'),
+    'TubeUser'=>array('Index', 'PreUser', 'NexUser', 'UserTube', 'SuerTubUser'),
 );
 
 return $controller;

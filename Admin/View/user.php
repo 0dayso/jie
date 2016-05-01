@@ -33,6 +33,14 @@
                 $address = empty($value['address'])?"":$value['address'];
                 $tel = empty($value['tel'])?"":$value['tel'];
                 $point = empty($value['point'])?"":$value['point'];
+                if($value['userlock']==0){
+                    $lock = "锁定";
+                    $lockurl = "http://localhost/jie/admin.php/TubeUser/UserTube&userid=".$userid.'&action=lock';
+                }else{
+                    $lockurl = "http://localhost/jie/admin.php/TubeUser/UserTube&userid=".$userid.'&action=unlock';
+                    $lock = "解锁";
+                }
+                $del = "http://localhost/jie/admin.php/TubeUser/UserTube&userid=".$userid.'&action=del';
                 echo "<tr>
                         <td>{$userid}</td>
                         <td>{$username}</td>
@@ -42,7 +50,7 @@
                         <td>{$address}</td>
                         <td>{$tel}</td>
                         <td>{$point}</td>
-                        <td><a href=''>修改</a>/<a href=''>锁定</a></td>
+                        <td><a href='{$del}'>删除</a>/<a href='{$lockurl}'>{$lock}</a></td>
                        </tr>";
             }
         }
@@ -60,7 +68,6 @@
         $("#pre").click(function () {
             $.post('http://localhost/jie/admin.php/TubeUser/PreUser','',function (data) {
                 if(data != '' && data != undefined && data != null){
-                    console.log(data);
                     var len = data.length;
                     var str = '';
                     for(var i = 0; i < len; i++){
@@ -72,7 +79,20 @@
                         var tel = data[i]['tel'];
                         var username = data[i]['username'];
                         var userimg = 'http://localhost/jie/headimg/'+data[i]['userimg'];
-                        str += "<tr><td>"+userid+"</td><td>"+username+"</td><td><img src='"+userimg+"' width='45px' height='45px' /></td><td>"+email+"</td><td>"+qq+"</td><td>"+address+"</td><td>"+tel+"</td><td>"+point+"</td><td><a href=''>修改</a>/<a href=''>锁定</a></td></tr>";
+
+                        //判断锁定还是解锁
+                        if(data[i]['userlock'] == 0){
+                            var lock = '锁定';
+                            var lockurl = "http://localhost/jie/admin.php/TubeUser/UserTube&userid="+data[i]['userid']+'&action=lock';
+                        } else {
+                            var lock = "解锁";
+                            var lockurl = "http://localhost/jie/admin.php/TubeUser/UserTube&userid="+data[i]['userid']+'&action=unlock';
+                        }
+
+                        //给定删除链接
+                        var del = "http://localhost/jie/admin.php/TubeUser/UserTube&userid="+data[i]['userid']+'&action=del';
+
+                        str += "<tr><td>"+userid+"</td><td>"+username+"</td><td><img src='"+userimg+"' width='45px' height='45px' /></td><td>"+email+"</td><td>"+qq+"</td><td>"+address+"</td><td>"+tel+"</td><td>"+point+"</td><td><a href='"+del+"'>删除</a>/<a href='"+lockurl+"'>"+lock+"</a></td></tr>";
                     }
                     $('#box').html(str);
                 }
@@ -81,7 +101,6 @@
         $('#nex').click(function () {
             $.post('http://localhost/jie/admin.php/TubeUser/NexUser','',function (data) {
                 if(data != '' && data != undefined && data != null){
-                    console.log(data);
                     var len = data.length;
                     var str = '';
                     for(var i = 0; i < len; i++){
@@ -93,7 +112,19 @@
                         var tel = data[i]['tel'];
                         var username = data[i]['username'];
                         var userimg = 'http://localhost/jie/headimg/'+data[i]['userimg'];
-                        str += "<tr><td>"+userid+"</td><td>"+username+"</td><td><img src='"+userimg+"' width='45px' height='45px' /></td><td>"+email+"</td><td>"+qq+"</td><td>"+address+"</td><td>"+tel+"</td><td>"+point+"</td><td><a href=''>修改</a>/<a href=''></a></td></tr>";
+                        //判断锁定还是解锁
+                        if(data[i]['userlock'] == 0){
+                            var lock = '锁定';
+                            var lockurl = "http://localhost/jie/admin.php/TubeUser/UserTube&userid="+data[i]['userid']+'&action=lock';
+                        } else {
+                            var lock = "解锁";
+                            var lockurl = "http://localhost/jie/admin.php/TubeUser/UserTube&userid="+data[i]['userid']+'&action=unlock';
+                        }
+
+                        //给定删除链接
+                        var del = "http://localhost/jie/admin.php/TubeUser/UserTube&userid="+data[i]['userid']+'&action=del';
+
+                        str += "<tr><td>"+userid+"</td><td>"+username+"</td><td><img src='"+userimg+"' width='45px' height='45px' /></td><td>"+email+"</td><td>"+qq+"</td><td>"+address+"</td><td>"+tel+"</td><td>"+point+"</td><td><a href='"+del+"'>删除</a>/<a href='"+lockurl+"'>"+lock+"</a></td></tr>";
                     }
                     $('#box').html(str);
                 }

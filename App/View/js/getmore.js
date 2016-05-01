@@ -6,7 +6,7 @@
 
 $(function () {
    $('#more').click(function () {
-       $.post('http://localhost/jie/index.html/Show/More', null, function (data) {
+       $.post('http://localhost/jie/index.php/Show/More', null, function (data) {
                 //总共的数据长度
            var $num = data.length;
            if($num > 0){
