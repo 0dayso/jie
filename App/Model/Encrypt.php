@@ -10,9 +10,9 @@
 namespace App\Model;
 
 class Encrypt{
-    static function md5_crypt($password){
+    static function md5_md5($password){
         //先进行crypt加密然后并加盐
-        $password = crypt($password,'xin');
+        $password = md5($password.'5db1638');
         //进行md5加密
         $password = md5($password);
         return $password;

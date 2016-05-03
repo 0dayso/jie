@@ -24,20 +24,23 @@ class Show{
         //本次请求类型写入session
         $_SESSION['getgoods'] = NULL;
         $_SESSION['getgoods']['type'] = 'all';
-        $_SESSION['getgoods']['num'] = 1;
+        $_SESSION['getgoods']['num'] = 3;
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
         //查询数据数量和位置
-        $getgoods->GetGoodsTab(0 , 1, null, 'order by goodstime desc');
+        $getgoods->GetGoodsTab(0 , 3, null, 'order by goodstime desc');
 /*         exit(); */
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
         include ROOT.'App/view/top.html';
         echo '<link href="http://localhost/jie/App/View/style/all.css" rel="stylesheet" type="text/css"/>';
-        echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
-        include ROOT.'App/view/head.html';
+        echo '<link href="http://localhost/jie/App/View/style/home.css" rel="stylesheet" type="text/css"/>';
+        include ROOT.'App/view/head.html'; 
         $goodsbox = $register->GetValue('goods');
+        if(!empty($goodsbox)){
+            $goodsbox->rewind();
+        }
         include ROOT.'App/view/index.php';
         include ROOT.'App/view/footer.html';
     }
@@ -56,16 +59,17 @@ class Show{
         $_SESSION['getgoods'] = NULL;
         //本次请求类型写入session
         $_SESSION['getgoods']['type'] = 'free';
-        $_SESSION['getgoods']['num'] = 1;
+        $_SESSION['getgoods']['num'] = 3;
 
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
-        $getgoods->GetGoodsTab(0 , 1, 'paynum = 0', 'order by goodstime desc');
+        $getgoods->GetGoodsTab(0 , 3, 'paynum = 0', 'order by goodstime desc');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
-        include ROOT.'App/view/top.html';
-        echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
+         include ROOT.'App/view/top.html';
+        echo '<link href="http://localhost/jie/App/View/style/all.css" rel="stylesheet" type="text/css"/>';
+        echo '<link href="http://localhost/jie/App/View/style/home.css" rel="stylesheet" type="text/css"/>';
         include ROOT.'App/view/head.html';
         $goodsbox = $register->GetValue('goods');
         include ROOT.'App/view/index.php';
@@ -86,15 +90,16 @@ class Show{
         $_SESSION['getgoods'] = NULL;
         //本次请求类型写入session
         $_SESSION['getgoods']['type'] = 'pay';
-        $_SESSION['getgoods']['num'] = 1;
+        $_SESSION['getgoods']['num'] = 3;
         //组装数据
         $getgoods = new \App\Model\GoodsGet();
         $getgoods->GetGoodsTab(0 , 1, 'paynum > 0', 'order by goodstime desc');
         //向商品数据中添加用户数据
         $getgoods->GetGoodUser();
         //获得商品信息容器
-        include ROOT.'App/view/top.html';
-        echo '<link href="http://localhost/jie/App/View/style/index.css" rel="stylesheet" type="text/css"/>';
+          include ROOT.'App/view/top.html';
+        echo '<link href="http://localhost/jie/App/View/style/all.css" rel="stylesheet" type="text/css"/>';
+        echo '<link href="http://localhost/jie/App/View/style/home.css" rel="stylesheet" type="text/css"/>';
         include ROOT.'App/view/head.html';
         $goodsbox = $register->GetValue('goods');
         include ROOT.'App/view/index.php';

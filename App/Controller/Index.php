@@ -38,11 +38,22 @@ class Index{
     * @return:
     */
     function CheckIdcard(){
-        $idcard = empty($_POST['idcard'])?NULL:$_POST['idcard'];
+        //清除原来的设置
+        $_SESSION['reg']['idcard'] = NULL;
+        /* $idcard = empty($_POST['idcard'])?NULL:$_POST['idcard']; */
+        //清理两边空格
+        $idcard = \App\Model\ClearString::IsNone($_POST['idcard']);
+        //去除特殊符号
+        $idcard = \App\Model\ClearString::ReturnClear($idcard);
         $_SESSION['reg']['idcard'] = $idcard;
         $checkObj = \App\Model\CheckUserMessage::GetSelf();
         $message = $checkObj->CheckIdcard();
-        echo empty($message)?NULL:$message;
+        if(empty($message)){
+            $returnarr = array('errrno'=>0);
+        } else {
+          $returnarr = array('errorno'=>1, 'errormess'=>$message);  
+        }
+        echo json_encode($returnarr);
     }
     
     
@@ -53,11 +64,17 @@ class Index{
     * @return:
     */
     function CheckName(){
-        $username = empty($_POST['username'])?null:$_POST['username'];
+        $username = \App\Model\ClearString::IsNone($_POST['username']);
+        $username = \App\Model\ClearString::ReturnClear($username);
         $_SESSION['reg']['username'] = $username;
         $checkObj = \App\Model\CheckUserMessage::GetSelf();
         $message = $checkObj->CheckUsername();
-        echo empty($message)?NULL:$message; 
+        if(empty($message)){
+            $errarr = array('errno'=>0);
+        } else{
+            $errarr = array('errno'=>1, 'errormess'=>$message);
+        }
+        echo json_encode($errarr);
     }
     
     /**
@@ -68,11 +85,17 @@ class Index{
     * @return:
     */
     function CheckPassword(){
-       $password = empty($_POST['password'])?null:$_POST['password'];
+       $password = \App\Model\ClearString::IsNone($_POST['password']);
+       $password = \App\Model\ClearString::ReturnClear($password);
        $_SESSION['reg']['password'] = $password;
        $checkObj = \App\Model\CheckUserMessage::GetSelf();
        $message = $checkObj->CheckEmpty('password');
-       return empty($message)?NULL:'不能为空';
+        if(empty($message)){
+            $errarr = array('errno'=>0);
+        } else{
+            $errarr = array('errno'=>1, 'errormess'=>$message);
+        }
+        echo json_encode($errarr);
     }
     
     /**
@@ -83,11 +106,19 @@ class Index{
     * @return:
     */
     function CheckEmail(){
-        $_SESSION['reg']['email'] = $_POST['email'];
+        //去除空格
+        $email = \App\Model\ClearString::IsNone($_POST['email']);
+        
+        $_SESSION['reg']['email'] = $email;
         $checkObj = \App\Model\CheckUserMessage::GetSelf();
         $message = $checkObj->CheckEmail();
         /* var_dump($message); */
-        echo empty($message)?NULL:$message; 
+        if(empty($message)){
+            $errarr = array('errno'=>'0');
+        }else {
+            $errarr = array('errno'=>'1', 'errmess'=>$message);
+        }
+        echo json_encode($errarr);
     }
     
     
@@ -125,10 +156,11 @@ class Index{
         $checkObj = \App\Model\CheckUserMessage::GetSelf();
         $message = $checkObj->CheckEmail();
         if($message == '邮件已经被注册'){
-            echo NULL;
+            $errarr = array('errno'=>'0');
         }else{
-            echo "您没有注册";
+            $errarr = array('errno'=>'1', 'errmess'=>'您还没有注册');
         }
+        echo json_encode($errarr);
     }
     
     /**
@@ -143,10 +175,12 @@ class Index{
         $checkObj = \App\Model\CheckUserMessage::GetSelf();
         $message = $checkObj->CheckPassword();
         if(empty($message)){
-            echo null;
+            $errarr = array('errno'=>'0');
         }else{
-            echo $message;
+            $errarr = array('errno'=>'1', 'errmess'=>$message);
+/*             echo $message; */
         }
+        echo json_encode($errarr);
     }
 
     /**

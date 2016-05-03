@@ -30,7 +30,8 @@ class GoodsGet{
          *  
          *  */
         //过期要进行时间判断，
-        $timeflag = time()-(3600*24*15);
+         $timeflag = time()-(3600*24*15);
+         /* $timeflag = time();  */  
         //组装条件
         $where = empty($where)?"goodstime > {$timeflag}":$where. " and goodstime > {$timeflag}";
         
@@ -75,7 +76,7 @@ class GoodsGet{
                 $userid = $goodMessage['userid'];
                 //获得发布时间
                 $pushTim = $goodMessage['goodstime'];
-                $day = ceil((time()-$pushTim)/(3600*24));
+                $day = 15 - ceil((time()-$pushTim)/(3600*24));
                 //获得数据库对象
                 $db = $register->GetValue('db');
                 $userarray = $db->FetchAll('user', "userid = $userid", $array = array('username', 'userimg', 'username', 'gender', 'point'));

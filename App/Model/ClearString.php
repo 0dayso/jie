@@ -43,6 +43,27 @@ class ClearString{
         return htmlspecialchars(stripcslashes($string));
     }
     
+    /**
+    * 描述: 获得中文支付串的长度
+    * @date: 2016年5月2日 上午11:11:14
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    static function AbsLength($str)
+    {
+        if(empty($str)){
+            return 0;
+        }
+        if(function_exists('mb_strlen')){
+            return mb_strlen($str,'utf-8');
+        }
+        else {
+            preg_match_all("/./u", $str, $ar);
+            return count($ar[0]);
+        }
+    }
+    
 }
 
 ?>

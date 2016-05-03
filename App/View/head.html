@@ -6,36 +6,35 @@
 <section class="page">
     <!-- 页面头 -->
     <header class="header">
+        <h1 class="logo"><span>接</span>下去</h1>
         <nav>
-            <li><h1 class="logo"><span>接</span>下去</h1></li>
-            <li><a href="<?php echo INLET;?>index.php"><!--<i class="demo-icon icon-home">&#xe828;</i>-->首页</a></li>
-            <li><a href="<?php echo INLET;?>index.php/Show/Free"><!--<i class="demo-icon icon-child">&#xe819;</i>-->免费物品</a></li>
-            <li><a href="<?php echo INLET;?>index.php/Show/Pay"><!--<i class="demo-icon icon-yen">&#xe85b;</i>-->付费物品</a></li>
-            <li><a href="#" target="_blank"><!--<i class="demo-icon icon-megaphone">&#xe84c;</i>-->全站信息</a></li>
-            <li>
-                <form class="search">
-                    <input type="search" placeholder="搜索在这里" name="search" class="search"/>
-                    <input type="submit" value="搜索" class="searchbottom">
-                </form>
-            </li>
-            <li>
+            <li><a href="<?php echo INLET;?>index.php"><i class="demo-icon icon-home">&#xe831;</i>首页</a></li>
+            <li><a href="<?php echo INLET;?>index.php/Show/Free"><i class="demo-icon icon-gift">&#xe869;</i>免费物品</a></li>
+            <li><a href="<?php echo INLET;?>index.php/Show/Pay"><i class="demo-icon icon-yen">&#xe86c;</i>付费物品</a></li>
+            <li><a href="#" target="_blank"><i class="demo-icon icon-megaphone">&#xe86a;</i>全站信息</a></li>
+        </nav>
+            <form class="searchform">
+                <input type="search" placeholder="搜索在这里" name="search" class="search"/>
+                <i class="demo-icon icon-search">&#xe87c;</i>
+                <!--<input type="submit" value="搜索" class="searchbutton">-->
+            </form>
                 <?php
                     if(empty($_SESSION['user']['userid'])){
-                       echo '<button class="register" id="register">注&nbsp;册</button>&nbsp;&nbsp;&nbsp;
-                <button class="login" id="login">登&nbsp;录</button>';
-                }else{
-                $username = $_SESSION['user']['username'];
-                $userhead = $_SESSION['user']['userimg'];
-                $userhead = INLET.'headimg/'.$userhead;
-				$userid = INLET.'index.php/User/Index&userid='.$_SESSION['user']['userid'];
-                echo "<ul class='lastbar'>
-                <li><a href='{$userid}' ><img src='{$userhead}' width='45px' height='45px'></a></li>
-                <li><a href='#'>{$username}</a></li>
-                <li><a href='#'>消息</a></li>
-                <li class='out'><a href='".INLET."index.php/index/LogOut'>退出</a></li>
-            </ul>";
+                       echo '<ul class="useraction">
+                                <button class="register" id="register">注&nbsp;册</button>&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;<button class="login" id="login">登&nbsp;录</button>
+                            <ul>';
+                    }else{
+                        $username = $_SESSION['user']['username'];
+                        $userhead = $_SESSION['user']['userimg'];
+                        $userhead = INLET.'headimg/'.$userhead;
+                        $userid = INLET.'index.php/User/Index&userid='.$_SESSION['user']['userid'];
+                        echo "<ul class='lastbar'>
+                        <li><a href='{$userid}' ><img src='{$userhead}' width='45px' height='45px'></a></li>
+                        <li><a href='#'>{$username}</a></li>
+                        <li><a href='#'><i class='demo-icon icon-chat-empty'>&#xe842;</i><span></span></a></li>
+                        <li class='out'><a href='".INLET."index.php/index/LogOut'><i class='demo-icon icon-logout'>&#xe84f;</i></a></li>
+                        </ul>";
                 }
                 ?>
-            </li>
-        </nav>
     </header>

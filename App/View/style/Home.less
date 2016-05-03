@@ -1,4 +1,4 @@
-@import 'all';
+/*@import url('all.less');*/
 /* 页面中间的内容 */
 .content{
   height: auto;
@@ -66,6 +66,11 @@
 /*        border: 1px solid red;*/
         height: 45px;
         width: 45px;
+        &:hover{
+          -webkit-box-shadow:  0 0 3px #ffab09;
+          -moz-box-shadow:  0 0 3px #ffab09;
+          box-shadow:  0 0 3px #ffab09;
+        }
         img{
           -webkit-border-radius: 23px;
           -moz-border-radius: 23px;
@@ -73,6 +78,7 @@
           width: 45px;
           height: 45px;
           display: inline;
+
         }
       }
       span{
@@ -97,11 +103,13 @@
         right: .4em;
         bottom: .6em;
         text-indent: .3em;
+        font-size: .9em;
       }
     }
 
     ul{
-      background-color: #ffffff;
+      /*background-color: #ec5252;*/
+      /*background-color: #ffcf1a;*/
       display: block;
       text-align: center;
       li{
@@ -109,7 +117,13 @@
         width: 31%;
         display: inline-block;
         text-align: center;
-        background-color: #ffffff;
+        &:hover{
+          /*background-color: #ffba20;*/
+          a{
+            color: #ffab09;
+          }
+        }
+/*        background-color: #ffffff;*/
         a{
           width: 100%;
           display: inline-block;
@@ -128,10 +142,12 @@
         height: 1.8em;
         line-height: 1.8em;
         vertical-align: bottom;
+        font-size: .9em;
       }
       .discript{
         height: 68%;
         padding: .3em 0;
+        font-size: .9em;
       }
     }
   }
@@ -176,10 +192,19 @@
       display: block;
 /*      background-color: #685875;*/
       input{
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: none;
         height: 1.6em;
         font-size: .9em;
         padding-left: .3em;
         color: rgba(0, 0, 0, .5);
+        &:focus{
+          -webkit-box-shadow:  0 0 3px #ec5252;
+          -moz-box-shadow:  0 0 3px #ec5252;
+          box-shadow:  0 0 3px #ec5252;
+        }
       }
       .goodsname{
         width: 100%;
@@ -196,33 +221,47 @@
 /*        background-color: #ffff00;*/
         padding-bottom: .25em;
         textarea{
+          padding-top: .2em;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
           width: 100%;
           height: 9em;
           font-size: .9em;
           padding-left: .3em;
           color: rgba(0, 0, 0, .5);
+          border: none;
+          &:focus{
+            -webkit-box-shadow:  0 0 3px #ec5252;
+            -moz-box-shadow:  0 0 3px #ec5252;
+            box-shadow:  0 0 3px #ec5252;
+          }
         }
       }
     }
   /* 图片上传容器 */
   #imgbox{
+    margin: 0 auto;
     background-color: aliceblue;
     width: 100%;
-    height: 90px;
+/*    width: 75px;*/
+    height: 80px;
     line-height: 100%;
     text-align: center;
-
+    overflow: hidden;
+    vertical-align: middle;
     div{
+      width: 70px;
+      text-align: center;
+      display: inline-block;
       background-position: center center;
-/*      -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-      -moz-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-      box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);*/
       background-size: 100%;
-      margin-top: .5em;
+      margin-top: .2em;
       z-index: 999;
       display: inline-block;
       position: relative;
       border: 1px dashed #c0c0c0;
+      text-align: center;
       span{
         color: #c0c0c0;
         z-index: -1;
@@ -234,6 +273,11 @@
         left: 0;
         line-height: 70px;
       }
+    }
+    #box1,#box2,#box3{
+      /*display: none;*/
+      visibility: hidden;
+/*      visibility: visible;*/
     }
     input{
       z-index: 1000;
@@ -248,16 +292,16 @@
     /* 发布类型 */
     .type{
       overflow: auto;
-      margin: .6em auto .3em auto;
+      margin: .3em auto;
 /*      background-color: #f2aba9;*/
       padding-left: .8em;
-      padding-bottom: .4em;
+      padding-bottom: .2em;
       text-align: center;
       .rad{
 /*        margin-left: .6em;*/
         display: inline;
 /*        background-color: #417474;*/
-        padding: .3em .6em;
+        padding: auto .6em;
         line-height: 1em;
         input{
           position: relative;
@@ -271,29 +315,64 @@
 /*      display: none;*/
       margin: 0 auto;
       width: 90%;
-      height: 2.4em;
+      height: 2.2em;
+      text-align: center;
+      vertical-align: middle;
 /*      background-color: chartreuse;*/
       input{
         color: rgba(0, 0, 0, .4);
-        margin-left: 5em;
-
+        width: 30%;
+      }
+      span{
+        i{
+          color: #fff114;
+        }
+      }
+      div{
+/*        background-color: #417474;*/
+        line-height: 2em;
+        height: 2em;
+      }
+      #payerror{
+/*        background-color: #9daf85;*/
+        line-height: 1em;
+        font-size: .9em;
       }
     }
-    .submit{
-      display: block;
-      margin: 0 auto;
-      padding: .3em .6em;
-      font-weight: bold;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      border: 1px solid #cccccc;
-      background-color: #ec5252;
-      color: #ffffff;
-      margin-bottom: .4em;
-    }
+
+  }
+  .submit{
+    /*background-color: #abcdef;*/
+    display: block;
+    margin: 1.1em auto;
+    padding: .3em .6em;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+/*    background-color: #cccccc;*/
+    color: #ffffff;
+    /*      margin-bottom: .3em;*/
+
   }
 }
+
+.errormess{
+  margin-top: .2em;
+  display: block;
+  height: 1em;
+/*  background-color: #9daf85;*/
+  font-size: .9em;
+  text-align: center;
+  color: darksalmon;
+}
+
+/*.submitok{
+  background-color: #ec5252;
+  cursor: pointer;
+}*/
+
 
 /* 加载更多 */
 .more{
@@ -303,13 +382,34 @@
   text-align: center;
   div{
     width: 75%;
-    button{
-      font-size: .9em;
-      color: #666666;
-      font-weight: 100;
+    p{
+      margin: 0 auto;
+      width: 6em;
+      position: relative;
+      button{
+        cursor: pointer;
+        position: absolute;
+        width: 6em;
+        font-size: .9em;
+        color: #666666;
+        font-weight: 100;
+        z-index: 10000;
+      }
+      .animate-spin{
+        z-index: 9999;
+        opacity: 0;
+/*        visibility: hidden;*/
+        left: 70%;
+        position: absolute;
+        position: absolute;
+        font-size: 1.6em;
+        color: #ffd825;
+      }
     }
+
   }
 }
+
 /* 弹出层 */
 .outface{
   position: relative;
@@ -318,7 +418,7 @@
   top: 20%;
   left: 35%;
   width: 30%;
-  height: 50%;
+  height: auto;
   background-color: #ccc;
   margin: 0 auto;
   opacity: 0.9;
@@ -346,12 +446,17 @@
     top: .5em;
     right: .6em;
     color: #5a5d63;
+    &:hover{
+      color: #ffffff;
+    }
   }
 }
 /*登录*/
 .loginform{
+  z-index: 1000001;
   display: none;
-  height: 40%;
+  /*height: 40%;*/
+  height: auto;
   form{
     margin: 0 auto;
     label{
@@ -368,11 +473,11 @@
         font-size: 1.2em;
         width: 100%;
       }
-      span{
+/*      span{
         display: block;
         padding: .5em .2em;
         font-size: .8em;
-      }
+      }*/
 
     }
     .loginsubmit{
@@ -383,17 +488,22 @@
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background-color: #ec5252;
-      border: 1px solid #ec5252;
+      background-color: #f1f1f1;
+      border: 1px solid #f1f1f1;
+/*      background-color: #ec5252;
+      border: 1px solid #ec5252;*/
       font-size: 1.1em;
+      margin-bottom: .3em;
     }
   }
 }
 
 /*注册*/
 .registerform{
+  z-index: 1000001;
   display: none;
-  height: 58%;
+  /*height: 58%;*/
+  height: auto;
   form{
     margin: 0 auto;
     label{
@@ -410,11 +520,11 @@
         font-size: 1.2em;
         width: 100%;
       }
-      span{
+/*      span{
         display: block;
         padding: .5em .2em;
         font-size: .8em;
-      }
+      }*/
 
     }
     .rigistersubmit{
@@ -425,9 +535,21 @@
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background-color: #ec5252;
-      border: 1px solid #ec5252;
+      background-color: #f1f1f1;
+      border: 1px solid #f1f1f1;
+/*      background-color: #ec5252;
+      border: 1px solid #ec5252;*/
       font-size: 1.1em;
     }
   }
+}
+
+.formerror{
+  display: block;
+  height: 1em;
+  line-height: 1em;
+/*  background-color: #9daf85;*/
+  color: darksalmon;
+  font-size: .9em;
+  text-align: center;
 }

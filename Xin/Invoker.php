@@ -63,6 +63,16 @@ class Invoker{
     * @version v1.0.0
     */
     function CreateControllerObj(){
+        /* 
+         * 登录之前除了异步商品加载，
+         * 不同类型筛选，
+         * 单品展示外其他都都不被允许
+         * 
+         *  */
+        
+        
+        
+        
         $controlName = '\\App\\Controller\\'.$this->controller;
         //创建控制器
         $controlObj = new $controlName();
@@ -79,6 +89,12 @@ class Invoker{
     * @return:
     */
     function CreateControllerAdmin(){
+        /* 
+         * 登录之前所有操作都被禁止
+         *  
+         *  */
+        
+        
         $controlName = '\\Admin\\Controller\\'.$this->controller;
         //创建控制器
         $controlObj = new $controlName();
@@ -86,7 +102,6 @@ class Invoker{
         //执行控制器中的方法
         $controlObj->$action();
     }
-    
     
 }
 

@@ -27,8 +27,11 @@ class GoodsHand{
         $goodsid = empty($key)?$_SESSION['goods']['goodsid']:$key['gid'];
         //使用数据库
         $db = $register->GetValue('db');
+        
         $data = $db->FetchAll('goodsdiscuss', $where=" goodsid =  $goodsid", NULL, NULL, NULL);
         $_SESSION['goodpageall'] = ceil(count($data)/10)-1;  
+        
+        
         $start = $_SESSION['goodpage']*10;
         $all = $db->FetchAll('goodsdiscuss', $where=" goodsid =  $goodsid", NULL, "limit  $start, 10", $desc=' order by gdtime desc');
         $count = count($all);

@@ -64,7 +64,7 @@ class CheckUserMessage{
         }
         
         //对密码加密
-        $_SESSION['reg']['password'] = Encrypt::md5_crypt($_SESSION['reg']['password']);        
+        $_SESSION['reg']['password'] = Encrypt::md5_md5($_SESSION['reg']['password']);        
         //数据写入数据库
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
@@ -83,22 +83,29 @@ class CheckUserMessage{
     public function CheckIdcard(){
         //去身份证输入两边空格
         $emptyMessage = $this->CheckEmpty('idcard');
+
         if(empty($emptyMessage)){
             if ((preg_match("/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/", $_SESSION['reg']['idcard'])) || (preg_match("/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}(\d|x|X)$/",  $_SESSION['reg']['idcard']))){
                 //判断身份信息是否已经使用过
-                $cryptIdcard = Encrypt::md5_crypt($_SESSION['reg']['idcard']);
+                $cryptIdcard = Encrypt::md5_md5($_SESSION['reg']['idcard']);
+                
                 //获得数据库的对象
                 $register = \Xin\Register::Instance();
                 $db = $register->GetValue('db');
+                $sql = "select * from j_user where idcard = '".$cryptIdcard."'";  
                 
-                //编写查询语句
-                $sql = "select * from j_user where idcard = '{$cryptIdcard}'";
-                //对结果判断
-                $res = $db->FecthAllNum($sql);
-                if(empty($res)){
+                /* $array = array('idcard', $cryptIdcard); */
+                $res = $db->FetchNum($sql); 
+/*                  $mess = $_SESSION['reg']['idcard'].'--'.$cryptIdcard;
+                var_dump($mess);  
+                 exit();  */
+                if($res == 0){
                     //通过身份证去获得其他身份信息
                     $true = CheckTrue::GetMessage(); 
-                    return $true;
+                    if(!empty($true)){
+                        return "该号码不存在";
+                    }
+                    /* return $true; */
                 }else {
                     return "身份证已经被注册";
                 }
@@ -125,7 +132,7 @@ class CheckUserMessage{
             return "用户名还没有设置";  
         }
         
-        $len = strlen($_SESSION['reg']['username']);
+        $len = \App\Model\ClearString::AbsLength($_SESSION['reg']['username']);
         if($len<2 || $len>12){
             return '用户名错误';
         }
@@ -152,9 +159,9 @@ class CheckUserMessage{
                 //编写查询语句
                 $sql = "select * from j_user where email = '{$_SESSION['reg']['email']}'";
                 //对结果判断
-                $res = $db->FecthAllNum($sql);
+                $res = $db->FetchNum($sql);
                 //没有被注册过才返回null
-                if(empty($res)){
+                if($res == 0){
                     return null;
                 }else{
                     return "邮件已经被注册";
@@ -205,9 +212,10 @@ class CheckUserMessage{
     * @return:
     */
     function CheckPassword(){
-        if(strlen($_SESSION['reg']['password']) >= 6){
+        if(\App\Model\ClearString::AbsLength($_SESSION['reg']['password']) >= 6){
             //密码加密
-            $_SESSION['reg']['password'] = Encrypt::md5_crypt($_SESSION['reg']['password']);
+            $_SESSION['reg']['password'] = Encrypt::md5_md5($_SESSION['reg']['password']);
+            file_put_contents(ROOT.'message.txt', $_SESSION['reg']['password']); 
             //密码比对
             $register = \Xin\Register::Instance();
             $db = $register->GetValue('db');
@@ -217,9 +225,9 @@ class CheckUserMessage{
             $password = empty($_SESSION['reg']['password'])?'000000000':$_SESSION['reg']['password'];
             $sql = "select * from j_user where password = '{$_SESSION['reg']['password']}' and email = '{$email}'";
             //对结果判断
-            $res = $db->FecthAllNum($sql);
+            $res = $db->FetchNum($sql);
             //没有被注册过才返回null
-            if(empty($res)){
+            if($res == 0){
                 return '密码错误';
             }else{
                 return NULL;

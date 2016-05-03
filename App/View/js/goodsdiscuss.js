@@ -39,7 +39,7 @@ $(function () {
                 var json = {"gdcontent": cont, "touserid": touserid}
             }
             //用ajax向远程提交评论数据
-            $.post('http://localhost/jie/index.html/Goods/PushDis', json,function (data) {
+            $.post('http://localhost/jie/index.php/Goods/PushDis', json,function (data) {
                 if(data != '0'){
                     $('#entermessage').html('评论失败');
                 }else{
@@ -95,7 +95,7 @@ $(function () {
 
     /* 评论内容翻页事件监听 */
     $('#pre').on('click', function () {
-        $.post('http://localhost/jie/index.html/Goods/Pre', {},function (data) {
+        $.post('http://localhost/jie/index.php/Goods/Pre', {},function (data) {
             if(data[1] == 'top'){
                 alert('没有更多了');
             }else{
@@ -119,7 +119,7 @@ $(function () {
     });
 
     $('#nex').on('click', function () {
-        $.post('http://localhost/jie/index.html/Goods/Nex', {},function (data) {
+        $.post('http://localhost/jie/index.php/Goods/Nex', {},function (data) {
             console.log(data);
             if(data[1] == 'last'){
                 alert('没有更多了');

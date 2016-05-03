@@ -19,7 +19,6 @@ class GoodsHelp{
     function ImageUp(){
         //判断用户是否已经登录
         if(!empty($_SESSION['user']['userid'])){
-            //判断是否有上传内容，优化时使用前端进行监听
             if(!empty($_FILES)){
                 $upObj = new \Xin\FileUp();
                 if($upObj->Upload('file')){

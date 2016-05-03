@@ -29,7 +29,7 @@ class CheckTrue{
             return "身份证错误";
         }else{
             //对身份证号码加密
-            $_SESSION['reg']['idcard'] = Encrypt::md5_crypt($_SESSION['reg']['idcard']);
+            $_SESSION['reg']['idcard'] = Encrypt::md5_md5($_SESSION['reg']['idcard']);
             //存入身份证上的地址
             $_SESSION['reg']['idaddress'] = $data['data']['address']; 
             //将生日时间转化为时间戳

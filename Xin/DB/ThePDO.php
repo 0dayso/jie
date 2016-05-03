@@ -205,6 +205,7 @@ class ThePDO implements InterfaceDB{
         list($key, $value) = each($where);
         $where = " where $key = ? "; 
         $sql = "select {$field} from {$table} {$where}";
+        /* file_put_contents(ROOT.'message.txt', $value); */
 /*          echo $sql;
         exit();   */
         try {

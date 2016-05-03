@@ -20,6 +20,8 @@ $controller = array(
     'Admin'=>array('Index', 'Change', 'AddAdmin', 'SubAdmin'),
     //用户管理操作
     'TubeUser'=>array('Index', 'PreUser', 'NexUser', 'UserTube', 'SuerTubUser'),
+    //用户商品管理
+    'GoodsTube'=>array('Index',),
 );
 
 return $controller;

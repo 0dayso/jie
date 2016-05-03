@@ -9,9 +9,11 @@ namespace App\Controller;
 * @copyright  CopyRight
 */
 class PushGoods{
+    //跳转到首页
     //检测是否已经登录
     function Index(){
-        include ROOT.'App/view/index.php';
+        header("Location: http://localhost/jie/index.php/");
+        /* include ROOT.'App/view/index.php'; */
     }
     
     
@@ -25,13 +27,20 @@ class PushGoods{
     function PushName(){
         $goodsname = \App\Model\ClearString::IsNone($_POST['goodsname']);
         if($goodsname != NULL){
-            //不为空,做过滤并写入session,
-            $goodsname = \App\Model\ClearString::ReturnClear($goodsname);
-            $_SESSION['goods']['goodsname'] = $goodsname;
-            echo $_SESSION['goods']['goodsname'];
+            //名称长度判断
+            $strlen = \App\Model\ClearString::AbsLength($goodsname); 
+            
+            if($strlen > 12){
+                echo "不能超过12字符";
+                $_SESSION['goods']['goodsname'] = null;
+            }else{
+                //不为空,做过滤并写入session,
+                $goodsname = \App\Model\ClearString::ReturnClear($goodsname);
+                $_SESSION['goods']['goodsname'] = $goodsname;
+            }
         }else{
             //为空返回通知，并清空session['goods']['goodsname']
-            echo "名称不能为空";
+            echo "不能为空"; 
             $_SESSION['goods']['goodsname'] = null; 
         }
     }
@@ -46,15 +55,20 @@ class PushGoods{
     */
     function PushgDepict(){
         $goodsdepict = \App\Model\ClearString::IsNone($_POST['goodsdepict']);
-        if(strlen($goodsdepict) < 12 || $goodsdepict == NULL){
+        if(\App\Model\ClearString::AbsLength($goodsdepict) < 6 || $goodsdepict == NULL){
             echo "描述太少了";
             //清空掉描述
             $_SESSION['goods']['goodsdepict'] = NULL;
         }else{
-            //做过滤并存储到session中
-            $goodsdepict = \App\Model\ClearString::ReturnClear($goodsdepict);
-            $_SESSION['goods']['goodsdepict'] = $goodsdepict;
-            echo $_SESSION['goods']['goodsdepict'];
+            if(\App\Model\ClearString::AbsLength($goodsdepict) <= 110){
+                //做过滤并存储到session中
+                $goodsdepict = \App\Model\ClearString::ReturnClear($goodsdepict);
+                $_SESSION['goods']['goodsdepict'] = $goodsdepict;
+                /* echo $_SESSION['goods']['goodsdepict']; */
+            }else {
+                echo "超过110字符"; 
+                $_SESSION['goods']['goodsdepict'] = NULL;
+            }
         }
     }
     
@@ -82,6 +96,7 @@ class PushGoods{
                 $_SESSION['goods']['paynum'] = $num;
 /*                 echo $_SESSION['goods']['paytype']; */
             }else{
+                $_SESSION['goods']['paynum'] = null;
                 echo "数据格式不对";
             }
         }else{
