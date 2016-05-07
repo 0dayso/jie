@@ -10,6 +10,7 @@
   line-height: 1.4em;
   margin-bottom: .5em;
   .goods{
+    background-color: #ffffff;
     -webkit-box-shadow:  0 0 3px #cccccc;
     -moz-box-shadow:  0 0 3px #cccccc;
     box-shadow:  0 0 3px #cccccc;
@@ -104,6 +105,8 @@
       line-height: 1.4em;
       position: relative;
       display: block;
+      font-size: .9em;
+      color: #717174;
       span{
         position: absolute;
         right: 0;
@@ -113,6 +116,7 @@
         color: #aaaaaa;
 /*        background-color: #abcdef;*/
         font-size: .8em;
+        color: #556b51;
       }
     }
     /* 描述信息结束 */
@@ -121,18 +125,22 @@
       /*background-color: red;*/
       height: 1.5em;
       line-height: 1.5em;
+      margin: .4em auto;
       li{
 /*        background-color: #abcdef;*/
         width: 25%;
         float: left;
         text-align: center;
-        -webkit-box-shadow:  0px 0px 1px #cccccc;
+/*        -webkit-box-shadow:  0px 0px 1px #cccccc;
         -moz-box-shadow:  0px 0px 1px #cccccc;
-        box-shadow:  0px 0px 1px #cccccc;
+        box-shadow:  0px 0px 1px #cccccc;*/
         a{
           width: 100%;
           display: inline-block;
           color: #5a5d63;
+          &:hover{
+            color: #ffa819;
+          }
         }
       }
     }
@@ -153,6 +161,7 @@
       .send{
         width: 98%;
         margin: 0 auto;
+        text-align: center;
         form{
           color: #717171;
           margin-top: .3em;
@@ -164,33 +173,41 @@
             color: orange;
           }
           img{
-            float: left;
-            display: block;
-            float: left;
-            width: 12%;
-            height: 45px;
-            -webkit-border-radius: 23px;
-            -moz-border-radius: 23px;
-            border-radius: 23px;
+            /*float: left;*/
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
           }
           label{
             float: right;
             display: block;
-            height: 45px;
-            line-height: 45px;
+            height: 30px;
+            line-height: 30px;
             width: 88%;
             #entersend{
               color: #717171;
               margin-left: 2%;
-              width: 97%;
-              line-height: 1.6em;
-              font-size: 1em;
+              width: 96%;
+              line-height: 1.4em;
+              font-size: 0.9em;
             }
           }
           .submit{
+            border: none;
             float: right;
             display: block;
             margin-bottom: .5em;
+            padding: .1em .8em;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            &:hover{
+              background-color: #ffa819;
+              color: #ffffff;
+            }
           }
         }
       }
@@ -206,15 +223,17 @@
     }
     /* 评论内容 */
     .comment{
-      margin-top: .8em;
+      /*margin-top: .8em;*/
       margin-left: 50px;
       display: block;
       article{
         border-top: 1px solid #c0c0c0;
-        margin-bottom: .3em;
+        margin-bottom: .1em;
         position: relative;
         overflow: auto;
+        min-height: 60px;
       img,div{
+        font-size: .9em;
           margin-top: .3em;
           color: #717171;
           display: block;
@@ -222,24 +241,27 @@
         }
         img{
           border: none;
-          -webkit-border-radius: 23px;
-          -moz-border-radius: 23px;
-          border-radius: 23px;
-          width: 45px;
-          height: 45px;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          border-radius: 15px;
+          width: 30px;
+          height: 30px;
         }
         div{
+          color: #717174;
           position: relative;
-          font-size: 0.95em;
           line-height: 1.2em;
           margin-left: .2em;
           width: 86%;
+          font-size: .9em;
           .distime{
             font-size: .8em;
             color: #919191;
           }
           p{
+            color: #717174;
             .reply{
+              color: #717174;
               position: absolute;
               right: .3em;
               -webkit-border-radius: 4px;

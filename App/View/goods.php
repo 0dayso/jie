@@ -28,14 +28,14 @@
                 <!-- 可点击的按钮 -->
                 <ul class="menu">
                     <li><a href="javascript:void(0);"><?php echo $pay;?></a></li>
-                    <li><a href="javascript:void(0);"><?php echo $commentnum;?>评论</a></li>
-                    <li><a href="javascript:void(0);"><?php echo $want;?>想要</a></li>
-                    <li><a href="javascript:void(0);"><?php echo $zannum;?>赞</a></li>
+                    <li><a href="javascript:void(0);"><?php echo $commentnum;?><i class="demo-icon icon-comment">&#xe83f;</i></a></li>
+                    <li><a href="javascript:void(0);"><?php echo $want;?><i class="demo-icon icon-cart-plus">&#xe84d;</i></a></li>
+                    <li><a href="javascript:void(0);"><?php echo $zannum;?><i class="demo-icon icon-thumbs-up">&#xe838;</i></a></li>
                 </ul>
                 <div class="godsmessage">
                     <section class="send">
                         <form action="" method="post" id="disform">
-                            <img id="fuserimg" src="<?php echo INLET.'headimg/'.$_SESSION['user']['userimg']?>" width="45px" height="45px">
+                            <img id="fuserimg" src="<?php echo INLET.'headimg/'.$_SESSION['user']['userimg']?>" width="30px" height="30px">
                             <label for="entersend">
                                 <input type="hidden" id="userid" value="<?php echo $_SESSION['user']['userid']?>"/>
                                 <input type="hidden" id="username" value="<?php echo $_SESSION['user']['username']?>"/>
@@ -51,7 +51,7 @@
                              foreach ($data as $value){
                                  $content = empty($value['tousername'])?$value['gdcontent']:'回复<a href="">'.$value['tousername'].'</a>:'.$value['gdcontent'];
                                  echo "<article>
-                                 <img src='{$value['userimg']}' width='45px' height='45px'>
+                                 <img src='{$value['userimg']}' width='30px' height='30px'>
                                  <div class='message'>
                                  <p><span>{$value['username']}</span>:<span>{$content}</span></p>
                                  <p><span class='distime'>{$value['gdtime']}</span><a data-userid='{$value['userid']}' data-username='{$value['username']}' href='#reply' class='reply'>回复</a></p>
@@ -77,10 +77,10 @@
             <article>
                 <img src="<?php echo $userimg;?>">
                 <p>发贴时间:&nbsp;&nbsp;<span class="time"><?php echo $goodstime;?></span></p>
-                <p><span class="type">姓名:&nbsp;&nbsp;</span><span><?php echo $username;?></span></p>
+                <p><span class="type">姓名:&nbsp;&nbsp;</span><span id="touserid"><?php echo $username;?></span></p>
                 <p><span class="type">性别:&nbsp;&nbsp;</span><span><?php echo $gender;?></span></p>
                 <p><span>积分:&nbsp;&nbsp;<?php echo $point;?></span>&nbsp;&nbsp;=&nbsp;&nbsp;123￥</p>
-                <a href="javascript:void(0);">与物主沟通</a>
+                <a href="javascript:void(0);" id="goodschat" data-chatuserid="<?php echo $chatuserid;?>">与物主沟通</a>
             </article>
         </section>
 </article>

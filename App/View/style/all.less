@@ -256,9 +256,214 @@ body{
   }
   background-color: #f4f4f4;
 }
+/*========================聊天==============================*/
+//正在聊天的用户
+.active{
+  -webkit-box-shadow:  0 0 3px #ec5151;
+  -moz-box-shadow:  0 0 3px #ec5151;
+  box-shadow:  0 0 3px #ec5151;
+}
+//聊天被激活
+.chaticonactive{
+  color: #efeaa2;
+}
 
+.chatBox{
+  background-color: #f2e8cd;
+  z-index: 1000000;
+  width: 27em;
+  display: none;
+  position: fixed;
+  top: 3.5em;
+  right: 0;
+  min-height: 510px;
+  #useradd{
+    float: right;
+    width: 6.8em;
+    /*height: 440px;*/
+    .touserlist{
+      margin: .3em .1em;
+      cursor: pointer;
+      /*background-color: #abcdef;*/
+      position: relative;
+      img{
+        width: 30px;
+        height: 30px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        position: relative;
+        right: 0;
+      }
+      p{
+        width: 65%;
+        //background-color: #5A6321;
+        display: inline-block;
+        float: right;
+        height: 30px;
+        span{
+          padding: .49em 0;
+          //background-color: #9daf85;
+          width: 3em;
+          display: inline-block;
+          font-size: .9em;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        i{
+          padding: .4em 0;
+          float: right;
+          /*background-color: #ec5151;*/
+          display: inline;
+          font-weight: 100;
+          color: #ffffff;
+          display: none;
+        }
+      }
+      &:hover>img{
+        -webkit-box-shadow:  0 0 3px #ff940f;
+        -moz-box-shadow:  0 0 3px #ff940f;
+        box-shadow:  0 0 3px #ff940f;
+      }
+      &:active>img{
+        -webkit-box-shadow:  0 0 3px #ffffff;
+        -moz-box-shadow:  0 0 3px #ffffff;
+        box-shadow:  0 0 3px #ffffff;
+      }
+  }
+  }
+  #chatBox{
+    border-right: 1px solid #cccccc;
+    height: 440px;
+    width: 20em;
+    overflow:auto;
+    /*background-color: #417474;*/
+    margin-top: .4em;
+    margin: 0 auto;
+    float: left;
+    padding-top: .3em;
+    article{
+      width: 70%;
+      /*background-color: #f2aba9;*/
+      margin-bottom: .3em;
+      img{
+        border: none;
+        width: 30px;
+        height: 30px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+      }
+      p{
+        padding: .3em;
+        word-wrap : break-word ;
+        display: block;
+        float: left;
+        background-color: #f1f1f1;
+        max-width: 78%;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        font-size: .9em;
+        span{
+          display: inline-block;
+          float: right;
+          font-size: .7em;
+          line-height: 16px;
+          color: #ffffff;
+        }
+      }
+    }
+    .other{
+      margin-left: .3em;
+      float: left;
+      img{
+        float: left;
+      }
+      p{
+        position: relative;
+        margin-left: .4em;
+        float: right;
+        &:after{
+          display: block;
+          content: "";
+          width: 0;
+          height: 0;
+          border-top: 10px solid transparent;
+          border-right: 8px solid #f1f1f1;
+          border-bottom: 10px solid transparent;
+          position: absolute;
+          top: 4px;
+          left: -8px;
+        }
+      }
+    }
+    .self{
+      float: right;
+      margin-right: .1em;
+      img{
+        float: right;
+      }
+      p{
+        position: relative;
+        background-color: #abcdef;
+        margin-right: .4em;
+        float: left;
+        &:after{
+          display: block;
+          content: "";
+          width: 0;
+          height: 0;
+          border-top: 10px solid transparent;
+          border-left: 8px solid #abcdef;
+          border-bottom: 10px solid transparent;
+          position: absolute;
+          top: 4px;
+          right: -8px;
+        }
+      }
+    }
+  }
+  .inputbox{
+    background-color: #929582;
+    float: left;
+    z-index: 1000001;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    img{
+      margin: .3em;
+      width: 45px;
+      height: 45px;
+      -webkit-border-radius: 23px;
+      -moz-border-radius: 23px;
+      border-radius: 23px;
+    }
+    textarea{
+      padding: .2em;
+      width: 65%;
+      height: 60px;
+    }
+    button{
+      cursor: pointer;
+      display: inline-block;
+      float: right;
+      margin-top: 1.7em;
+      margin-right: .8em;
+      border: none;
+      padding: .2em .6em;
+      &:hover{
+        background-color: #f2aba9;
+      }
+      &:active{
+        color: #ffffff;
+      }
+    }
+  }
+}
 
-
+/*================================================================*/
 .lastbar{
   float: right;
 /*  background-color: #9daf85;*/

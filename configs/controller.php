@@ -14,6 +14,8 @@ $controller = array(
         'CheckPassword', 'ChangePassword', 'PushDis'),
     //用户异步加载操作
     'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
+    //聊天操作
+    'Chat'=>array('Index'),
     
     /*---------------------------------------------------------*/
     //滚你员操作

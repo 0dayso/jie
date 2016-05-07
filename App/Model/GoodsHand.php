@@ -38,7 +38,7 @@ class GoodsHand{
         $_SESSION['goodsdiscuss'] = $count;
         //循环对数据进行添加
         for ($i=0; $i < $count; $i++){
-            $all[$i]['gdtime'] = date('Y-m-d H:i:s', $all[$i]['gdtime']);
+            $all[$i]['gdtime'] = date('m-d H:i', $all[$i]['gdtime']);
             //当前登录用户数据，根据用户id获得用户的姓名和头像
             $tuserid = $all[$i]['userid'];
             $data = $db->FetchOne('user',  array('userid'=>$tuserid),array('username', 'userimg'));

@@ -30,6 +30,7 @@ class Goods{
             $oneGoods = $goodsbox->current();
             $goodsid = $oneGoods['goodsid'];
             $userid = $oneGoods['userid'];
+            $chatuserid = $userid;
             $goodsimg0 = $oneGoods['goodsimg0'];
             $goodsimg1 = $oneGoods['goodsimg1'];
             $goodsimg2 = $oneGoods['goodsimg2'];
@@ -38,7 +39,7 @@ class Goods{
             $goodsdepict = $oneGoods['goodsdepict'];
             $paytype = $oneGoods['paytype'];
             $paynum = $oneGoods['paynum'];
-            $goodstime = date('Y-m-d H:i:s' , $oneGoods['goodstime']);
+            $goodstime = date('m-d H:i' , $oneGoods['goodstime']);
             $commentnum = $oneGoods['commentnum'];
             $zannum = $oneGoods['zannum'];
             $want = $oneGoods['want'];
@@ -46,15 +47,24 @@ class Goods{
             $userimg = INLET.'headimg/'.$oneGoods['userimg'];
             $gender = $oneGoods['gender'];
             $point = $oneGoods['point'];
-            $day = $oneGoods['day'].'后下架';
-           
-            if($paytype == 0 || $paytype == 0){
+            $day = $oneGoods['day'].'天过期';
+
+            /* 判断类型  */
+            if($paynum == 0 || $paytype== 0){
+                $pay = '<i class="demo-icon icon-gift">&#xe869;</i>';
+            } else if($paytype == 1) {
+                $pay =  $paynum.'<i class="demo-icon icon-yen">&#xe86c;</i>';
+            } else {
+                $pay = $paynum.'<i class="demo-icon icon-database">&#xe86f;</i>';
+            }
+            
+/*             if($paytype == 0 || $paytype == 0){
                 $pay = "免费";
             } else if($paytype == 1){
                 $pay = $paytype.'元';
             } else {
                 $pay = $paytype.'积分';
-            }
+            } */
             //将部分必要信息写入session中
             //发布者id
             $_SESSION['goods']['userid'] = $userid;
