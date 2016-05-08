@@ -15,7 +15,7 @@ $controller = array(
     //用户异步加载操作
     'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
     //聊天操作
-    'Chat'=>array('Index'),
+    'Chat'=>array('Index', 'AddChatUser', 'PushChat'),
     
     /*---------------------------------------------------------*/
     //滚你员操作
@@ -23,7 +23,7 @@ $controller = array(
     //用户管理操作
     'TubeUser'=>array('Index', 'PreUser', 'NexUser', 'UserTube', 'SuerTubUser'),
     //用户商品管理
-    'GoodsTube'=>array('Index',),
+    'GoodsTube'=>array('Index'),
 );
 
 return $controller;

@@ -338,14 +338,12 @@ body{
     height: 440px;
     width: 20em;
     overflow:auto;
-    /*background-color: #417474;*/
     margin-top: .4em;
     margin: 0 auto;
     float: left;
     padding-top: .3em;
     article{
       width: 70%;
-      /*background-color: #f2aba9;*/
       margin-bottom: .3em;
       img{
         border: none;
@@ -384,7 +382,7 @@ body{
       p{
         position: relative;
         margin-left: .4em;
-        float: right;
+        float: left;
         &:after{
           display: block;
           content: "";
@@ -406,10 +404,10 @@ body{
         float: right;
       }
       p{
+        float: right;
         position: relative;
         background-color: #abcdef;
         margin-right: .4em;
-        float: left;
         &:after{
           display: block;
           content: "";
@@ -466,7 +464,6 @@ body{
 /*================================================================*/
 .lastbar{
   float: right;
-/*  background-color: #9daf85;*/
   height: 3.5em;
   line-height: 3.5em;
   li{
@@ -480,11 +477,6 @@ body{
     -o-text-overflow:ellipsis;
     white-space:nowrap;
     a{
-/*      overflow:hidden;
-      word-break:break-all;
-      display:-webkit-box;
-      -webkit-line-clamp:2;
-      -webkit-box-orient:vertical;*/
       display: inline-block;
       width: 4em;
       color: rgba(0, 0, 0, .7);

@@ -77,10 +77,10 @@
             <article>
                 <img src="<?php echo $userimg;?>">
                 <p>发贴时间:&nbsp;&nbsp;<span class="time"><?php echo $goodstime;?></span></p>
-                <p><span class="type">姓名:&nbsp;&nbsp;</span><span id="touserid"><?php echo $username;?></span></p>
-                <p><span class="type">性别:&nbsp;&nbsp;</span><span><?php echo $gender;?></span></p>
+                <p><span class="type">姓名:&nbsp;&nbsp;</span><span id="touserid"><?php echo $goodsUsername;?></span></p>
+                <p><span class="type">性别:&nbsp;&nbsp;</span><span><?php echo $goodsgender;?></span></p>
                 <p><span>积分:&nbsp;&nbsp;<?php echo $point;?></span>&nbsp;&nbsp;=&nbsp;&nbsp;123￥</p>
-                <a href="javascript:void(0);" id="goodschat" data-chatuserid="<?php echo $chatuserid;?>">与物主沟通</a>
+                <a href="javascript:void(0);" id="goodschat" data-chatuserid="<?php echo $chatuserid;?>" >与物主沟通</a>
             </article>
         </section>
 </article>

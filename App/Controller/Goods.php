@@ -43,9 +43,9 @@ class Goods{
             $commentnum = $oneGoods['commentnum'];
             $zannum = $oneGoods['zannum'];
             $want = $oneGoods['want'];
-            $username = $oneGoods['username'];
+            $goodsUsername = $oneGoods['username'];
             $userimg = INLET.'headimg/'.$oneGoods['userimg'];
-            $gender = $oneGoods['gender'];
+            $goodsgender = $oneGoods['gender'];
             $point = $oneGoods['point'];
             $day = $oneGoods['day'].'天过期';
 

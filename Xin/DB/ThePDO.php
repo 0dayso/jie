@@ -29,7 +29,6 @@ class ThePDO implements InterfaceDB{
         try{
             if(self::$pdo == NULL){
                 $pdo = new \PDO($dsn, $user, $password);
-                
             }
         }catch (\PDOException $e){
              $dbConnectMeaaage = '数据库连接失败,错误原因:'.$e->getMessage()."\n";
@@ -175,8 +174,8 @@ class ThePDO implements InterfaceDB{
         $desc = empty($desc)?'':$desc;
         //组装sql语句
         $sql = "select {$trad} from {$table} {$where} {$desc} {$limit} ";
-/*         file_put_contents(ROOT.'message.txt', $sql); 
-        exit();     */      
+        file_put_contents(ROOT.'message.txt', $sql); 
+/*         exit();     */      
         try {
             //执行语句
             $stmt = self::$pdo->prepare($sql);
@@ -202,17 +201,24 @@ class ThePDO implements InterfaceDB{
         
         $field = join(' ,', $array);
         trim($field, ',');
-        list($key, $value) = each($where);
-        $where = " where $key = ? "; 
+        
+        $keyarr = array_keys($where);
+        $valuearr = array_values($where);
+        
+        $where = " where $keyarr[0] = '$valuearr[0]' "; 
         $sql = "select {$field} from {$table} {$where}";
-        /* file_put_contents(ROOT.'message.txt', $value); */
+/*          file_put_contents(ROOT.'message.txt', $sql); 
+         exit(); */
 /*          echo $sql;
         exit();   */
         try {
-            //准备申明好的查询
-            $stmt = self::$pdo->prepare($sql);
-            $stmt->execute(array($value));
+            $stmt = self::$pdo->query($sql);
             $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+            
+            
+/*             $stmt = self::$pdo->prepare($sql);
+            $stmt->execute(array($value));
+            $data = $stmt->fetch(\PDO::FETCH_ASSOC); */
             return $data;
         }catch(\PDOException $e){
             file_put_contents(ROOT.'message.txt', $e->getMessage().date("Y-m-d H:i:s", time()));
