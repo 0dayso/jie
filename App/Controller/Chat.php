@@ -57,12 +57,17 @@ class Chat{
     
     
     /**
-    * 描述: 
+    * 描述: 直接点击头像获得聊天记录
     * @date: 2016年5月8日 下午2:46:26
     * @author: xinbingliang <709464835@qq.com>
     * @param: variable
     * @return:
     */
+    function GetChat(){
+        $touserid = $_POST['touserid'];
+        $data = \App\Model\ChatHead::GetChat($touserid, 0);
+        echo json_encode($data);
+    }
     
 }
 

@@ -32,7 +32,6 @@ $(function(){
                 $('#chatbutton').addClass('chaticonactive');
             }
         });
-
     });
     
     function getHistoryList() {
@@ -55,7 +54,15 @@ $(function(){
                     }
                     i++;
                 }
-                $('#useradd').html(str);
+                var adduser = $(str);
+                //添加数据
+                $("#useradd .mCSB_container").append(adduser);
+                //更新滚动轴
+                $("#useradd").mCustomScrollbar("update");
+                //滚动到最后
+                $("#useradd").mCustomScrollbar("scrollTo","last");
+                /*$('#useradd').html(str);*/
+
                 //组装聊天记录
                 console.log(data['chat']);
                 var chatstr = '';
@@ -71,15 +78,21 @@ $(function(){
                         chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
                     }
                 }
-                $('#chatBox').html(chatstr);
+                var chatadd = $(chatstr);
+                $('#chatBox  .mCSB_container').append(chatadd);
                 //更新滚动轴
-                $(".chatBox").mCustomScrollbar("update");
+                $("#chatBox").mCustomScrollbar("update");
                 //滚动到最后
-                $(".chatBox").mCustomScrollbar("scrollTo","last");
+                $("#chatBox").mCustomScrollbar("scrollTo","last");
+                /*$('#chatBox').html(chatstr);*/
+                //更新滚动轴
+                /* $(".chatBox").mCustomScrollbar("update");
+                //滚动到最后
+                $(".chatBox").mCustomScrollbar("scrollTo","last");*/
 
             }else{
-                $('#useradd').html('');
-                $('#chatBox').html('');
+                $('#useradd .mCSB_container').html('');
+                $('#chatBox .mCSB_container').html('');
             }
         }, 'json');
     }
@@ -95,7 +108,6 @@ $(function(){
 
         //向对话表中添加新的值
         $.post('http://localhost/jie/index.php/Chat/AddChatUser', {'touserid':touserid},function (data) {});
-
         getHistoryList();
         $('.chatBox').show(1000);
         GetHistory(touserid);
@@ -116,7 +128,6 @@ $(function(){
             $.post('http://localhost/jie/index.php/Chat/PushChat', {'touserid':touserid, 'chat':value}, function (data) {
                 //向聊天列表中添加聊天数据
                 GetSelfChat(data);
-                console.log(data);
             }, 'json');
         }
     });
@@ -129,11 +140,12 @@ $(function(){
             var str = '<article class="self"><img  src="'+userimg+'" width="30px" height="30px"/><p>'+chatJson.cont+'<span>'+chatJson.date+'</span></p> </article>';
             var obj = $(str);
             //添加数据
-            $(".chatBox .mCSB_container").append(obj);
+            $("#chatBox .mCSB_container").append(obj);
             //更新滚动轴
-            $(".chatBox").mCustomScrollbar("update");
+            $("#chatBox").mCustomScrollbar("update");
             //滚动到最后
-            $(".chatBox").mCustomScrollbar("scrollTo","last");
+            $("#chatBox").mCustomScrollbar("scrollTo","last");
+            $('#chatinput').val('');
         }
     }
     /*========================================================*/
@@ -161,8 +173,7 @@ function checktouser(tself) {
     touserid = $(tself).attr('data-chatuserid');
     touserimg = $(tself).find('img').attr('src');
     tousername = $(tself).find('span').html();
-
-    getHistoryList();
+    GetHistoryChat(touserid);
     //添加和清除所有活动样式
     var touserlist = $('.touserlist');
     var len = touserlist.length;
@@ -191,10 +202,35 @@ function Testshow() {
     }
 }
 
+//点击头像获得历史聊天记录
+    function GetHistoryChat(touserid) {
+        $.post('http://localhost/jie/index.php/Chat/GetChat', {'touserid': touserid}, function (data) {
+            console.log(data);
 
-
-
-
+            if(!$.isEmptyObject(data)){
+                var chatstr = '';
+                for (var i in  data){
+                    var time = new Date(parseInt(data[i]['chattime'])*1000);
+                    time = time.getHours()+':'+time.getMinutes();
+                    //对方的发言
+                    console.log(data[i]['userid']);
+                    if(data[i]['userid'] == touserid){
+                        chatstr += '<article class="other"><img src="'+touserimg+'" width="30px" height="30px"/><p>'+data[i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                    }else{
+                        //自己的发言
+                        chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data[i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                    }
+                }
+                $('#chatBox .mCSB_container').html(chatstr);
+                //更新滚动轴
+                $("#chatBox").mCustomScrollbar("update");
+                //滚动到最后
+                $("#chatBox").mCustomScrollbar("scrollTo","last");
+            }else{
+                $('#chatBox .mCSB_container').html('');
+            }
+        }, 'json');
+    }
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*/
 
 

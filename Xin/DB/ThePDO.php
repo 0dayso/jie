@@ -207,8 +207,8 @@ class ThePDO implements InterfaceDB{
         
         $where = " where $keyarr[0] = '$valuearr[0]' "; 
         $sql = "select {$field} from {$table} {$where}";
-/*          file_put_contents(ROOT.'message.txt', $sql); 
-         exit(); */
+        file_put_contents(ROOT.'message.txt', $sql); 
+/*          exit(); */
 /*          echo $sql;
         exit();   */
         try {

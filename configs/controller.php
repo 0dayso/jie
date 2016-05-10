@@ -15,7 +15,7 @@ $controller = array(
     //用户异步加载操作
     'UserMore'=>array('PreDis', 'NexDis', 'PreGoods', 'NexGoods'),
     //聊天操作
-    'Chat'=>array('Index', 'AddChatUser', 'PushChat'),
+    'Chat'=>array('Index', 'AddChatUser', 'PushChat', 'GetChat'),
     
     /*---------------------------------------------------------*/
     //滚你员操作

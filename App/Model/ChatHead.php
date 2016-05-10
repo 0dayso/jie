@@ -46,7 +46,6 @@ class ChatHead{
         }else{
             return null;
         }
-        
     }
     
     
@@ -59,7 +58,6 @@ class ChatHead{
     */
     static function GetChatList(){
         $userid = $_SESSION['user']['userid'];
-        
         //获得用户列表
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
@@ -68,8 +66,7 @@ class ChatHead{
        /*  file_put_contents(ROOT.'message.txt', join(',', $userListString)); */
         return $userListString;
     }
-    
-    
+
     
     /**
     * 描述: 读取聊天记录 
@@ -80,13 +77,23 @@ class ChatHead{
     * @return:
     */
     static function GetChat($touser, $start=0){
+        //获取活动的对话对象
+        
+        //获取聊天对象的消息记录数量，本次读取聊天数据条数为该值数量
+        
+        
+        
+        
+        
         $userid = $_SESSION['user']['userid'];
         //获得用户列表
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
-        $chatHistory = $db->FetchAll('chat', " (userid = {$userid} and touser = {$touser}) or (userid = {$touser} and touser = {$userid}) ", NUll, " limit {$start}, 10 ", ' order by chattime asc ');
+        $chatHistory = $db->FetchAll('chat', " (userid = {$userid} and touser = {$touser}) or (userid = {$touser} and touser = {$userid}) ", NUll, " limit {$start}, 10 ", ' order by chattime desc ');
         //将已经读取消息的标记位设定为已读
-        
+        if(!empty($chatHistory)){
+            $chatHistory = array_reverse($chatHistory);
+        }
         return $chatHistory;
     }
     
@@ -106,6 +113,7 @@ class ChatHead{
         $arr = array('chatlist'=>$str);
         $db->Update('user', $arr, " userid = {$_SESSION['user']['userid']} ");
     }
+    
     
     /**
     * 描述: 向数据库中写数据 
@@ -137,13 +145,37 @@ class ChatHead{
             //存入数据库
             $db->Insert('chat', $array);
             $array = array('date'=>date('H:i', $time), 'cont'=>$chat);
+            self::ChatFalgChange($touserid); 
             return $array;
         }
     }
     
     
-    
-    
+    /**
+    * 描述: 向用户表中增加未读聊天数目，向未读对象表中添加用户用户id
+    * @date: 2016年5月8日 下午8:05:41
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: $touserid 被操作的用户id
+    * @return:
+    */
+    static function ChatFalgChange($touserid){
+        //获得数据库对象
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        //获得原来的数据
+        $data = $db->FetchOne('user', array('userid'=>$touserid), array('activechat', 'chat'));
+        //添加当前聊天对象到最前
+        $arr = explode(',', $data['activechat']);
+        array_unshift($arr, $_SESSION['user']['userid']);
+        //删除数组中的重复部分
+        $arr = array_unique($arr); 
+        $activechat = join(',', $arr);
+        //将未读取数据加一
+        $num = $data['chat']+1;
+        $array = array('activechat'=>$activechat, 'chat'=>$num);
+        $db->Update('user', $array, " userid = $touserid ");
+    }
+     
 }
 
 ?>
