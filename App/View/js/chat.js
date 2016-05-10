@@ -5,7 +5,9 @@ var touserid = null;
 var touserimg = null;
 var tousername = null;
 var selfimg = $('#selfHead').attr('src');
+var time1;
 $(function(){
+    chatUserNum();
     /*=================聊天滚动条=========================*/
     $('#chatBox').mCustomScrollbar({
         enable: false,
@@ -23,12 +25,15 @@ $(function(){
     });
     /*==================点击聊天图标弹出聊天===================*/
     $('#chatbutton').click(function () {
+
         $('.chatBox').toggle(800, function () {
             //聊天图标亮色
             if($('#chatbutton').hasClass('chaticonactive')){
                 $('#chatbutton').removeClass('chaticonactive');
+                clearInterval(time1);
             }else{
                 getHistoryList();
+                time1 = setInterval("Chat()", 1000);
                 $('#chatbutton').addClass('chaticonactive');
             }
         });
@@ -56,6 +61,7 @@ $(function(){
                 }
                 var adduser = $(str);
                 //添加数据
+                $("#useradd .mCSB_container").html('');
                 $("#useradd .mCSB_container").append(adduser);
                 //更新滚动轴
                 $("#useradd").mCustomScrollbar("update");
@@ -64,40 +70,42 @@ $(function(){
                 /*$('#useradd').html(str);*/
 
                 //组装聊天记录
-                console.log(data['chat']);
+                /*console.log(data['chat']);*/
                 var chatstr = '';
                 for (var i in  data['chat']){
                     var time = new Date(parseInt(data['chat'][i]['chattime'])*1000);
                     time = time.getHours()+':'+time.getMinutes();
                     //对方的发言
-                    console.log(data['chat'][i]['userid']);
-                    if(data['chat'][i]['userid'] == touserid){
-                        chatstr += '<article class="other"><img src="'+touserimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                    /*console.log(data['chat'][i]['userid']);*/
+                    if(i != 'flag'){
+                        if(data['chat'][i]['userid'] == touserid){
+                            chatstr += '<article class="other"><img src="'+touserimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                        }else{
+                            //自己的发言
+                            chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                        }
                     }else{
-                        //自己的发言
-                        chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                        continue;
                     }
                 }
                 var chatadd = $(chatstr);
+                $('#chatBox  .mCSB_container').html('');
                 $('#chatBox  .mCSB_container').append(chatadd);
+
                 //更新滚动轴
                 $("#chatBox").mCustomScrollbar("update");
+
                 //滚动到最后
                 $("#chatBox").mCustomScrollbar("scrollTo","last");
-                /*$('#chatBox').html(chatstr);*/
-                //更新滚动轴
-                /* $(".chatBox").mCustomScrollbar("update");
-                //滚动到最后
-                $(".chatBox").mCustomScrollbar("scrollTo","last");*/
-
             }else{
                 $('#useradd .mCSB_container').html('');
+
                 $('#chatBox .mCSB_container').html('');
             }
         }, 'json');
     }
 
-    /*===================选择发送给的用户======================*/
+    /*===================根据货物选择发送给的用户======================*/
     $('#goodschat').click(function () {
         //获得用户的头像
         touserimg = $('.blown img').attr('src');
@@ -109,8 +117,8 @@ $(function(){
         //向对话表中添加新的值
         $.post('http://localhost/jie/index.php/Chat/AddChatUser', {'touserid':touserid},function (data) {});
         getHistoryList();
+        /*time1 = setInterval("Chat()", 1000);*/
         $('.chatBox').show(1000);
-        GetHistory(touserid);
     });
 
     /*======================================================*/
@@ -150,6 +158,16 @@ $(function(){
     }
     /*========================================================*/
     /*======================轮训接收消息=========================*/
+    //轮训获得有几个用户发来消息
+    setInterval("chatUserNum()" , 20000);
+
+    //轮训对应用户有多少条消息没有被读取
+
+
+
+    //轮训正在对话对象的聊天回去
+
+
 
 
     /*========================================================*/
@@ -160,6 +178,30 @@ $(function(){
 
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+标签事件绑定=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*/
+//有多少新的用户记录,显示新回取的聊天
+function Chat() {
+    $.post('http://localhost/jie/index.php/Chat/ActiveChat', {'touserid':touserid},function (data) {
+        console.log(data);
+    });
+}
+
+
+
+
+//轮训函数，获得聊天消息
+function chatUserNum() {
+    $.get('http://localhost/jie/index.php/Chat/UserNum', {}, function (data) {
+       /* console.log(data);*/
+        if(data == 0){
+            $('#messnum').html('').parent('a').css('color', '#494949');
+        }else{
+            $('#messnum').html(data).parent('a').css('color', '#EC5252');
+        }
+
+    });
+}
+
+
 //x图标的显示和隐藏
 function xshow(tself) {
     $(tself).find('.icon-cancel-circled2').show(0);
@@ -186,6 +228,9 @@ function checktouser(tself) {
             $(touserlist[i]).find('img').removeClass('active');
         }
     }
+    //消息数量清除，改换为x小图标
+
+
 }
 
 function Testshow() {
@@ -205,11 +250,14 @@ function Testshow() {
 //点击头像获得历史聊天记录
     function GetHistoryChat(touserid) {
         $.post('http://localhost/jie/index.php/Chat/GetChat', {'touserid': touserid}, function (data) {
-            console.log(data);
-
+            /*console.log(data);*/
             if(!$.isEmptyObject(data)){
                 var chatstr = '';
+
                 for (var i in  data){
+                    if(i == 'flag'){
+                        continue;
+                    }
                     var time = new Date(parseInt(data[i]['chattime'])*1000);
                     time = time.getHours()+':'+time.getMinutes();
                     //对方的发言
@@ -221,11 +269,18 @@ function Testshow() {
                         chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data[i]['chatcontent']+'<span>'+time+'</span></p></article>';
                     }
                 }
-                $('#chatBox .mCSB_container').html(chatstr);
+                /*var chatobj = $(chatstr)*/
+                if(data.flag == 'old'){
+                    $('#chatBox .mCSB_container').html(chatstr);
+                }else{
+                    var chatobj = $(chatstr);
+                    $('#chatBox .mCSB_container').append(chatobj);
+                }
                 //更新滚动轴
                 $("#chatBox").mCustomScrollbar("update");
                 //滚动到最后
                 $("#chatBox").mCustomScrollbar("scrollTo","last");
+                $("#messnum").html('');
             }else{
                 $('#chatBox .mCSB_container').html('');
             }

@@ -18,10 +18,15 @@ class ChatHead{
     * @return:
     */
     static function Index(){
+        $userid = $_SESSION['user']['userid'];
         /* return $_SESSION['user']['userid']; */
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
-        $userListString = self::GetChatList();
+        $userListString = self::GetChatList($userid);
+/*         //获得用户的活动对象列表
+        $activeList = $db->FetchOne('user', array('userid'=>$userid), array('activechat'));
+        $activeListArr = explode(',', $activeList['activechat']); */
+        
         if(!empty($userListString)){
             $userListString = $userListString['chatlist'];
             $userListArray = explode(',', $userListString);
@@ -35,6 +40,15 @@ class ChatHead{
                 $userList[$key]['userid'] = $data['userid'];
                 $userList[$key]['username'] = $data['username'];
                 $userList[$key]['userimg'] = $data['userimg'];
+                
+/*                 //若该聊天在活动字段中则应该读取没有读取聊天记录数目
+                if(in_array($data['userid'], $activeListArr)){
+                    $num = $db->FetchNum("select * from j_chat where touser = {$userid} and userid = {$data['userid']} and readtrue = 0 ");
+                    $userList[$key]['num'] = $num;
+                }else{
+                    $userList[$key]['num'] = 0;
+                } */
+                
             } 
             
             //获得与最后一个聊天的最近10条聊天记录
@@ -56,8 +70,8 @@ class ChatHead{
     * @param: variable
     * @return:
     */
-    static function GetChatList(){
-        $userid = $_SESSION['user']['userid'];
+    static function GetChatList($userid){
+        /* $userid = $_SESSION['user']['userid']; */
         //获得用户列表
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
@@ -77,20 +91,42 @@ class ChatHead{
     * @return:
     */
     static function GetChat($touser, $start=0){
-        //获取活动的对话对象
-        
-        //获取聊天对象的消息记录数量，本次读取聊天数据条数为该值数量
-        
-        
-        
-        
-        
         $userid = $_SESSION['user']['userid'];
-        //获得用户列表
+        //获得数据库对象
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
-        $chatHistory = $db->FetchAll('chat', " (userid = {$userid} and touser = {$touser}) or (userid = {$touser} and touser = {$userid}) ", NUll, " limit {$start}, 10 ", ' order by chattime desc ');
-        //将已经读取消息的标记位设定为已读
+        
+        //获取活动的对话对象
+        $activeList = $db->FetchOne('user', array('userid'=>$userid), array('activechat', 'chat'));
+        $chatnum = $activeList['chat'];
+        $activeListArr = explode(',', $activeList['activechat']);
+        //判断是否都在活动列表内
+        if(in_array($touser, $activeListArr)){
+            //在活动列表内,要读取所有没有读取的数据
+            $chatHistory = $db->FetchAll('chat', " (userid = {$touser} and touser = {$userid}) and readtrue = 0 ", NUll, NULL, ' order by chattime desc ');
+            
+            //删除用户表中的活动对象，修改消息记录数目我0
+            $key = array_search($touser, $activeListArr);
+            unset($activeListArr[$key]);
+            
+            //回写活动聊天对象
+            $activestr = join(',', $activeListArr);
+            $activestr = trim($activestr, '');
+     
+            $num = $db->FetchNum("select * from j_chat where touser = {$userid} and userid = {$touser} and readtrue = 0 ");
+            //将聊天记录标识位记录为已读
+            $db->Update('chat', array('readtrue'=>1), "  touser = {$userid} and userid = {$touser} and readtrue = 0 " );
+            
+            //修改数据表
+            $db->Update('user', array('activechat'=>$activestr, 'chat'=>$chatnum-$num), " userid = $userid ");
+
+        } else {
+            //获得用户对话
+            $chatHistory = $db->FetchAll('chat', " (userid = {$userid} and touser = {$touser}) or (userid = {$touser} and touser = {$userid}) ", NUll, " limit {$start}, 10 ", ' order by chattime desc ');
+            $chatHistory['flag'] = 'old';
+        }
+                
+        
         if(!empty($chatHistory)){
             $chatHistory = array_reverse($chatHistory);
         }
@@ -105,13 +141,17 @@ class ChatHead{
     * @param: variable
     * @return:
     */
-    static function ChangeList($arr){
+    static function ChangeList($arr, $userid){
         $str = join(',', $arr);
         $str = trim($str, ',');
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         $arr = array('chatlist'=>$str);
-        $db->Update('user', $arr, " userid = {$_SESSION['user']['userid']} ");
+        $db->Update('user', $arr, " userid = {$userid} ");
+        
+        //并且要修改对方的对话对象列表
+
+        
     }
     
     
@@ -170,11 +210,21 @@ class ChatHead{
         //删除数组中的重复部分
         $arr = array_unique($arr); 
         $activechat = join(',', $arr);
+        $activechat = trim($activechat, ',');
         //将未读取数据加一
         $num = $data['chat']+1;
         $array = array('activechat'=>$activechat, 'chat'=>$num);
         $db->Update('user', $array, " userid = $touserid ");
     }
+    
+    /**
+    * 描述: 获得活动的聊天对象，并分别读取
+    * @date: 2016年5月10日 下午9:40:22
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    
      
 }
 

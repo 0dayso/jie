@@ -32,7 +32,7 @@
                         echo "<ul class='lastbar'>
                         <li><a href='{$userid}' ><img src='{$userhead}' width='45px' height='45px' id='selfHead'></a></li>
                         <li><a href='#'>{$username}</a></li>
-                        <li><a href='javascript:void(0);'><i class='demo-icon icon-chat-empty' id='chatbutton'>&#xe842;</i><span></span></a></li>
+                        <li><a href='javascript:void(0);'><span id='messnum' ></span><i class='demo-icon icon-chat-empty' id='chatbutton'>&#xe842;</i></a></li>
                         <li class='out'><a href='".INLET."index.php/index/LogOut'><i class='demo-icon icon-logout'>&#xe84f;</i></a></li>
                         </ul>";
                 }
@@ -40,22 +40,10 @@
     </header>
         <div class="chatBox">
             <section class="chatUser" id="useradd">
-                <!--<div class="touserlist"  data-chatuserid="10" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)">
-                    <img src="<?php echo $userhead;?>" width="30px" height="30px"/>
-                    <p><span>辛丙亮</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p>
-                </div>
-                <div class="touserlist"  data-chatuserid="20" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)">
-                    <img src="<?php echo $userhead;?>" width="30px" height="30px"/>
-                    <p><span>辛丙亮</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p>
-                </div>-->
+
             </section>
             <section id="chatBox" class="test">
-                <article class="other">
-                    <img src="<?php echo $userhead;?>" width="30px" height="30px"/><p>12345123451234513451234512345134512345<span>4:36:12</span></p>
-                </article>
-                <article class="self">
-                    <img  src="<?php echo $userhead;?>" width="30px" height="30px"/><p>7890123434517851345123458901790178901<span>4:36:12</span></p>
-                </article>
+
             </section>
             <div class="inputbox">
                 <img src='<?php echo $userhead;?>' width='45px' height='45px' class="UserHand">

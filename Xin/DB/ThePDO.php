@@ -114,6 +114,8 @@ class ThePDO implements InterfaceDB{
         //组装sql语句
         $sql = "update {$table} set {$set} where {$where}";
 
+/*          file_put_contents(ROOT.'message.txt', $sql);
+        exit();  */
         try {
             //执行sql语句
             $attfected = self::$pdo->exec($sql);
@@ -174,8 +176,8 @@ class ThePDO implements InterfaceDB{
         $desc = empty($desc)?'':$desc;
         //组装sql语句
         $sql = "select {$trad} from {$table} {$where} {$desc} {$limit} ";
-        file_put_contents(ROOT.'message.txt', $sql); 
-/*         exit();     */      
+ /*        file_put_contents(ROOT.'message.txt', $sql); 
+        exit();     */      
         try {
             //执行语句
             $stmt = self::$pdo->prepare($sql);
@@ -207,8 +209,8 @@ class ThePDO implements InterfaceDB{
         
         $where = " where $keyarr[0] = '$valuearr[0]' "; 
         $sql = "select {$field} from {$table} {$where}";
-        file_put_contents(ROOT.'message.txt', $sql); 
-/*          exit(); */
+ /*        file_put_contents(ROOT.'message.txt', $sql); 
+         exit(); */
 /*          echo $sql;
         exit();   */
         try {

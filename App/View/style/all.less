@@ -271,7 +271,7 @@ body{
 .chatBox{
   background-color: #f2e8cd;
   z-index: 1000000;
-  width: 27em;
+  width: 28em;
   display: none;
   position: fixed;
   top: 3.5em;
@@ -279,7 +279,7 @@ body{
   min-height: 510px;
   #useradd{
     float: right;
-    width: 6.8em;
+    width: 7.8em;
     /*height: 440px;*/
     .touserlist{
       margin: .3em .1em;
@@ -310,6 +310,15 @@ body{
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+        }
+        .chatnum{
+          padding: .4em 0;
+          float: right;
+          /*background-color: #ec5151;*/
+          display: inline;
+          font-weight: 100;
+          color: #ffffff;
+          display: none;
         }
         i{
           padding: .4em 0;
@@ -388,12 +397,12 @@ body{
           content: "";
           width: 0;
           height: 0;
-          border-top: 10px solid transparent;
-          border-right: 8px solid #f1f1f1;
-          border-bottom: 10px solid transparent;
+          border-top: 8px solid transparent;
+          border-right: 6px solid #f1f1f1;
+          border-bottom: 8px solid transparent;
           position: absolute;
           top: 4px;
-          left: -8px;
+          left: -4px;
         }
       }
     }
@@ -413,12 +422,12 @@ body{
           content: "";
           width: 0;
           height: 0;
-          border-top: 10px solid transparent;
-          border-left: 8px solid #abcdef;
-          border-bottom: 10px solid transparent;
+          border-top: 8px solid transparent;
+          border-left: 6px solid #abcdef;
+          border-bottom: 8px solid transparent;
           position: absolute;
           top: 4px;
-          right: -8px;
+          right: -4px;
         }
       }
     }

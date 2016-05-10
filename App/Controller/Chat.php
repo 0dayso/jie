@@ -31,15 +31,27 @@ class Chat{
     */
     function AddChatUser(){
         $touserid = $_POST['touserid'];
+        $userid = $_SESSION['user']['userid'];
         //获得已有的聊天列表
-        $chatlist = \App\Model\ChatHead::GetChatList();
+        $chatlist = \App\Model\ChatHead::GetChatList($userid);
         $ListString = $chatlist['chatlist'];
         $chatArray = explode(',', $ListString);
         //当前聊天对象添加到数组最开始部分
         array_unshift($chatArray, $touserid);
         //删除数组中的重复部分
         $chatArray = array_unique($chatArray); 
-        $str = \App\Model\ChatHead::ChangeList($chatArray);
+        $str = \App\Model\ChatHead::ChangeList($chatArray, $userid);
+        
+        //向对方的聊天列表中也要
+        $tochatlist = \App\Model\ChatHead::GetChatList($touserid);
+        $toListString = $tochatlist['chatlist'];
+        $tochatArray = explode(',', $toListString);
+        //当前聊天对象添加到数组最开始部分
+        array_unshift($tochatArray, $userid);
+        //删除数组中的重复部分
+        $chatArray = array_unique($tochatArray);
+        $str = \App\Model\ChatHead::ChangeList($chatArray, $touserid);
+        
     }
     
     
@@ -69,6 +81,41 @@ class Chat{
         echo json_encode($data);
     }
     
+    
+    /**
+    * 描述: 获得活动的聊天对象数量
+    * @date: 2016年5月10日 下午3:34:13
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    static function UserNum(){       
+        $userid = $_SESSION['user']['userid'];
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        //获取活动的对话对象
+        $activeList = $db->FetchOne('user', array('userid'=>$userid), array('activechat', 'chat'));
+        $activeListArr = explode(',', $activeList['activechat']);
+         if(empty($activeListArr[0]) || empty($activeListArr)){
+            echo 0;
+        }else{
+            echo count($activeListArr);
+        } 
+    }
+    
+    
+    /**
+    * 描述: 获得活动的对象对应聊天数目和取回新的聊天记录
+    * @date: 2016年5月10日 下午8:46:41
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function ActiveChat(){
+        echo $_POST['touserid'];
+    }
+    
 }
+
 
 ?>
