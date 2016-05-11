@@ -267,6 +267,39 @@ body{
 .chaticonactive{
   color: #efeaa2;
 }
+//有消息的用户头像
+.activehead{
+  animation:activehead .8s infinite;
+  -moz-animation:activehead .8s infinite ; /* Firefox */
+  -webkit-animation:activehead .8s infinite ; /* Safari and Chrome */
+  -o-animation:activehead .8s infinite ; /* Opera */
+}
+
+@keyframes activehead
+{
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@-moz-keyframes activehead /* Firefox */
+{
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@-webkit-keyframes activehead /* Safari and Chrome */
+{
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@-o-keyframes activehead /* Opera */
+{
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+
 
 .chatBox{
   background-color: #f2e8cd;

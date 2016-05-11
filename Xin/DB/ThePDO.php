@@ -235,6 +235,8 @@ class ThePDO implements InterfaceDB{
     * @return:
     */
     function FetchNum($sql){
+        file_put_contents(ROOT.'message.txt', $sql);
+        
         $res = self::$pdo->query($sql);
         return $res->rowCount();
     }

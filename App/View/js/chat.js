@@ -33,7 +33,7 @@ $(function(){
                 clearInterval(time1);
             }else{
                 getHistoryList();
-                time1 = setInterval("Chat()", 1000);
+                time1 = setInterval("Chat()", 2000);
                 $('#chatbutton').addClass('chaticonactive');
             }
         });
@@ -41,6 +41,7 @@ $(function(){
     
     function getHistoryList() {
         $.post('http://localhost/jie/index.php/Chat/Index', {}, function (data) {
+            console.log(data);
             //向聊天对象表中进行填充
             if(!$.isEmptyObject(data)){
                 var i = 0;
@@ -49,13 +50,18 @@ $(function(){
                     if($.isEmptyObject(data[i])){
                         break;
                     }
+                    /*activehead*/
                     if(i == 0){
                         touserid = data[i]['userid'];
                         touserimg = 'http://localhost/jie/headimg/'+data[i]['userimg'];
                         tousername = data[i]['username'];
                         str += '<div class="touserlist"  data-chatuserid="'+data[i]['userid']+'" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/'+data[i]['userimg']+'" class="active" width="30px" height="30px"/> <p><span>'+data[i]['username']+'</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
                     }else{
-                        str += '<div class="touserlist"  data-chatuserid="'+data[i]['userid']+'" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/'+data[i]['userimg']+'" width="30px" height="30px"/> <p><span>'+data[i]['username']+'</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
+                        if(data[i]['active'] == true){
+                            str += '<div class="touserlist activehead"  data-chatuserid="'+data[i]['userid']+'" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/'+data[i]['userimg']+'" width="30px" height="30px"/> <p><span>'+data[i]['username']+'</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
+                        } else {
+                            str += '<div class="touserlist"  data-chatuserid="'+data[i]['userid']+'" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/'+data[i]['userimg']+'" width="30px" height="30px"/> <p><span>'+data[i]['username']+'</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
+                        }
                     }
                     i++;
                 }
@@ -181,14 +187,43 @@ $(function(){
 //有多少新的用户记录,显示新回取的聊天
 function Chat() {
     $.post('http://localhost/jie/index.php/Chat/ActiveChat', {'touserid':touserid},function (data) {
-        console.log(data);
-    });
+        if(!$.isEmptyObject(data)){
+            if(!$.isEmptyObject(data.chat)){
+                var chatstr = '';
+                for(var i in data.chat){
+                    var time = new Date(parseInt(data.chat[i]['chattime'])*1000);
+                    time = time.getHours()+':'+time.getMinutes();
+                    chatstr += '<article class="other"><img src="'+touserimg+'" width="30px" height="30px"/><p>'+data.chat[i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                    var chatobj = $(chatstr);
+                    $('#chatBox .mCSB_container').append(chatobj);
+                    //更新滚动轴
+                    $("#chatBox").mCustomScrollbar("update");
+                    //滚动到最后
+                    $("#chatBox").mCustomScrollbar("scrollTo","last");
+                }
+            }
+            if(!$.isEmptyObject(data.num)){
+                for(var i in data.num){
+                    console.log(i);
+/*                    $('div["data-chatuserid"]').each(function () {
+                        if($(this).attr(data-chatuserid) == i){
+                            $(this).css('background-color', 'red');
+                        }
+                    });*/
+                }
+            }
+        }
+
+    },'json');
 }
 
+/*
+*  应该被动去执聊天对象的刷新，希望改写
+*
+* */
 
 
-
-//轮训函数，获得聊天消息
+//轮训函数，获得聊天活动对象数目
 function chatUserNum() {
     $.get('http://localhost/jie/index.php/Chat/UserNum', {}, function (data) {
        /* console.log(data);*/
@@ -197,7 +232,6 @@ function chatUserNum() {
         }else{
             $('#messnum').html(data).parent('a').css('color', '#EC5252');
         }
-
     });
 }
 
@@ -212,9 +246,13 @@ function xhide(tself) {
 
 //直接点击用户准备开始聊天
 function checktouser(tself) {
+    if($(tself).hasClass('activehead')){
+        $(tself).removeClass('activehead');
+    }
     touserid = $(tself).attr('data-chatuserid');
     touserimg = $(tself).find('img').attr('src');
     tousername = $(tself).find('span').html();
+    //获得原来的数据
     GetHistoryChat(touserid);
     //添加和清除所有活动样式
     var touserlist = $('.touserlist');

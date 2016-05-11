@@ -66,7 +66,6 @@
                         if(isset($_SESSION['goodsdiscuss'])&&$_SESSION['goodsdiscuss'] ==10){
                             echo "<div class='messbutton'><button id='pre'>pre</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id='nex'>nex</button></div>";
                         }
-                    
                     ?>
                     <!-- 用户评论区结束 -->
                 </div>

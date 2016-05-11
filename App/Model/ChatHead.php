@@ -23,9 +23,9 @@ class ChatHead{
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         $userListString = self::GetChatList($userid);
-/*         //获得用户的活动对象列表
+        //获得用户的活动对象列表
         $activeList = $db->FetchOne('user', array('userid'=>$userid), array('activechat'));
-        $activeListArr = explode(',', $activeList['activechat']); */
+        $activeListArr = explode(',', $activeList['activechat']); 
         
         if(!empty($userListString)){
             $userListString = $userListString['chatlist'];
@@ -41,14 +41,10 @@ class ChatHead{
                 $userList[$key]['username'] = $data['username'];
                 $userList[$key]['userimg'] = $data['userimg'];
                 
-/*                 //若该聊天在活动字段中则应该读取没有读取聊天记录数目
-                if(in_array($data['userid'], $activeListArr)){
-                    $num = $db->FetchNum("select * from j_chat where touser = {$userid} and userid = {$data['userid']} and readtrue = 0 ");
-                    $userList[$key]['num'] = $num;
-                }else{
-                    $userList[$key]['num'] = 0;
-                } */
-                
+                //若该聊天在活动字段中则应该设置消息提醒
+                if($key != 0 && in_array($data['userid'], $activeListArr)){
+                    $userList[$key]['active'] = TRUE;
+                }
             } 
             
             //获得与最后一个聊天的最近10条聊天记录
@@ -221,10 +217,44 @@ class ChatHead{
     * 描述: 获得活动的聊天对象，并分别读取
     * @date: 2016年5月10日 下午9:40:22
     * @author: xinbingliang <709464835@qq.com>
-    * @param: variable
+    * @param: $touserid 聊天的对象
     * @return:
     */
-    
+    static function ActiveChat($touserid){
+        $userid = $_SESSION['user']['userid'];
+        //获得自己活动聊天对象字段
+        //获得数据库对象
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $data = $db->FetchOne('user', array('userid'=>$userid), array('activechat'));
+        $arr = explode(',', $data['activechat']);
+        
+        $chatnum =array();
+        if(!empty($arr[0])){
+            foreach ($arr as $key=>$value){
+                $num = $db->FetchNum("select * from j_chat where (touser = {$userid} and userid = {$value}) and readtrue = 0 ");
+                $chatnum[$value] = $num;
+            }
+            //与当前用户的聊天
+            $chatArr = array();
+            $chat = self::GetChat($touserid);
+            //只能返回新的聊天内容
+            if(empty($chat['flag'])){
+                $array = array('num'=>$chatnum, 'chat'=>$chat);
+                return $array;   
+            } else {
+                $array = array('num'=>$chatnum, 'chat'=>'');
+                return $array;
+            }
+        }else{
+            return null;
+        }
+
+        
+        
+        
+        
+    }
      
 }
 

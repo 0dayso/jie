@@ -112,7 +112,10 @@ class Chat{
     * @return:
     */
     function ActiveChat(){
-        echo $_POST['touserid'];
+        $userid = $_SESSION['user']['userid'];
+        $touserid = $_POST['touserid'];
+        $return = \App\Model\ChatHead::ActiveChat($touserid);
+        echo json_encode($return);        
     }
     
 }
