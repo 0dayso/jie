@@ -124,8 +124,10 @@ $(function () {
     //默认为5星
     var startnum = 5;
     $('.start').click(function () {
-        $(this).nextAll().css('color', '#c0c0c0');
-        $(this).prevAll().css('color', '#fae150');
+/*        $(this).nextAll().css('color', '#c0c0c0');
+        $(this).prevAll().css('color', '#fae150');*/
+        var emptystart = '';
+        $(this).nextAll().replaceWith();
         $(this).css('color', '#fae150');
         startnum = $(this).index()+1;
     });

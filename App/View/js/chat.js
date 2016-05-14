@@ -77,32 +77,34 @@ $(function(){
 
                 //组装聊天记录
                 /*console.log(data['chat']);*/
-                var chatstr = '';
-                for (var i in  data['chat']){
-                    var time = new Date(parseInt(data['chat'][i]['chattime'])*1000);
-                    time = time.getHours()+':'+time.getMinutes();
-                    //对方的发言
-                    /*console.log(data['chat'][i]['userid']);*/
-                    if(i != 'flag'){
-                        if(data['chat'][i]['userid'] == touserid){
-                            chatstr += '<article class="other"><img src="'+touserimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                if(!$.isEmptyObject(data['chat'])){
+                    var chatstr = '';
+                    for (var i in  data['chat']){
+                        var time = new Date(parseInt(data['chat'][i]['chattime'])*1000);
+                        time = time.getHours()+':'+time.getMinutes();
+                        //对方的发言
+                        /*console.log(data['chat'][i]['userid']);*/
+                        if(i != 'flag'){
+                            if(data['chat'][i]['userid'] == touserid){
+                                chatstr += '<article class="other"><img src="'+touserimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                            }else{
+                                //自己的发言
+                                chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                            }
                         }else{
-                            //自己的发言
-                            chatstr += '<article class="self"><img  src="'+selfimg+'" width="30px" height="30px"/><p>'+data['chat'][i]['chatcontent']+'<span>'+time+'</span></p></article>';
+                            continue;
                         }
-                    }else{
-                        continue;
                     }
+                    var chatadd = $(chatstr);
+                    $('#chatBox  .mCSB_container').html('');
+                    $('#chatBox  .mCSB_container').append(chatadd);
+
+                    //更新滚动轴
+                    $("#chatBox").mCustomScrollbar("update");
+
+                    //滚动到最后
+                    $("#chatBox").mCustomScrollbar("scrollTo","last");
                 }
-                var chatadd = $(chatstr);
-                $('#chatBox  .mCSB_container').html('');
-                $('#chatBox  .mCSB_container').append(chatadd);
-
-                //更新滚动轴
-                $("#chatBox").mCustomScrollbar("update");
-
-                //滚动到最后
-                $("#chatBox").mCustomScrollbar("scrollTo","last");
             }else{
                 $('#useradd .mCSB_container').html('');
 
@@ -188,6 +190,7 @@ $(function(){
 function Chat() {
     $.post('http://localhost/jie/index.php/Chat/ActiveChat', {'touserid':touserid},function (data) {
         if(!$.isEmptyObject(data)){
+            console.log(data);
             if(!$.isEmptyObject(data.chat)){
                 var chatstr = '';
                 for(var i in data.chat){
@@ -202,16 +205,11 @@ function Chat() {
                     $("#chatBox").mCustomScrollbar("scrollTo","last");
                 }
             }
-            if(!$.isEmptyObject(data.num)){
+/*            if(!$.isEmptyObject(data.num)){
                 for(var i in data.num){
                     console.log(i);
-/*                    $('div["data-chatuserid"]').each(function () {
-                        if($(this).attr(data-chatuserid) == i){
-                            $(this).css('background-color', 'red');
-                        }
-                    });*/
                 }
-            }
+            }*/
         }
 
     },'json');

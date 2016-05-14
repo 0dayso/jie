@@ -53,11 +53,11 @@
             <div>
             <div id="userdis">
                 <p>
-                    <i class="demo-icon icon-star start">&#xe811;</i>
-                    <i class="demo-icon icon-star start">&#xe811;</i>
-                    <i class="demo-icon icon-star start">&#xe811;</i>
-                    <i class="demo-icon icon-star start">&#xe811;</i>
-                    <i class="demo-icon icon-star start">&#xe811;</i>
+                    <i class="demo-icon icon-star start">&#xe81a;</i>
+                    <i class="demo-icon icon-star start">&#xe81a;</i>
+                    <i class="demo-icon icon-star start">&#xe81a;</i>
+                    <i class="demo-icon icon-star start">&#xe81a;</i>
+                    <i class="demo-icon icon-star start">&#xe81a;</i>
                 </p>
                 <textarea placeholder="请输入您对该用户评价,最多120个字符" id="disusertext"></textarea>
                 <button id="userdisub">提交</button>
@@ -72,7 +72,7 @@
                         $start = '';
                        
                         for($i=0; $i < $value['start']; $i++){
-                            $start .= '<i class="demo-icon icon-star">&#xe811;</i>';
+                            $start .= '<i class="demo-icon icon-star">&#xe81a;</i>';
                         }
                         echo "<article class='valuate'>
                         <p>{$value['udcontent']}&nbsp;&nbsp;&nbsp;&nbsp;{$start}</p>
@@ -86,7 +86,7 @@
              </div>
              <?php 
                  if(count($disdata) >= 9){
-                     echo '<div class="moredisbar"><button id="dispre"><i class="demo-icon icon-left-open">&#xe840;</i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="disnex"><i class="demo-icon icon-right-open">&#xe841;</i></button></div>';
+                     echo '<div class="moredisbar"><button id="dispre"><i class="demo-icon icon-left-open">&#xe856;</i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="disnex"><i class="demo-icon icon-right-open">&#xe857;</i></button></div>';
                  }
              ?>
                     </section>
@@ -134,7 +134,7 @@
     </div>
     <?php
         if(count($goodsdata) == 6){
-            echo '<p id="moregd"><button id="goodspre"><i class="demo-icon icon-left-open">&#xe840;</i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="goodsnex"><i class="demo-icon icon-right-open">&#xe841;</i></button></p>';
+            echo '<p id="moregd"><button id="goodspre"><i class="demo-icon icon-angle-double-left">&#xe85c;</i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="goodsnex"><i class="demo-icon icon-angle-double-right">&#xe85d;</i></button></p>';
         }
     ?>
     </section>

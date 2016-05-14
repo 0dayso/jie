@@ -127,6 +127,8 @@ a {
 }
 body {
   font-family: "Helvetica", "Arial", "Serif", "Georgia", "Times", "华文细黑", "中易宋体", "微软雅黑", "Lucida Family", "Verdana", "Tahoma";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 textarea {
   resize: none;
