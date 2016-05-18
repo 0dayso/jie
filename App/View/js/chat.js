@@ -95,6 +95,8 @@ $(function(){
                             continue;
                         }
                     }
+                    
+
                     var chatadd = $(chatstr);
                     $('#chatBox  .mCSB_container').html('');
                     $('#chatBox  .mCSB_container').append(chatadd);
@@ -164,33 +166,21 @@ $(function(){
             $('#chatinput').val('');
         }
     }
-    /*========================================================*/
-    /*======================轮训接收消息=========================*/
+
     //轮训获得有几个用户发来消息
-    setInterval("chatUserNum()" , 20000);
-
-    //轮训对应用户有多少条消息没有被读取
-
-
-
-    //轮训正在对话对象的聊天回去
-
-
-
-
-    /*========================================================*/
-
-
+    setInterval("chatUserNum()" , 2000);
 });
 
 
 
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+标签事件绑定=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*/
+/*========================================================*/
+/*======================轮训接收消息=========================*/
 //有多少新的用户记录,显示新回取的聊天
 function Chat() {
     $.post('http://localhost/jie/index.php/Chat/ActiveChat', {'touserid':touserid},function (data) {
         if(!$.isEmptyObject(data)){
-            console.log(data);
+            /*console.log(data);*/
             if(!$.isEmptyObject(data.chat)){
                 var chatstr = '';
                 for(var i in data.chat){
@@ -205,21 +195,50 @@ function Chat() {
                     $("#chatBox").mCustomScrollbar("scrollTo","last");
                 }
             }
-/*            if(!$.isEmptyObject(data.num)){
-                for(var i in data.num){
-                    console.log(i);
-                }
-            }*/
+           if(!$.isEmptyObject(data.num)){
+                /*console.log(data.num);*/
+                //只想到整个刷新聊天对象列表的方法
+                $.getJSON('http://localhost/jie/index.php/Chat/RefreshList',{},function (data) {
+                    if(!$.isEmptyObject(data)) {
+                        console.log(data);
+                        var i = 0;
+                        var str = '';
+                        while (true) {
+                            if ($.isEmptyObject(data[i])) {
+                                break;
+                            }
+                            /*activehead*/
+                            if (data[i]['userid'] == touserid) {
+                                /*touserid = data[i]['userid'];*/
+                                touserimg = 'http://localhost/jie/headimg/' + data[i]['userimg'];
+                                tousername = data[i]['username'];
+                                str += '<div class="touserlist"  data-chatuserid="' + data[i]['userid'] + '" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/' + data[i]['userimg'] + '" class="active" width="30px" height="30px"/> <p><span>' + data[i]['username'] + '</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
+                            } else {
+                                if (data[i]['active'] == true) {
+                                    str += '<div class="touserlist activehead"  data-chatuserid="' + data[i]['userid'] + '" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/' + data[i]['userimg'] + '" width="30px" height="30px"/> <p><span>' + data[i]['username'] + '</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
+                                } else {
+                                    str += '<div class="touserlist"  data-chatuserid="' + data[i]['userid'] + '" onmouseover="xshow(this)" onmouseout="xhide(this)" onclick="checktouser(this)"> <img src="http://localhost/jie/headimg/' + data[i]['userimg'] + '" width="30px" height="30px"/> <p><span>' + data[i]['username'] + '</span><i class="demo-icon icon-cancel-circled2">&#xe829;</i></p></div>';
+                                }
+                            }
+                            i++;
+                        }
+                        var adduser = $(str);
+                        //添加数据
+                        $("#useradd .mCSB_container").html('');
+                        $("#useradd .mCSB_container").append(adduser);
+                        //更新滚动轴
+                        $("#useradd").mCustomScrollbar("update");
+                        //滚动到最后
+                        $("#useradd").mCustomScrollbar("scrollTo", "last");
+                    }
+                });
+
+
+            }
         }
 
     },'json');
 }
-
-/*
-*  应该被动去执聊天对象的刷新，希望改写
-*
-* */
-
 
 //轮训函数，获得聊天活动对象数目
 function chatUserNum() {
@@ -233,7 +252,7 @@ function chatUserNum() {
     });
 }
 
-
+/*========================================================*/
 //x图标的显示和隐藏
 function xshow(tself) {
     $(tself).find('.icon-cancel-circled2').show(0);
@@ -322,6 +341,14 @@ function Testshow() {
             }
         }, 'json');
     }
+
+/*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*/
+//加载更多聊天
+$('.morechat a').click(function () {
+    alert(touserid);
+});
+
+
 /*=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+*/
 
 

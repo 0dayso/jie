@@ -310,6 +310,7 @@ body{
   top: 3.5em;
   right: 0;
   min-height: 510px;
+
   #useradd{
     float: right;
     width: 7.8em;
@@ -384,6 +385,21 @@ body{
     margin: 0 auto;
     float: left;
     padding-top: .3em;
+    //加载更多按钮
+    .morechat{
+      /*    background-color: #9daf85;*/
+      display: inline-block;
+      width: 71%;
+      text-align: center;
+      padding-top: .3em;
+      a{
+        color: #cccccc;
+        &:hover{
+          color: #9daf85;
+        }
+      }
+
+    }
     article{
       width: 70%;
       margin-bottom: .3em;
@@ -503,6 +519,158 @@ body{
   }
 }
 
+/*=======================弹出信息提示框===============================*/
+/* 弹出层 */
+.outface{
+  position: relative;
+  z-index: 1001;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  width: 30%;
+  height: auto;
+  background-color: #ccc;
+  margin: 0 auto;
+  opacity: 0.9;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  h2{
+    /*    height: 10%;*/
+    font-size: 1.6em;
+    font-weight: 800;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-right-radius: 4px;
+    background-color: #ec5252;
+    padding: .6em;
+    color: #ffffff;
+    text-align: center;
+  }
+  a{
+    display: block;
+    position: absolute;
+    top: .5em;
+    right: .6em;
+    color: #5a5d63;
+    &:hover{
+      color: #ffffff;
+    }
+  }
+}
+/*登录*/
+.loginform{
+  z-index: 1000001;
+  display: none;
+  /*height: 40%;*/
+  height: auto;
+  form{
+    margin: 0 auto;
+    label{
+      width: 85%;
+      display: block;
+      margin: 0 auto;
+      &:first-child{
+        margin-top: 1em;
+      }
+      input{
+        color: rgba(0, 0, 0, .6);
+        height: 1.4em;
+        padding-left: .5em;
+        font-size: 1.2em;
+        width: 100%;
+      }
+      /*      span{
+              display: block;
+              padding: .5em .2em;
+              font-size: .8em;
+            }*/
+
+    }
+    .loginsubmit{
+      display: block;
+      margin: .2em auto;
+      padding: .3em .6em;
+      font-weight: bold;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #f1f1f1;
+      border: 1px solid #f1f1f1;
+      /*      background-color: #ec5252;
+            border: 1px solid #ec5252;*/
+      font-size: 1.1em;
+      margin-bottom: .3em;
+    }
+  }
+}
+
+/*注册*/
+.registerform{
+  z-index: 1000001;
+  display: none;
+  /*height: 58%;*/
+  height: auto;
+  form{
+    margin: 0 auto;
+    label{
+      width: 85%;
+      display: block;
+      margin: 0 auto;
+      &:first-child{
+        margin-top: 1em;
+      }
+      input{
+        color: rgba(0, 0, 0, .6);
+        height: 1.4em;
+        padding-left: .5em;
+        font-size: 1.2em;
+        width: 100%;
+      }
+      /*      span{
+              display: block;
+              padding: .5em .2em;
+              font-size: .8em;
+            }*/
+
+    }
+    .rigistersubmit{
+      display: block;
+      margin: .2em auto;
+      padding: .3em .6em;
+      font-weight: bold;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #f1f1f1;
+      border: 1px solid #f1f1f1;
+      /*      background-color: #ec5252;
+            border: 1px solid #ec5252;*/
+      font-size: 1.1em;
+    }
+  }
+}
+
+.formerror{
+  display: block;
+  height: 1em;
+  line-height: 1em;
+  /*  background-color: #9daf85;*/
+  color: darksalmon;
+  font-size: .9em;
+  text-align: center;
+}
+
+.showmessage{
+  display: none;
+  p{
+    margin: 1em auto 1em auto;
+    text-align: center;
+  }
+}
 /*================================================================*/
 .lastbar{
   float: right;
@@ -612,4 +780,7 @@ button{
   text-align: center;
 }
 
-
+/* 点赞后显示的小手 */
+.icon-thumbs-up-alt{
+  color: #ffba20;
+}

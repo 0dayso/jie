@@ -36,9 +36,9 @@
                             <span class='timeout'>{$day}天过期<!--<i class='demo-icon icon-bell-alt'>&#xe843;</i>--></span>
                             </div>
                             <ul>
-                            <li><a href='javascript:void(0);'>$str</a></li>
-                            <li><a href='{$goodspath}'>{$commentnum}<i class='demo-icon icon-cart-plus'>&#xe84d;</i></a></li>
-                            <li><a href=''>{$zannum}<i class='demo-icon icon-thumbs-up'>&#xe838;</i></a></li>
+                            <li><a>$str</a></li>
+                            <li><a href='{$goodspath}'>{$commentnum}<i class='demo-icon icon-comment'>&#xe83f;</i></a></li>
+                            <li><a href='javascript:void(0);' onclick='Zambia(this)' data-goodsid='{$goodsid}'><span>{$zannum}</span><i class='demo-icon icon-thumbs-up'>&#xe838;</i></a></li>
                             </ul>
                             <div class='godsmessage'>
                             <p class='goodsname'>{$goodsname}</p>
@@ -100,6 +100,12 @@
         <input class="rigistersubmit" type="submit" value="注&nbsp;&nbsp;&nbsp;册"/>
     </form>
 </section>
+<!--<section class="outface showmessage">
+    <h2>信&nbsp;息&nbsp;提&nbsp;示</h2><a href="javascript:void(0);" id="closelogin"><i class="demo-icon icon-cancel-1">&#xe87f;</i></a>
+    <p id="showmess">
+        没有更多了
+    </p>
+</section>-->
 <!-- 页面脚 -->
 <footer class="footer">
     <article class="more"><div><p id="morebox"><button id="more">接下去</button><i class="demo-icon icon-spin6 animate-spin">&#xe814;</i></p></div></article>

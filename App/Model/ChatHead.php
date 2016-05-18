@@ -19,7 +19,6 @@ class ChatHead{
     */
     static function Index(){
         $userid = $_SESSION['user']['userid'];
-        /* return $_SESSION['user']['userid']; */
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         $userListString = self::GetChatList($userid);
@@ -48,7 +47,10 @@ class ChatHead{
             } 
             
             //获得与最后一个聊天的最近10条聊天记录
-            $num = count($userList)-1;
+            /* $num = count($userList)-1; */
+            //获得总的记录数目
+            
+            
             $last = $userList[0];
             $touser = $last['userid'];
             $userList['chat'] = self::GetChat($touser, 0);
@@ -96,6 +98,9 @@ class ChatHead{
         $activeList = $db->FetchOne('user', array('userid'=>$userid), array('activechat', 'chat'));
         $chatnum = $activeList['chat'];
         $activeListArr = explode(',', $activeList['activechat']);
+        //获得两个对象总的聊天记录数目
+        //
+        
         //判断是否都在活动列表内
         if(in_array($touser, $activeListArr)){
             //在活动列表内,要读取所有没有读取的数据
@@ -250,12 +255,47 @@ class ChatHead{
             return null;
         }
 
-        
-        
-        
-        
     }
-     
+    
+    /**
+    * 描述:
+    * @date: 2016年5月14日 下午3:11:47
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: 
+    * @return:
+    */
+    static function RefreshList() {
+        $userid = $_SESSION['user']['userid'];
+        /* return $_SESSION['user']['userid']; */
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $userListString = self::GetChatList($userid);
+        //获得用户的活动对象列表
+        $activeList = $db->FetchOne('user', array('userid'=>$userid), array('activechat'));
+        $activeListArr = explode(',', $activeList['activechat']);
+        
+        if(!empty($userListString)){
+            $userListString = $userListString['chatlist'];
+            $userListArray = explode(',', $userListString);
+            /* return $userListString; */
+            //根据用户列表获得各个用户基本信息
+            $userList = array();
+        
+            foreach ($userListArray as $key => $value){
+                $where = array('userid'=>$value);
+                $data = $db->FetchOne('user', $where, array('userid', 'username', 'userimg'));
+                $userList[$key]['userid'] = $data['userid'];
+                $userList[$key]['username'] = $data['username'];
+                $userList[$key]['userimg'] = $data['userimg'];
+        
+                //若该聊天在活动字段中则应该设置消息提醒
+                if($key != 0 && in_array($data['userid'], $activeListArr)){
+                    $userList[$key]['active'] = TRUE;
+                }
+            }
+            return $userList;
+        }
+    }    
 }
 
 ?>

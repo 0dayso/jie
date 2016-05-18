@@ -43,8 +43,8 @@ $(function () {
                        var child = "<article><div class='img'><a href='"+goodspath+"'><img src='"+goodsimg0+"' width='280px' height='280px'></a></div>" +
                            " <div class='userandtime'> <a href='"+userid+"' class='head'><img src='"+userimg+"' width='45px' height='45px'></a>" +
                            " <span class='username'>"+username+"</span> <span class='timeout'>"+day+"天过期</span> </div> <ul> " +
-                           "<li><a href='javascript:void(0);'>"+str+"</a></li> <li><a href='"+goodspath+"'>"+commentnum+"<i class='demo-icon icon-cart-plus'>&#xe84d;</i></a></li>" +
-                           " <li><a href=''>"+zannum+"<i class='demo-icon icon-thumbs-up'>&#xe838;</i></a></li></ul><div class='godsmessage'><p class='goodsname'>"+goodsname+"</p>" +
+                           "<li><a href='javascript:void(0);'>"+str+"</a></li> <li><a href='"+goodspath+"'>"+commentnum+"<i class='demo-icon icon-comment'>&#xe83f;</i></a></li>" +
+                           " <li><a  href='javascript:void(0);' onclick='Zambia(this)' data-goodsid='"+goodsid+"'><span>"+zannum+"</span><i class='demo-icon icon-thumbs-up'>&#xe838;</i></a></li></ul><div class='godsmessage'><p class='goodsname'>"+goodsname+"</p>" +
                            "<p class='discript'>"+goodsdepict+"</p></div></article>";
                        $('#message').append(child);
                    }

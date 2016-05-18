@@ -204,6 +204,7 @@
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
             border-radius: 4px;
+            background-color: rgba(128, 184, 255, 0.7);
             &:hover{
               background-color: #ffa819;
               color: #ffffff;
@@ -213,11 +214,16 @@
       }
       .messbutton{
         text-align: center;
-/*        background-color: red;*/
         button{
+          background-color: transparent;
+          font-size: 1.2em;
           cursor: pointer;
-          padding: .2em .5em;
+          padding: 0;
+          border: none;
           margin: .5em auto;
+          &:hover{
+            color: #ffa819;
+          }
         }
       }
     }
@@ -228,16 +234,19 @@
       display: block;
       article{
         border-top: 1px solid #c0c0c0;
+        width: 95%;
         margin-bottom: .1em;
         position: relative;
         overflow: auto;
-        min-height: 60px;
+        white-space:normal;
+        height: 100%;
       img,div{
         font-size: .9em;
           margin-top: .3em;
           color: #717171;
           display: block;
           float: left;
+        margin-bottom: .3em;
         }
         img{
           border: none;
@@ -259,7 +268,11 @@
             color: #919191;
           }
           p{
+            width: 100%;
             color: #717174;
+            display: inline-block;
+            overflow:auto;
+            word-break:break-all;
             .reply{
               color: #717174;
               position: absolute;
@@ -269,8 +282,14 @@
               border-radius: 4px;
               padding: .2em .6em;
               display: inline-block;
-              background-color: #5a5d63;
-              color: orange;
+/*              background-color: #5a5d63;
+              color: orange;*/
+              background-color: #cccccc;
+              color: #ffe891;
+              &:hover{
+                background-color: rgba(0, 0, 0, .5);
+                color: #ffc40b;
+              }
             }
           }
         }
@@ -280,14 +299,14 @@
 }
 
 .blown{
-  margin-top: 8%;
+  /*margin-top: 8%;*/
   margin-left: 6%;
 /*  background-color: dodgerblue;*/
   position: relative;
   width: 20%;
   float: left;
   color: #717171;
-  article{
+  .goodsuser{
       img{
         background-color: #685875;
         -webkit-border-radius: 3em;
@@ -316,6 +335,81 @@
       line-height: 2em;
       font-size: 1.2em;
       color: #ffffff;
+    }
+  }
+  .choiceuser{
+    position: relative;
+    ul{
+      //background-color: #9daf85;
+      .chico img{
+        -webkit-box-shadow:  0 0 6px #ec5252;
+        -moz-box-shadow:  0 0 6px #ec5252;
+        box-shadow:  0 0 6px #ec5252;
+      }
+      li{
+        float: left;
+        width: 24%;
+       /* background-color: #abcdef;*/
+        margin: 1px;
+        text-align: center;
+        img{
+          margin-top: .2em;
+          width: 35px;
+          height: 35px;
+          -webkit-border-radius: 17px;
+          -moz-border-radius: 17px;
+          border-radius: 17px;
+          cursor: pointer;
+        }
+        span{
+          line-height: 1.1em;
+          font-size: .8em;
+          color: rgba(0, 0, 0, .4);
+          display: block;
+          width: 100%;
+          text-align: center;
+          margin-bottom: .2em;
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow:ellipsis;
+        }
+        &:hover img{
+          -webkit-box-shadow: 0 0 3px #ffba20;
+          -moz-box-shadow: 0 0 3px #ffba20;
+          box-shadow: 0 0 3px #ffba20;
+        }
+        &:hover span{
+          color: rgba(0, 0, 0, .6);
+        }
+      }
+    }
+    button{
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      &:hover{
+        i{
+          color: #ffba20;
+        }
+      }
+      &:active{
+        i{
+          color: #ffffff;
+        }
+      }
+      i{
+        font-size: 2em;
+      }
+    }
+    .left{
+      position: absolute;
+      left: -2em;
+      top: 4em;
+    }
+    .right{
+      position: absolute;
+      right: -2em;
+      top: 4em;
     }
   }
 }

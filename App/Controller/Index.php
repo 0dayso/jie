@@ -203,5 +203,46 @@ class Index{
         exit;
     }
     
+    
+    /**
+    * 描述: 邮件激活活
+    * @date: 2016年5月15日 下午7:48:16
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function EnableMail(){
+        //获得传递过来的信息
+        $register = \Xin\Register::Instance();
+        $db = $register->GetValue('db');
+        $data = $register->GetValue('data');
+        $enable = $data['enable'];
+        $userid = $data['userid'];
+        
+        //获得该用户对应的激活码
+        $ret = $db->FetchOne('user', array('userid'=>$userid), array('enable'));
+        if($ret['enable'] == $enable){
+            //发送消息告知用户已经激活
+            $time = time();
+            $coon = '您已经成功的激活!';
+            
+            $arr = array('userid'=>1, 'chattime'=>$time, 'chatcontent'=>$coon, 'touser'=>$userid);
+            $db->Insert('chat', $arr);
+            $selfmess = $db->FetchOne('user', array('userid'=>$userid), array('activechat', 'chat'));
+            //向获活动项中添加小编用户
+            $activechat = $selfmess['activechat'];
+            $activearr = explode(',', $activechat);
+            array_unshift($activearr, 1);
+            $activearr = array_unique($activearr);
+            $activestr = join(',', $activearr);
+            $activestr = trim($activestr, ',');
+            
+            $chat = $selfmess['chat'] + 1;
+            $db->Update('user', array('chatlist'=>$activestr, 'chat'=>$chat, 'enable'=>0), " userid = {$userid} ");
+        }
+        
+        $this->Index();
+    }
+    
 }
 ?>

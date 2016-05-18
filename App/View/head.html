@@ -3,10 +3,16 @@
     <link href="<?php echo INLET;?>App/View/style/goods.css" rel="stylesheet" type="text/css"/> -->
 </head>
 <body>
+<section class="outface showmessage">
+    <h2>信&nbsp;息&nbsp;提&nbsp;示</h2><a href="javascript:void(0);" id="closelogin"><i class="demo-icon icon-cancel-1">&#xe87f;</i></a>
+    <p id="showmess">
+        没有更多了
+    </p>
+</section>
 <section class="page">
     <!-- 页面头 -->
     <header class="header">
-        <h1 class="logo" onclick="showid()"><span>接</span>下去</h1>
+        <h1 class="logo" onclick="InsertMess()"><span>接</span>下去</h1>
         <nav>
             <li><a href="<?php echo INLET;?>index.php"><i class="demo-icon icon-home">&#xe831;</i>首页</a></li>
             <li><a href="<?php echo INLET;?>index.php/Show/Free"><i class="demo-icon icon-gift">&#xe869;</i>免费物品</a></li>
@@ -40,7 +46,7 @@
     </header>
         <div class="chatBox">
             <section class="chatUser" id="useradd">
-
+                <!--<div class="morechat"><a href="javascript:void(0);" >more</a></div>-->
             </section>
             <section id="chatBox" class="test">
 

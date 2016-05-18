@@ -248,5 +248,14 @@ $(function(){
         }
     });
 
-
+   $('.showmessage a').click(function () {
+       $('.showmessage').hide();
+   });
 });
+
+/*+==+==+==+==+==+==+==信息提示框+==+==+==+==+==+==+==+==+==*/
+    function InsertMess(mess) {
+        $('.showmessage p').html(mess);
+        $('.showmessage').show(500);
+    }
+/*+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==*/

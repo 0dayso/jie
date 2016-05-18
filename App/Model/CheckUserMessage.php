@@ -69,6 +69,9 @@ class CheckUserMessage{
         $register = \Xin\Register::Instance();
         $db = $register->GetValue('db');
         $db->Insert('user', $_SESSION['reg']);
+        //发送激活邮件
+        \App\Model\Lisa::MailChat(); 
+        
         return NULL;
     }
 

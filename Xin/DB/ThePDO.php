@@ -73,6 +73,9 @@ class ThePDO implements InterfaceDB{
         }
         $param = trim($param, ',');
         $sql="insert into {$table} ($keys) values({$param})";
+        $str = join(',', $values);
+        /* file_put_contents(ROOT.'message.txt', $sql);
+        exit(); */
         try {
             $stmt = self::$pdo->prepare($sql);
             $result = $stmt->execute($values);
@@ -114,14 +117,15 @@ class ThePDO implements InterfaceDB{
         //组装sql语句
         $sql = "update {$table} set {$set} where {$where}";
 
-/*          file_put_contents(ROOT.'message.txt', $sql);
-        exit();  */
+/*           file_put_contents(ROOT.'message.txt', $sql);
+        exit();   */
         try {
             //执行sql语句
             $attfected = self::$pdo->exec($sql);
             //返回执行结果
             return $attfected;
         } catch (\PDOException $e) {
+            /* file_put_contents(ROOT.'message.txt', $e->getMessage()); */
             file_put_contents(ROOT.'message.txt', $e->getMessage());
         }
     }
@@ -209,8 +213,8 @@ class ThePDO implements InterfaceDB{
         
         $where = " where $keyarr[0] = '$valuearr[0]' "; 
         $sql = "select {$field} from {$table} {$where}";
- /*        file_put_contents(ROOT.'message.txt', $sql); 
-         exit(); */
+/*         file_put_contents(ROOT.'message.txt', $sql); 
+         exit();  */
 /*          echo $sql;
         exit();   */
         try {

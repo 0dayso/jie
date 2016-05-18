@@ -38,6 +38,7 @@ $(function () {
             }else{
                 var json = {"gdcontent": cont, "touserid": touserid}
             }
+            /*console.log(json);*/
             //用ajax向远程提交评论数据
             $.post('http://localhost/jie/index.php/Goods/PushDis', json,function (data) {
                 if(data != '0'){
@@ -55,6 +56,10 @@ $(function () {
                     '<a data-userid="'+userid+'" data-username="'+username+'" href="#reply" class="reply">回复</a>' +
                     '</p> </div> </article>';
                     $('#comment').prepend($(addstr));
+                    //评论数目修改
+                    var commentnum = $('#commentnum').html();
+                    commentnum = parseInt(commentnum) + 1;
+                    $('#commentnum').html(commentnum);
                 }
             });
         }
@@ -63,23 +68,13 @@ $(function () {
 
 /*
 *
-*
-*
-* 这里有个bug,后添加的元素，无法自我回复
-*
-*
-*
-*
-*
-*
-*
-*
+* 这里有个bug,后添加的元素，无法自我回复,解决办法，将事件直接绑定到元素上
 *
 * */
 
     //点击回复时的事件
     $('.reply').on('click', function () {
-        alert('事件被响应');
+        /*alert('事件被响应');*/
         var tousername = $(this).attr('data-username');
         var touserid = $(this).attr('data-userid');
         //改变按钮样式
@@ -97,7 +92,7 @@ $(function () {
     $('#pre').on('click', function () {
         $.post('http://localhost/jie/index.php/Goods/Pre', {},function (data) {
             if(data[1] == 'top'){
-                alert('没有更多了');
+                InsertMess('没有更多了');
             }else{
                 //循环组装显示数据
                 var str = '';
@@ -109,7 +104,7 @@ $(function () {
                         var discontent = data[i]['gdcontent'];
                     }
                     //循环组装
-                    str += "<article><img src='"+data[i]['userimg']+"' width='45px' height='45px'><div class='message'><p><span>"+data[i]['username']+"</span>:<span>"+discontent+"</span></p> <p><span class='distime'>"+data[i]['goodsid']+"</span><a data-userid='"+data[i]['userid']+"'data-username='"+data[i]['tousername']+"' href='#reply' class='reply'>回复</a></p></div> </article>";
+                    str += "<article><img src='"+data[i]['userimg']+"' width='45px' height='45px'><div class='message'><p><span>"+data[i]['username']+"</span>:<span>"+discontent+"</span></p> <p><span class='distime'>"+data[i]['gdtime']+"</span><a data-userid='"+data[i]['userid']+"'data-username='"+data[i]['tousername']+"' href='#reply' class='reply'>回复</a></p></div> </article>";
                 }
 
                 //清空原来是数据直接添加新数据
@@ -122,14 +117,13 @@ $(function () {
         $.post('http://localhost/jie/index.php/Goods/Nex', {},function (data) {
             console.log(data);
             if(data[1] == 'last'){
-                alert('没有更多了');
+                InsertMess('没有更多了');
             }else{
                 
                 //循环组装显示数据
                 var str = '';
                 for (var i in data){
-                    /*回复童森:*/
-                    //touserid记得加上
+
                    if(data[i]['tousername'] != null){
                         var discontent = '回复<a href="">'+data[i]['tousername']+'</a>:'+data[i]['gdcontent'];
                     }else{
@@ -137,7 +131,8 @@ $(function () {
                     }
 
                     //循环组装
-                    str += "<article><img src='"+data[i]['userimg']+"' width='45px' height='45px'><div class='message'><p><span>"+data[i]['username']+"</span>:<span>"+discontent+"</span></p> <p><span class='distime'>"+data[i]['goodsid']+"</span><a data-userid='"+data[i]['userid']+"'data-username='"+data[i]['tousername']+"' href='#reply' class='reply'>回复</a></p></div> </article>";
+                    console.log(data.i);
+                    str += "<article><img src='"+data[i]['userimg']+"' width='45px' height='45px'><div class='message'><p><span>"+data[i]['username']+"</span>:<span>"+discontent+"</span></p> <p><span class='distime'>"+data[i]['gdtime']+"</span><a data-userid='"+data[i]['userid']+"'data-username='"+data[i]['tousername']+"' href='#reply' class='reply'>回复</a></p></div> </article>";
                 }
 
                 //清空原来是数据直接添加新数据
@@ -157,3 +152,5 @@ $(function () {
     }
     
 });
+/*
+InsertMess('没有更多了');*/

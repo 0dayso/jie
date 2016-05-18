@@ -118,6 +118,20 @@ class Chat{
         echo json_encode($return);        
     }
     
+    
+    /**
+    * 描述: 刷新聊天对象表
+    * @date: 2016年5月14日 下午3:04:49
+    * @author: xinbingliang <709464835@qq.com>
+    * @param: variable
+    * @return:
+    */
+    function RefreshList(){
+        $data = \App\Model\ChatHead::RefreshList();
+        
+        echo json_encode($data);
+    }
+
 }
 
 
